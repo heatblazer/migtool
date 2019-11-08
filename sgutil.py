@@ -58,11 +58,11 @@ SVNGIT_UPDATE_DB_ONLY = False
 
 SVNGIT_ON_ABM = False
 
-GDepth = 20
+GDepth = 40
 
 CMD_VERBOSE_MODE_ON = True
 
-CSI_GIT_URI = "secret"
+CSI_GIT_URI = "ssh://git@cisbitbucket01:7999/"
 
 SVN_TEMP_DIR = "svnrepos"
 
@@ -85,7 +85,8 @@ For bfg mode to perform a cleanup use: sgutil.py --dobfg --file <file>\r\n
 
 For merge export svn to git use: sgutil.py --export --file <file>\r\n
 
-For tagging use: sgutil.py --file <file> --tag\r\n
+For tagging use: sgutil.py --file <file> --tag <0, 1, 2>\r\n
+    \t(desc: where 0 is tag, 1 is untag, and 2 is retag (untag, tag) )\r\n
 
 For untagging use: sgutil.py --file <file> --untag\r\n
 
@@ -761,7 +762,7 @@ class SvnGitMixin(object):
         Utils.printwf("<<<<<<<<<< Leaving BFG mode >>>>>>>>>>")
 
     
-    def do_tag(self, remove_tag=False, applyFix=False, fixDirty=False, filter=None, enable_dump=False):
+    def do_tag(self, remove_tag=0, applyFix=False, fixDirty=False, filter=None, enable_dump=False):
         """tag user commits with ABM commits.
         Latest user preceeding an abm array of commits will be tagged.
         First abm commit is internal and will be retrieved by finding Version.h and extract data from there.
@@ -840,13 +841,19 @@ class SvnGitMixin(object):
             if SVNGIT_UPDATE_DB_ONLY is False:
                 self._shell.execute(commit)
                 self._shell.execute(push)
+            else:
+                Utils.printwf("[TAG]Update db only...")
 
         def untag(tag):
             deltag = str("git tag -d %s" % tag)
             Utils.dump(str("INFO: %s" %deltag))
             pushdel = str("git push origin :refs/tags/%s" % tag)
-            self._shell.execute(deltag)
-            self._shell.execute(pushdel)
+            if SVNGIT_UPDATE_DB_ONLY is False:
+                self._shell.execute(deltag)
+                self._shell.execute(pushdel)
+            else:
+                Utils.printwf("[UNTAG]Update db only...")
+
             
         def parse_ver_msg(data):
             spl = data.split()
@@ -879,7 +886,7 @@ class SvnGitMixin(object):
                 j += 1
             return ret
 
-        def apply_abm_fix(abmdata, opdir, utag=False, svnrev=None, topabm=0):
+        def apply_abm_fix(abmdata, opdir, utag=0, svnrev=None, topabm=0):
             i, size = 1, 0
             size = len(abmdata)
             if size > 0:
@@ -896,8 +903,11 @@ class SvnGitMixin(object):
                 commithashi = commithashi[0].split('\n')[0]
                 cmmsgi = str("Automatic ABM commit: Increase Component version to: %s.%s.%s.%s" % (versionh2.majorv, versionh2.minorv, versionh2.branchv, versionh2.fixv))
 
-                if utag:
+                if utag == 1:
                     untag(deltag)
+                elif untag == 2:
+                    untag(deltag)
+                    tag(deltag, commithashi, cmmsgi)
                 else:
                     Utils.db.add_tag(self._currentBranch, deltag)
                     tag(deltag, commithashi, cmmsgi)
@@ -912,8 +922,11 @@ class SvnGitMixin(object):
                     cmmsg = parse_ver_msg(abmdata[i][1])
                     tagname = cmmsg[22].replace('.', '_')
                     cmmsg = build_cm_msg(cmmsg, 'commit:')
-                    if utag:
+                    if utag == 1:
                         untag(tagname)
+                    elif utag == 2:
+                        untag(tagname)
+                        tag(tagname, commithash, cmmsg)
                     else:
                         tag(tagname, commithash, cmmsg)
                     i += 1
@@ -969,7 +982,7 @@ class SvnGitMixin(object):
         #" --tags  --decorate=full --date=short"
         haslog = self.gitlog()
         
-        if self._git_forward_err is True and remove_tag is False:
+        if self._git_forward_err is True and remove_tag != 1:
             Utils.printwf("Git repo ahead of SVN")
             Utils.dump("ERROR: Git repo ahead of SVN")
             return ERROR
@@ -990,11 +1003,14 @@ class SvnGitMixin(object):
             elif Helpers.match_abm(gititems[i][1][0]):
                 git_abm_top = gititems[i][0]
 
-
         if git_abm_top_internal > 0:
             self.svnlog(str(git_abm_top_internal))
         else:
-            return ERROR_INSUFFICIENT_CLONE_DEPTH
+            if git_abm_top_internal == 0 and git_abm_top == 0:
+                Utils.printwf("WARN: No ABM commits in git repo.")
+                self.svnlog(str(self._hkgit)) # get the upper git present in svn
+            else:
+                return ERROR_INSUFFICIENT_CLONE_DEPTH
 
         svnitems = self._metasvn.items()
         if len(svnitems) == 0:
@@ -1004,13 +1020,13 @@ class SvnGitMixin(object):
         #TODO: get the latest saved SVN rev
         currentSavedRev = Utils.db.get_svnrev(self._currentBranch)
         hsvn = self.hwm(self._metasvn)
-        if hsvn == currentSavedRev:
+        if hsvn == currentSavedRev and remove_tag == 0:
             Utils.printwf("Current GIT state and SVN state are equal. Nothing to do.")
             return OK
         
         Utils.db.add_svnrev(self._currentBranch, hsvn)
-
         svnitems.sort()
+
         latestuser = None
         dAbmMan = filter_fix_tag(svnitems)
         svnitems = dAbmMan['ok']
@@ -1067,8 +1083,11 @@ class SvnGitMixin(object):
                         vermsg = build_cm_msg(vermsg, 'commit:')
                         self._set_path(self._gitpath)
                         Utils.db.add_tag(self._currentBranch, tagname)
-                        if remove_tag is True:
+                        if remove_tag == 1:
                             untag(tagname)
+                        elif remove_tag == 2:
+                            untag(tagname)
+                            tag(tagname, commithash, vermsg)
                         else:
                             tag(tagname, commithash, vermsg)
                         
@@ -1076,8 +1095,11 @@ class SvnGitMixin(object):
                             cmmsg = parse_ver_msg(abmcommit[ii][1])
                             tagname2 = cmmsg[22].replace('.', '_')
                             cmmsg = build_cm_msg(cmmsg, 'commit:')
-                            if remove_tag is True:
+                            if remove_tag == 1:
                                 untag(tagname2)
+                            elif remove_tag == 2:
+                                untag(tagname2)
+                                tag(tagname2, commithash, cmmsg)
                             else:
                                 tag(tagname2, commithash, cmmsg)
                             pass
@@ -1136,7 +1158,6 @@ class SvnGitMixin(object):
         sorted(svnmeta.keys())
         items = svnmeta.items()
         items.sort()
-        rootdir = None
         for i  in items:
             k = i[0]
             msg = i[1].split("\r\n\r\n")
@@ -1154,7 +1175,6 @@ class SvnGitMixin(object):
                     else:
                         os.chdir(self._gitpath) # go to dir path
                         exppath = str("%s\\%s\\%s" % (pydir, postf, k))
-                        rootdir = str("%s\\%s" % (pydir, postf))
                         c = self._shell
                         self._currentPID = c                        
                         exp = str("svn export -r %s %s %s" % (k,  self._svnpath, exppath))
@@ -1168,13 +1188,11 @@ class SvnGitMixin(object):
                         else:                        
                             Utils.printwf(str("Error: Repositories: %s and %s are probably deleted." % (self._repo, self._svnuri)))
                             Utils.dump(str("Error: Repositories: %s and %s are probably deleted." % (self._repo, self._svnuri)))                            
-                            Utils.rmdir(rootdir) 
                             return ERROR
                 else:
                     Utils.printwf(str("Error: Mail %s not in the mailing list, aborting migration" % spl[2]))
                     Utils.dump(str("Error: Mail %s not in the mailing list, aborting migration" % spl[2]))
                     break
-        Utils.rmdir(rootdir) #finally delete export dir
         return OK
 
 
@@ -1334,8 +1352,18 @@ if __name__ == "__main__":
     if Utils.db.load('db.json') is True:
         Utils.printwf("OK, loaded db file")
 
-    def _intag(mix,svn,git,branch,depth,remtag=False):
-        while mix.do_tag(remove_tag=remtag, applyFix=True) == ERROR_INSUFFICIENT_CLONE_DEPTH:
+    def _intag(mix,svn,git,branch,depth,tagopt=0):
+        if tagopt == 0:
+            Utils.printwf("Enter tag mode")
+        elif tagopt == 1:
+            Utils.printwf("Enter untag mode")
+        elif tagopt == 2:
+            Utils.printwf("Enter retag mode")
+        else:
+            Utils.printwf("Unknown option... Aborting...")
+            return False
+        
+        while mix.do_tag(remove_tag=tagopt, applyFix=True) == ERROR_INSUFFICIENT_CLONE_DEPTH:
             Utils.printwf("Insufficient git depth. Could not obtain meaningful info.Now reclone with depth (%s)" % int(depth * 2))
             depth = 2 * depth
             mix.git_clone(git, branch, depth, rmdir=True)
@@ -1362,6 +1390,7 @@ if __name__ == "__main__":
     args.update({'--help' : HELP_MESSAGE})    
     args.update({'--nolog':None})
     args.update({'--tag' : None})
+    args.update({'--retag' : None})
     args.update({'--untag' : None})
     args.update({'--xml-file' : None})
     args.update({'--fix-dirty' : None})
@@ -1466,6 +1495,8 @@ if __name__ == "__main__":
                     Utils.dump("---------------------------------------------------------------------------")
                     Utils.dump(str("INFO: %s,%s,%s" % (svn, git, branch)))
                     bDumpAll = False
+                    tag_opt = -1
+                    enable_tag_mode = False
                     if GDEBUG is False:
 
                         if args['--update-db'] is not None:
@@ -1476,17 +1507,32 @@ if __name__ == "__main__":
 
                         if args['--dump-all'] is not None:
                             bDumpAll = True
-                        if args['--tag'] is not None:
-                            _intag(mix,svn, git, branch, depth)
-                        elif args['--untag'] is not None:
-                            _intag(mix,svn, git, branch, depth, remtag=True)
-                        elif args['--merge'] is not None:
+
+                        if args['--tag']:
+                            enable_tag_mode = True
+                            try:
+                                tag_opt = int(sys.argv[args['--tag']+1])
+                            except:
+                                Utils.printwf("ERROR: option [--tag] must be followed by mode (0, 1, 2)")
+                                tag_opt = -1
+                        
+                        if args['--untag'] is not None:
+                            enable_tag_mode = True
+                            tag_opt = 1
+                        
+                        if args['--retag'] is not None:
+                            enable_tag_mode = True
+                            tag_opt = 2
+
+                        if args['--merge'] is not None:
                             mix.do_merge("{2019-01-01}", cleanup=clean)
                         elif args['--export-platforms'] is not None and GXml is not None:
                             mix.update_platforms()
                         elif args['--fullmerge'] is not None:
                             mix.do_merge("{2019-01-01}", cleanup=clean)
-                            _intag(mix, svn, git, branch, depth)
+                            _intag(mix, svn, git, branch, depth, 0)
+                        elif args['--fullmerge'] is None and enable_tag_mode is True:
+                            _intag(mix, svn, git, branch, depth, tag_opt) #tagonly
                         elif args['--purge-tags'] is not None:
                             mix.remove_tags()
                         else:
@@ -1494,7 +1540,7 @@ if __name__ == "__main__":
                         _idump(mix, svn, git, branch, bDumpAll)
                         mix.finish()
                     else:
-                        _intag(mix, svn, git, branch,depth)
+                        _intag(mix, svn, git, branch,depth, 2)
                         pass
                     mix.finish()
                 except Exception as mainEx:                    
