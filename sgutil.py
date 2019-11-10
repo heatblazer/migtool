@@ -1508,7 +1508,7 @@ if __name__ == "__main__":
                         if args['--dump-all'] is not None:
                             bDumpAll = True
 
-                        if args['--tag']:
+                        if args['--tag'] is not None:
                             enable_tag_mode = True
                             try:
                                 tag_opt = int(sys.argv[args['--tag']+1])
