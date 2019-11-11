@@ -17,18 +17,469 @@ http://svnrepo ,repouri/repo.git, branch
 
 '''
 import datetime
-from Utils import Utils
-from Shell import Cmd
-from Helpers import Helpers
-from Helpers import XmlUpdateContext
-from Helpers import Functor
-from Globals import NS
+from db import dbutil as DataBaze
 import json
+import threading #for future use - pass SvnGitMixin to separate threads
 import time
 from time import sleep
 import os
+import subprocess 
 import sys
+import xml.etree.ElementTree as ET
 import warnings
+
+#Globals and constants
+############################################################################
+TEST_GIT_REPO_NAME = None #"TST4" #"TODO_MIGRATE"
+
+GDEBUG = False
+
+OK = 0
+
+ERROR = 1
+
+NO_CONNECTION_TO_SVN = 2
+
+NO_CONNECTION_TO_GIT = 3
+
+ERROR_INSUFFICIENT_CLONE_DEPTH = 4
+
+REPO_BACKUP = "backup"
+
+GUserMails = None
+
+GMissingMails = {}
+
+GSvnGitMeta = []
+
+GSwitchCase = {}
+
+SVNGIT_UPDATE_DB_ONLY = False
+
+SVNGIT_ON_ABM = False
+
+GDepth = 40
+
+CMD_VERBOSE_MODE_ON = True
+
+CSI_GIT_URI = "ssh://git@cisbitbucket01:7999/"
+
+SVN_TEMP_DIR = "svnrepos"
+
+GIT_TEMP_DIR = "gitrepos"
+
+ABM_TEMP = "abmtemp"
+
+LOG_DISABLED = True
+
+GTHREAD_COUNT = 5 #test
+
+FIX_DIRTY_TAGS = False
+
+FIX_DIRTY_TAGS_SPECIAL = False
+
+HELP_MESSAGE = """
+
+Usage:\r\n
+For bfg mode to perform a cleanup use: sgutil.py --dobfg --file <file>\r\n
+
+For merge export svn to git use: sgutil.py --export --file <file>\r\n
+
+For tagging use: sgutil.py --file <file> --tag <0, 1, 2>\r\n
+    \t(desc: where 0 is tag, 1 is untag, and 2 is retag (untag, tag) )\r\n
+
+For untagging use: sgutil.py --file <file> --untag\r\n
+
+For dump log use: sgutil.py --file <file> --dump-all\r\n
+
+For complete merge repo and tag use: sgutil.py --file <file> --fullmerge\r\n
+
+For specific removal of tags use: sgutil.py --file <file> --purge-tags\r\n
+
+For other options view the sgutil.py file with your editor of choice :")\r\n
+
+For updating a db file use: sgutil.py --update-db\r\n
+
+For hinting you are on a build machine use: sgutil.py --abm\r\n
+
+Usage for updateing ComponentsVersion.xml:
+-cv0 <filename.xml> ... -cv<Filename.xml>
+
+"""
+
+ExcludedFilesForGitV1 = """
+7z,arj,deb,pkg,rar,rpm,tar,
+gz,tar.gz,z,ace,whl,gzip,zip,
+bin,dmg,iso,toast,vcd,dat,db,apk,
+exe,jar,war,ear,cab,dll,obj,dmp,
+xlsx,docx,doc,ppt,pptm,pptx,
+pdf,msi,msu,m_s_i,wsi,png,
+jpg,jpeg,gif,ico
+"""
+
+ExcludedFilesForGitV2 = """
+.cache,.chm,.dll,.exe,
+.exp,.idb,.jpg,.lib,.Lib,
+.ncb,.pcap,.pdf,.pk,.raw,
+.obj,.pdb,.sdf,.suo,
+.d,.Config.proj.bak,
+.docx,.xlsx,.snoop,.AIT,
+.o,.so,.out,.metadata
+"""
+
+
+############################################################################
+
+
+#spawn a command
+class Cmd(object):
+    """ spawn a new process and capture stdout and stderr"""
+
+    def __init__(self, verbose=False):
+        self._out = None
+        self._err = None
+        self._dataout = []
+        self._dataerr = []
+        self.pro = None
+        self._vmode = verbose
+
+
+    def std_out(self):
+        if self._out is not None:
+            return self._out
+        else:
+            return None
+
+
+    def std_out_data(self):
+        return self._dataout
+
+
+    def std_err(self):
+        if self._err is not None:
+            return self._err
+        else:
+            return None
+
+
+    def flush(self):
+        self._out = None
+        self._dataout = None
+        self._err = None 
+
+
+    def execute(self, cmd, term=False):
+        cmd.strip()
+        if self._vmode is True:
+            term = True
+        fp = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=term)
+        self.pro = fp
+        (self._out, self._err) = fp.communicate()
+        return len(self._err) == 0
+
+
+    def terminate(self):
+        if self.pro is not None:
+            self.pro.terminate()
+        self.pro = None
+
+
+    def kill(self):
+        if self.pro is not None:
+            self.pro.kill()
+        self.pro = None
+
+
+    def execute_ex(self, cmd):
+        cmd.strip()
+        fp = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        while True:
+            line = fp.stdout.readline()
+            if not line:
+                break
+            else:
+                self._dataout.append(line)                        
+        pass
+
+
+class Helpers(object):
+    """helper stuff"""
+
+    @staticmethod 
+    def is_validchash(s):
+        bfail = True
+        for c in s:
+            if (c.lower() >= 'a'and c.lower() <= 'f') or (c >= '0' and  c <= '9'):
+                pass
+            else:
+                bfail &= False
+        return bfail
+
+    @staticmethod 
+    def match_abm_aligned(data):
+        if data.lower().find("abm") is not -1 and data.find("Automatic ABM commit") is not -1:
+            if data.lower().find("increase component version to") is not -1:
+                return True
+            else: 
+                return False
+        else:
+            return False
+    
+    @staticmethod 
+    def match_abm(data):
+        if data.lower().find("abm") is not -1 and data.find("Automatic ABM commit") is not -1:
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def match_abmasmanual(data):
+        if data.lower().find("abm") is not -1 and data.find("Automatic ABM commit") is -1:
+            return True
+        else:
+            return False
+
+class Utils(object):
+    """ Utulity functions - static class """
+    dmpfile = None # fptr
+    sshel = Cmd()
+    sresult = None
+    memdmp = list()
+    db = DataBaze()
+    @staticmethod 
+    def rmdir(dir_path):
+        try:
+            fcmd = str("rmdir /Q /S %s" % dir_path)
+            os.system(fcmd)
+        except :
+            Utils.printwf(str("ERROR: %s does not exists"))
+            pass
+
+
+    @staticmethod
+    def printcwd():
+        ret = os.getcwd()
+        Utils.printwf(str("CWD: [%s]" % str(ret)))
+        return ret
+
+
+    @staticmethod
+    def home_dir():
+        return os.path.dirname(os.path.realpath(__file__))
+
+
+    @staticmethod
+    def home():
+        os.chdir(os.path.dirname(os.path.realpath(__file__)))
+        return os.path.dirname(os.path.realpath(__file__))
+
+
+    @staticmethod
+    def dump(data):
+        """dump to memory or file"""
+        if Utils.memdmp is None:
+            Utils.memdmp = list()
+        if LOG_DISABLED is True:
+            Utils.memdmp.append(data)
+        if Utils.dmpfile is None and LOG_DISABLED is False:
+            Utils.dmpfile = open(r"C:\\ProgramData\\Dmp.txt", "w")    
+        if LOG_DISABLED is False:
+            Utils.dmpfile.write(str(data))
+
+
+    @staticmethod
+    def finalize():
+        Utils.home()
+        Utils.db.printme()
+        if Utils.db.save() is not True:
+            Utils.printwf("Failed to save db file")
+        else:
+            if SVNGIT_ON_ABM:
+                Utils.printwf("Will commit db.json to the master repo")
+                cmmsg = "Automatic ABM commit for a DB file"
+                cmd = Cmd()
+                adddb = str("git add %s" % Utils.db.fname())
+                cmtdb = str("git commit -m \"%s\"" % cmmsg)
+                push = str("git push")
+                cmd.execute(adddb)
+                cmd.execute(cmtdb)
+                cmd.execute(push)
+
+        for i in Utils.memdmp:
+            Utils.printwf(i)
+        
+        if Utils.dmpfile is not None:
+            Utils.dmpfile.close()
+        Utils.sshel.kill()
+
+
+    @staticmethod
+    def mkdir(dir_name):
+        sshel = Cmd()
+        dn = str("mkdir %s" % dir_name)
+        sshel.execute(dn, True)
+
+
+    @staticmethod
+    def xcopy(src, dst):
+        xc = str("xcopy /E /I %s %s /Y" % (src, dst))
+        sshel = Cmd()
+        sshel.execute(xc)
+        if len(sshel.std_err()) == 0:
+            return True
+        else:
+            return False
+
+
+    @staticmethod
+    def probe_dirs(dirs):
+        res = True
+        for d in dirs:
+            if os.path.isdir(d):
+                res &=  len(os.listdir(d)) > 1
+            else:
+                res &= False        
+        return res
+
+
+    @staticmethod
+    def dir_exists_ex(path, wdata=True):
+        """wdata: mark False if only check for pathname, or default for path w contents"""
+        res = False
+        if os.path.isdir(path):
+            if wdata is True:              
+                res = len(os.listdir(path)) > 1
+            res = True
+        return res
+
+
+    @staticmethod
+    def git_clrf(opt="false"):
+        sshel = Cmd()
+        cl = str("git config --global core.safecrlf %s" % opt)
+        sshel.execute(cl)
+
+
+    @staticmethod
+    def load_svngit(fname):
+        try:
+            fp = open(fname, 'r')
+            lines = fp.readlines()
+            for line in lines:
+                line = line.replace('\r', '').replace('\n', '')
+                spl = line.split(',')
+                if len(spl) == 3:
+                    GSvnGitMeta.append({"branch":spl[2], "svn":spl[0], "git":spl[1]})
+                elif len(spl) > 3:
+                    tags = spl[3:]
+                    GSvnGitMeta.append({"branch":spl[2], "svn":spl[0], "git":spl[1], "tags":tags})
+            fp.close()
+            return True
+        except:
+            Utils.printwf(str("Could not read file: (%s)" % fname))
+            return False
+
+
+    @staticmethod
+    def get_search():
+        tmp = str(Utils.sresult)
+        Utils.sresult = None
+        return tmp
+
+    @staticmethod
+    def printwf(data):
+        """print stdout and stderr and flush the fdescriptors"""
+        print data
+        sys.stdout.flush()
+        sys.stderr.flush()
+
+    @staticmethod
+    def find_file(dir, match):
+        listOfFile = os.listdir(dir)
+        allfiles = list()
+        for entry in listOfFile:
+            fullpath = os.path.join(dir, entry)
+            if entry == match:
+                Utils.sresult = fullpath
+            if os.path.isdir(fullpath):
+                allfiles = allfiles + Utils.find_file(fullpath, match)
+            else:
+                allfiles.append(fullpath)
+        return allfiles
+
+
+class XmlUpdateContext(object):
+    """ store ComponentsVersion.xml context here and update it"""
+    def __init__(self, xmlfile):
+        self._bakfile = str("%s.bak" % xmlfile)
+        self._lookup = {}
+        self._xmltree = ET.parse(xmlfile)
+        self._root = self._xmltree.getroot()
+        for child in self._root:
+            if child.attrib['Name'].startswith('_'):
+                fix = child.attrib['Name'].replace('_', '')
+                self._lookup[fix] = child
+            else:
+                self._lookup[child.attrib['Name']] = child
+        self.version = None
+        self.Name = None
+
+
+    def stringify_namever(self):
+        return str("%s_%s" % (self.Name, self.version))
+
+
+    def set_vername(self, ver, name):
+        self.version = ver
+        self.Name = name
+
+
+    def get_vername(self):
+        return (self.version, self.Name)
+
+    def get_attrib_by_name(self, name):
+        if name in self._lookup:
+            return self._lookup[name]
+        return None
+
+    def update(self, name, commithash):
+        try:
+            if commithash is not None and name is not None:
+                self._lookup[name].set('CommitHash', commithash)
+        except:
+            pass # do something later: TODO!!!
+
+
+    def finalize(self):
+        if self._xmltree is not None:
+            self._xmltree.write("%s" % self._bakfile)
+
+#TODO: implement that in the main(...) so it can be passed as arg... 
+
+class Functor(object):
+    """abstract function object class to be derived by a real callable obj"""
+    def __init__(self, data):
+        self._data = data #user data
+
+
+    def __call__(self):
+        self.do_work()
+
+
+    def do_work(self):
+        """override this"""
+        raise BaseException()
+
+
+class MergeRepos(Functor):
+    """example merge repos functor"""
+    def __init__(self, data):
+        super(MergeRepos, self).__init__(data)
+        
+
+    def do_work(self):
+        self._data.do_merge("{2019-01-01}", cleanup=clean)
+    
 
 
 #begin region SvnGitMixin
@@ -207,6 +658,14 @@ class SvnGitMixin(object):
         pass # breakpnt
 
 
+    def hwm(self, dic):
+        h = 0
+        for key in dic:
+            if key > h:
+                h = key
+        return h
+    
+
     def set_current(self, repo):
         self._repo = repo
 
@@ -252,7 +711,7 @@ class SvnGitMixin(object):
         gadd = str("git add .")
         gcmt = str("git commit --author=\"%s <%s>\" -m \"%s\" --date=%s" % (author, mail, msg, date))
         Utils.dump(str("INFO:%s" % gcmt))
-        if NS.TEST_GIT_REPO_NAME is not None:
+        if TEST_GIT_REPO_NAME is not None:
             gpush = str("git push --set-upstream origin %s" % upstream)
         else:
             gpush = str("git push")
@@ -276,7 +735,7 @@ class SvnGitMixin(object):
             self._shell.execute(bareclone, True)
         try:
             os.chdir(os.path.dirname(os.path.realpath(__file__)))
-            Utils.xcopy(path[1], str("%s\\%s\\%s" % (Utils.home_dir(), NS.REPO_BACKUP, path[1])))
+            Utils.xcopy(path[1], str("%s\\%s\\%s" % (Utils.home_dir(), REPO_BACKUP, path[1])))
             os.chdir(path[1])
         except Exception as ex1:
             Utils.printwf("Err: could not change to path %s : ex:%s" % (path[0], ex1.message))
@@ -284,7 +743,7 @@ class SvnGitMixin(object):
 
     def do_bfg(self, push_to_repo=False):
         """do bfg cleanup on folder cloned as a bare repo"""
-        merged = str("%s,%s" % (NS.ExcludedFilesForGitV1, NS.ExcludedFilesForGitV2))
+        merged = str("%s,%s" % (ExcludedFilesForGitV1, ExcludedFilesForGitV2))
         merged = merged.replace("\n",'')        
         bfg = str("java -jar ..\\bfg.jar --no-blob-protection --delete-files *.{%s}" % merged)
         expire = str("git reflog expire --expire=now --all")
@@ -355,7 +814,7 @@ class SvnGitMixin(object):
             return None
 
         def exp_get_ver(r,opdir):
-            fullpath = str("%s\\%s\\%s\\%s" % (Utils.home_dir(), NS.ABM_TEMP, opdir, str(r)))
+            fullpath = str("%s\\%s\\%s\\%s" % (Utils.home_dir(), ABM_TEMP, opdir, str(r)))
             exp = str("svn export -r %s %s %s" % (r,  self._svnpath, fullpath))
             self._shell.execute(exp)
             vh = None
@@ -379,7 +838,7 @@ class SvnGitMixin(object):
             commit = str("git tag -a %s %s -m \"%s\"" % (tagname, commithash, vermsg))
             push = str("git push origin %s" % tagname)
             Utils.dump(str("INFO: %s" %commit))
-            if NS.SVNGIT_UPDATE_DB_ONLY is False:
+            if SVNGIT_UPDATE_DB_ONLY is False:
                 self._shell.execute(commit)
                 self._shell.execute(push)
             else:
@@ -389,7 +848,7 @@ class SvnGitMixin(object):
             deltag = str("git tag -d %s" % tag)
             Utils.dump(str("INFO: %s" %deltag))
             pushdel = str("git push origin :refs/tags/%s" % tag)
-            if NS.SVNGIT_UPDATE_DB_ONLY is False:
+            if SVNGIT_UPDATE_DB_ONLY is False:
                 self._shell.execute(deltag)
                 self._shell.execute(pushdel)
             else:
@@ -478,7 +937,7 @@ class SvnGitMixin(object):
 
         def get_tag_by_user(commiter='yyordanov'):
             Utils.printwf(str("Start fix on repo %s w user %s " % (self._repo, commiter)))
-            cm = str("git show-ref --tags -d")
+            cm = str("git show-ref --tags")
             self._shell.execute(cm)
             spl = self._shell.std_out().split('\n')
             tags = []
@@ -510,7 +969,7 @@ class SvnGitMixin(object):
             return (None, None, None, None)
 
         #leave private region 
-        Utils.db.clear_tags(self._currentBranch)
+
         Utils.printwf(str("Enter tag/untag mode for repo [%s]" % self._repo))
         Utils.dump(str("INFO: Enter tag/untag mode for repo [%s]" % self._repo))
        
@@ -526,14 +985,14 @@ class SvnGitMixin(object):
         if self._git_forward_err is True and remove_tag != 1:
             Utils.printwf("Git repo ahead of SVN")
             Utils.dump("ERROR: Git repo ahead of SVN")
-            return NS.ERROR
+            return ERROR
 
         gitmeta = self._metagit
         if len(gitmeta) == 0 and haslog is False:
             Utils.dump("ERROR: NO_CONNECTION_TO_GIT")
-            return  NS.NO_CONNECTION_TO_GIT
+            return  NO_CONNECTION_TO_GIT
 
-        self._hkgit = Helpers.hwm(gitmeta)
+        self._hkgit = self.hwm(gitmeta)
         git_abm_top_internal, git_abm_top = 0, 0
         gititems = gitmeta.items()
         gititems.sort()
@@ -551,19 +1010,19 @@ class SvnGitMixin(object):
                 Utils.printwf("WARN: No ABM commits in git repo.")
                 self.svnlog(str(self._hkgit)) # get the upper git present in svn
             else:
-                return NS.ERROR_INSUFFICIENT_CLONE_DEPTH
+                return ERROR_INSUFFICIENT_CLONE_DEPTH
 
         svnitems = self._metasvn.items()
         if len(svnitems) == 0:
             Utils.dump("ERROR: NO_CONNECTION_TO_SVN")
-            return NS.NO_CONNECTION_TO_SVN        
+            return NO_CONNECTION_TO_SVN        
 
         #TODO: get the latest saved SVN rev
         currentSavedRev = Utils.db.get_svnrev(self._currentBranch)
-        hsvn = Helpers.hwm(self._metasvn)
+        hsvn = self.hwm(self._metasvn)
         if hsvn == currentSavedRev and remove_tag == 0:
             Utils.printwf("Current GIT state and SVN state are equal. Nothing to do.")
-            return NS.OK
+            return OK
         
         Utils.db.add_svnrev(self._currentBranch, hsvn)
         svnitems.sort()
@@ -575,7 +1034,7 @@ class SvnGitMixin(object):
         if len(tobefix) > 0:
             apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
 
-        if NS.FIX_DIRTY_TAGS_SPECIAL: #remove after all tags are fixed !!!
+        if FIX_DIRTY_TAGS_SPECIAL: #remove after all tags are fixed !!!
             commithashfix, svnrev, dirtytag, oldmessage = get_tag_by_user()
             if commithashfix is not None and svnrev is not None and dirtytag is not None and oldmessage is not None:
                 versionh2 = exp_get_ver(svnrev, opdir)
@@ -583,9 +1042,9 @@ class SvnGitMixin(object):
                 untag(dirtytag)
                 dirtytag = versionh2.to_tag()
                 tag(dirtytag, commithashfix, oldmessage)
-                return NS.OK
+                return OK
             else:
-                return NS.OK
+                return OK
 
         i = 0
         if len(svnitems) == 0:
@@ -653,7 +1112,7 @@ class SvnGitMixin(object):
                         Utils.dump(str("ERROR: %s revision from svn is not present in git " % k))
                 else:
                     Utils.dump("ERROR: Unable to compile tag from version.h file")
-        return NS.OK #by convention always return OK since do_tag can't retuyrn error state
+        return OK #by convention always return OK since do_tag can't retuyrn error state
 
 
     def dumpn9(self):
@@ -674,20 +1133,20 @@ class SvnGitMixin(object):
         gitmeta = self._metagit
         if len(gitmeta) == 0 and haslog is False:
             Utils.dump(str("ERROR: NO_CONNECTION_TO_GIT"))
-            return  NS.NO_CONNECTION_TO_GIT
+            return  NO_CONNECTION_TO_GIT
 
-        self._hkgit = Helpers.hwm(gitmeta)
+        self._hkgit = self.hwm(gitmeta)
         self.svnlog(str(self._hkgit))
         
         svnmeta = self._metasvn
         if len(svnmeta) == 0:
             Utils.dump(str("ERROR: NO_CONNECTION_TO_SVN"))
-            return NS.NO_CONNECTION_TO_SVN
-        self._hksvn = Helpers.hwm(svnmeta)  
+            return NO_CONNECTION_TO_SVN
+        self._hksvn = self.hwm(svnmeta)  
         
         if self._hksvn in gitmeta:
             #Utils.dump(str("[Up to date repo],%s" % r))
-            return NS.OK
+            return OK
         else:
             pass
             #Utils.dump(str("[Needs fix],%s,git,%s,svn,%s" % (r, self._hkgit, self._hksvn))) 
@@ -711,8 +1170,8 @@ class SvnGitMixin(object):
                     pass #do nothing for now if ABM commit and automatic commit, careful now, since ABM user might be manual too
                 elif spl[2].lower() in GUserMails:
                     repo = None
-                    if NS.TEST_GIT_REPO_NAME is not None:
-                        repo = self.init_branch(NS.TEST_GIT_REPO_NAME, cleanup)
+                    if TEST_GIT_REPO_NAME is not None:
+                        repo = self.init_branch(TEST_GIT_REPO_NAME, cleanup)
                     else:
                         os.chdir(self._gitpath) # go to dir path
                         exppath = str("%s\\%s\\%s" % (pydir, postf, k))
@@ -729,20 +1188,20 @@ class SvnGitMixin(object):
                         else:                        
                             Utils.printwf(str("Error: Repositories: %s and %s are probably deleted." % (self._repo, self._svnuri)))
                             Utils.dump(str("Error: Repositories: %s and %s are probably deleted." % (self._repo, self._svnuri)))                            
-                            return NS.ERROR
+                            return ERROR
                 else:
                     Utils.printwf(str("Error: Mail %s not in the mailing list, aborting migration" % spl[2]))
                     Utils.dump(str("Error: Mail %s not in the mailing list, aborting migration" % spl[2]))
                     break
-        return NS.OK
+        return OK
 
 
     def svn_checkout(self):
-        os.chdir(str("%s\\%s" % (Utils.home_dir() , NS.SVN_TEMP_DIR)))
+        os.chdir(str("%s\\%s" % (Utils.home_dir() , SVN_TEMP_DIR)))
         spl = self._svnuri.split("/")
         reponame = spl[len(spl)-1]
         checkout = str("svn checkout %s" % self._svnuri)
-        self._svnpath = str("%s\\%s\\%s" % (Utils.home_dir(), NS.SVN_TEMP_DIR, reponame))
+        self._svnpath = str("%s\\%s\\%s" % (Utils.home_dir(), SVN_TEMP_DIR, reponame))
         c = self._shell
         c.execute(checkout)
         os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -752,12 +1211,12 @@ class SvnGitMixin(object):
     def git_clone(self, path, branch, depth, rmdir=False):
         """ uri, branch, depth """
         try:
-            os.chdir(str("%s\\%s" % (Utils.home_dir() , NS.GIT_TEMP_DIR)))         
+            os.chdir(str("%s\\%s" % (Utils.home_dir() , GIT_TEMP_DIR)))         
             clone = str("git clone --depth %s --single-branch --branch %s %s%s %s" % (depth, branch, self._gituri, path, branch))
             self._currentBranch = branch
             checkout = str("git checkout %s" % branch)
             pull = str("git pull")
-            self._gitpath = str("%s\\%s\\%s" % (Utils.home_dir(), NS.GIT_TEMP_DIR, branch))
+            self._gitpath = str("%s\\%s\\%s" % (Utils.home_dir(), GIT_TEMP_DIR, branch))
             c = self._shell
             if rmdir is True:
                 Utils.rmdir(self._gitpath)
@@ -780,21 +1239,19 @@ class SvnGitMixin(object):
             tmp = data.split('/')[2]
             ver = ver.split('_')
             tmp = tmp.split('_')
-            if len(tmp) == 4:
-                t = tmp[3].replace(r'^{}','')         
-                if t == xmlver:           
-                    return int(t)
+            if len(tmp) == 4:         
+                if tmp[3] == xmlver:           
+                    return int(tmp[3])
                 else:
+                    Utils.dump(str("ERROR: Version mismatch XML: %s \t GIT: %s" % (xmlver, tmp[3])))
                     return -1
             return -1 
                
         highest_tag = -1
         latest_hash = None
         os.chdir(self._gitpath)
-        cpulltags = str("git pull --tags")
-        cshowreftags = str("git show-ref --tags -d")
-        self._shell.execute(cpulltags)
-        self._shell.execute(cshowreftags)
+        c = str("git show-ref --tags")
+        self._shell.execute(c)
 
         if self._shell.std_out() is None:
             Utils.printwf(str("No tags for %s" % self._repo))
@@ -804,12 +1261,11 @@ class SvnGitMixin(object):
         for entry in entries:
             spl = entry.split()
             if len(spl) == 2:
-                if spl[1].endswith(r'^{}'):
-                    tag = spl[1]
-                    htag = validate_tag(tag)
-                    if htag > highest_tag:
-                        highest_tag = htag
-                        latest_hash = spl[0]
+                tag = spl[1]
+                htag = validate_tag(tag)
+                if htag > highest_tag:
+                    highest_tag = htag
+                    latest_hash = spl[0]
 
         _, name = self._xmlContext.get_vername()
         self._xmlContext.update(name, latest_hash)
@@ -869,10 +1325,30 @@ class SvnGitMixin(object):
 
 #end region SvnGitMixin
 
-################################################ MAIN ################################################
+
+#TODO: use it if multitreading mode is on
+def thread_proxy(svn_, git_, branch_):
+    """EXPERIMENTAL: thread proxy function"""
+    mix = None
+    try:                    
+        svn = svn_
+        branch = branch_
+        git = git_
+        mix = SvnGitMixin(svnuri=svn, gituri=CSI_GIT_URI, svnpath=None, gitpath=None)
+        #TODO: hande args when done
+        mix.git_clone(git, branch, 10)
+        mix.svn_checkout()
+        mix.set_current("%s,%s,%s"% (svn, git, branch))
+        mix.finish()
+    except:                    
+        mix.abort()
+    pass
+
+
+
+###################################################### MAIN ######################################################
 if __name__ == "__main__":
 
-    #hardcoded file/path to the db
     if Utils.db.load('db.json') is True:
         Utils.printwf("OK, loaded db file")
 
@@ -887,7 +1363,7 @@ if __name__ == "__main__":
             Utils.printwf("Unknown option... Aborting...")
             return False
         
-        while mix.do_tag(remove_tag=tagopt, applyFix=True) == NS.ERROR_INSUFFICIENT_CLONE_DEPTH:
+        while mix.do_tag(remove_tag=tagopt, applyFix=True) == ERROR_INSUFFICIENT_CLONE_DEPTH:
             Utils.printwf("Insufficient git depth. Could not obtain meaningful info.Now reclone with depth (%s)" % int(depth * 2))
             depth = 2 * depth
             mix.git_clone(git, branch, depth, rmdir=True)
@@ -902,9 +1378,28 @@ if __name__ == "__main__":
             mix.dumpn9()
 
     GXml = None #XmlUpdateContext('C:\\Users\\izapryanov\\Desktop\\tools\\ComponentsVersions.xml')
-    merged = str("%s,%s" % (NS.ExcludedFilesForGitV1, NS.ExcludedFilesForGitV2))
+    merged = str("%s,%s" % (ExcludedFilesForGitV1, ExcludedFilesForGitV2))
     merged = merged.replace("\n",'')        
-    args = NS.Gargs
+    args = {}
+    args.update({'--option' : None})
+    args.update({'--bfg':None})    
+    args.update({'--file':None})
+    args.update({'--merge':None})
+    args.update({'--clean':None})
+    args.update({'--optimize':None})
+    args.update({'--help' : HELP_MESSAGE})    
+    args.update({'--nolog':None})
+    args.update({'--tag' : None})
+    args.update({'--retag' : None})
+    args.update({'--untag' : None})
+    args.update({'--xml-file' : None})
+    args.update({'--fix-dirty' : None})
+    args.update({'--export-platforms' : None})
+    args.update({'--fullmerge' : None})
+    args.update({'--dump-all' : None})
+    args.update({'--purge-tags' : None})
+    args.update({'--update-db' : None})
+    args.update({'--abm' : None})
 
     start_time = datetime.datetime.now().time().strftime('%H:%M:%S')
 
@@ -917,7 +1412,7 @@ if __name__ == "__main__":
 
     for i in range(len(sys.argv)):
         if sys.argv[i] == "--help":
-            Utils.printwf(NS.HELP_MESSAGE)
+            Utils.printwf(HELP_MESSAGE)
             sys.exit(0)
         args.update({str(sys.argv[i]):i})        
        
@@ -928,10 +1423,9 @@ if __name__ == "__main__":
     #DELETE the True and uncomment the args 
     if args['--xml-file'] is not None:
         GXml = XmlUpdateContext(sys.argv[args['--xml-file']+1])
-    elif NS.GDEBUG is True:
-        GXml = XmlUpdateContext("ComponentsVersions.xml")
     else:
         GXml = None
+    
 
     if args['--bfg'] is not None and args['--file'] is not None:
         Utils.printwf("Entering 'BFG' mode...")
@@ -943,14 +1437,14 @@ if __name__ == "__main__":
         except Exception as pcomsex:
             Utils.printwf(str("File (%s) not found expception: ex:%s" % (pcomps, pcomsex.message)))
             sys.exit(-2)
-        Utils.mkdir(NS.REPO_BACKUP)
+        Utils.mkdir(REPO_BACKUP)
         bfg = None
         for line in lines:
             try:
                 spl = line.split(',')
                 repo = spl[1]
                 bfg = SvnGitMixin()
-                bfg.clone_bare(NS.CSI_GIT_URI, repo)
+                bfg.clone_bare(CSI_GIT_URI, repo)
                 bfg.do_bfg()
                 bfg.terminate()
             except:
@@ -960,31 +1454,32 @@ if __name__ == "__main__":
     else:
 
         if args['--fix-dirty'] is not None:
-            NS.FIX_DIRTY_TAGS = True
+            FIX_DIRTY_TAGS = True
         else:
-            NS.FIX_DIRTY_TAGS = False
-        clean = False
-                
+            FIX_DIRTY_TAGS = False
 
+        clean = False
+        
+        
         if args['--clean'] is not None:
             clean = True
         # is not None later 
         elif args['--file'] is not None:   
-            if NS.GDEBUG is True: #debug stuff only
+            if GDEBUG is True: #debug stuff only
                 Utils.printwf("Enter debug mode")
-                Utils.load_svngit('updateplatforms.txt')
+                Utils.load_svngit('svngitex.txt')
             else:       
                 Utils.load_svngit(sys.argv[args['--file']+1])
 
-            Utils.mkdir(NS.GIT_TEMP_DIR)
-            Utils.mkdir(NS.SVN_TEMP_DIR)
-            Utils.mkdir(NS.ABM_TEMP)
+            Utils.mkdir(GIT_TEMP_DIR)
+            Utils.mkdir(SVN_TEMP_DIR)
+            Utils.mkdir(ABM_TEMP)
             Utils.printwf(str("Starting migrating mode V2 w args [%s]\r\n" % args))
             Utils.printwf("This may take a while... please wait...\r\n")
             mix = None
         
-            for entry in NS.GSvnGitMeta:      
-                depth = NS.GDepth          
+            for entry in GSvnGitMeta:      
+                depth = GDepth          
                 Utils.printwf("###############################################################")
                 try:
                     tags = None
@@ -993,7 +1488,7 @@ if __name__ == "__main__":
                     svn = entry['svn']
                     branch = entry['branch']
                     git = entry['git']
-                    mix = SvnGitMixin(svnuri=svn, gituri=NS.CSI_GIT_URI, svnpath=None, gitpath=None, opt_tags=tags)                        
+                    mix = SvnGitMixin(svnuri=svn, gituri=CSI_GIT_URI, svnpath=None, gitpath=None, opt_tags=tags)                        
                     mix.git_clone(git, branch, 20)
                     mix.svn_checkout()                    
                     mix.set_current("%s,%s,%s" % (svn, git, branch))
@@ -1002,13 +1497,17 @@ if __name__ == "__main__":
                     bDumpAll = False
                     tag_opt = -1
                     enable_tag_mode = False
-                    if NS.GDEBUG is False:
+                    if GDEBUG is False:
+
                         if args['--update-db'] is not None:
-                            NS.SVNGIT_UPDATE_DB_ONLY = True
+                            SVNGIT_UPDATE_DB_ONLY = True
+                        
                         if args['--abm'] is not None:
-                            NS.SVNGIT_ON_ABM = True
+                            SVNGIT_ON_ABM = True
+
                         if args['--dump-all'] is not None:
                             bDumpAll = True
+
                         if args['--tag'] is not None:
                             enable_tag_mode = True
                             try:
@@ -1028,7 +1527,6 @@ if __name__ == "__main__":
                         if args['--merge'] is not None:
                             mix.do_merge("{2019-01-01}", cleanup=clean)
                         elif args['--export-platforms'] is not None and GXml is not None:
-                            Utils.printwf(str("Exporting xml file for: %s,%s,%s" % (svn, git, branch)))
                             mix.update_platforms()
                         elif args['--fullmerge'] is not None:
                             mix.do_merge("{2019-01-01}", cleanup=clean)
@@ -1038,13 +1536,12 @@ if __name__ == "__main__":
                         elif args['--purge-tags'] is not None:
                             mix.remove_tags()
                         else:
-                            pass
+                            mix.finish()
                         _idump(mix, svn, git, branch, bDumpAll)
                         mix.finish()
                     else:
-                        Utils.printwf(str("Exporting xml file for: %s,%s,%s" % (svn, git, branch)))
-                        mix.update_platforms()
-
+                        _intag(mix, svn, git, branch,depth, 2)
+                        pass
                     mix.finish()
                 except Exception as mainEx:                    
                     Utils.printwf(str("Exception from main caught: %s" % mainEx.message))
@@ -1060,6 +1557,6 @@ if __name__ == "__main__":
 
 #######################################################################################################################################
 # todo:
-# git rev-list -n 1 4_5_3_24 
 
-
+#######################################################################################################################################
+#bdata section (put binary or RO data below) w/marker tag

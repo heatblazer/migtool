@@ -1,3 +1,4 @@
+#tst
 import json
 
 class dbutil(object):
@@ -54,6 +55,14 @@ class dbutil(object):
         if self._db is not None:
             if rec in self._db:
                 return self._db[rec]['tags']
+
+
+    def clear_tags(self, rec):
+        if self._db is not None:
+            if rec in self._db:
+                del(self._db[rec]['tags'])
+                self._db[rec]['tags'] = None
+                self._db[rec]['tags'] = []
 
 
     def add_tag(self, rec, tag):
