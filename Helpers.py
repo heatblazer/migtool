@@ -1,5 +1,8 @@
 import xml.etree.ElementTree as ET
 from Utils import Utils
+from threading import Thread
+from threading import Lock as mtx
+from time import sleep
 
 #Helpers 
 class Helpers(object):
@@ -54,8 +57,8 @@ class Helpers(object):
 #Functors
 class Functor(object):
     """abstract function object class to be derived by a real callable obj"""
-    def __init__(self, data):
-        self._data = data #user data
+    def __init__(self):
+        pass
 
 
     def __call__(self):
@@ -67,11 +70,28 @@ class Functor(object):
         raise BaseException()
     
 
+
+class PThread(Thread):
+
+    def __init__(self, name="DefaultRunner", userData=None, fn=None):
+        Thread.__init__(self)
+        self._name = name
+        self._udata = userData
+        self._lock = mtx()
+        self._fn = fn
+
+    def run(self):
+        if self._fn is not None and self._udata is not None:
+            self._fn()
+            sleep(1)
+                
+
+
 #Xml Update ctx class
 class XmlUpdateContext(object):
     """ store ComponentsVersion.xml context here and update it"""
     def __init__(self, xmlfile):
-        self._bakfile = str("%s.bak" % xmlfile)
+        self._bakfile = str("%s.tbak" % xmlfile)
         self._lookup = {}
         self._xmltree = ET.parse(xmlfile)
         self._root = self._xmltree.getroot()
