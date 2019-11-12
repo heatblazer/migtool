@@ -91,7 +91,7 @@ class PThread(Thread):
 class XmlUpdateContext(object):
     """ store ComponentsVersion.xml context here and update it"""
     def __init__(self, xmlfile):
-        self._bakfile = str("%s.tbak" % xmlfile)
+        self._bakfile = str("%s.bak" % xmlfile)
         self._lookup = {}
         self._xmltree = ET.parse(xmlfile)
         self._root = self._xmltree.getroot()
