@@ -1,21 +1,23 @@
-from time import sleep
 import os
 import subprocess 
 import sys
 
-#spawn a command
-
-
 class Cmd(object):
     """ spawn a new process and capture stdout and stderr"""
 
-    def __init__(self, verbose=False):
+    def __init__(self, cmstr=None, verbose=False):
+        self._cmstr = cmstr
         self._out = None
         self._err = None
         self._dataout = []
         self._dataerr = []
         self.pro = None
         self._vmode = verbose
+
+
+    def __call__(self):
+        if self._cmstr is not None:
+            self.execute(self._cmstr)
 
 
     def std_out(self):
@@ -40,6 +42,10 @@ class Cmd(object):
         self._out = None
         self._dataout = None
         self._err = None 
+
+
+    def sys_exec(self, cmd):
+        return os.system(cmd)
 
 
     def execute(self, cmd, term=False):
@@ -73,4 +79,3 @@ class Cmd(object):
                 break
             else:
                 self._dataout.append(line)                        
-        pass
