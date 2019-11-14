@@ -18,6 +18,7 @@ class Helpers(object):
                 bfail &= False
         return bfail
 
+
     @staticmethod 
     def match_abm_aligned(data):
         if data.lower().find("abm") is not -1 and data.find("Automatic ABM commit") is not -1:
@@ -28,6 +29,7 @@ class Helpers(object):
         else:
             return False
     
+
     @staticmethod 
     def match_abm(data):
         if data.lower().find("abm") is not -1 and data.find("Automatic ABM commit") is not -1:

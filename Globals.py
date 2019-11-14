@@ -1,9 +1,6 @@
 #Globals and constants
 ############################################################################
 class NS:
-    TEST_GIT_REPO_NAME = None #"TST4" #"TODO_MIGRATE"
-
-    GDEBUG = False
     class Errors: #enum like
         OK = 0
         ERROR = 1
@@ -11,6 +8,12 @@ class NS:
         NO_CONNECTION_TO_GIT = 3
         ERROR_INSUFFICIENT_CLONE_DEPTH = 4
 
+
+    TEST_GIT_REPO_NAME = None #"TST4" #"TODO_MIGRATE"
+
+    GDEBUG = False
+
+    BFORCE_ALL = False #MUST BE False in Release!!!
 
     REPO_BACKUP = "backup"
 
@@ -105,6 +108,7 @@ class NS:
     Gargs.update({'--purge-tags' : None})
     Gargs.update({'--update-db' : None})
     Gargs.update({'--abm' : None})
+    Gargs.update({'--force' : None})
 
 
 #######################################################################################################################################

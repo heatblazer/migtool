@@ -710,9 +710,10 @@ class SvnGitMixin(object):
             if len(spl) > 4 and k != int(self._hkgit):
                 Utils.dump(str("INFO: %s, %s, %s, %s, %s" % (r, k, spl[2], spl[4], msg[1])))
 
-                if spl[2].lower() == "abm" and msg[1].find("Automatic ABM commit") is not -1:
-                    pass #do nothing for now if ABM commit and automatic commit, careful now, since ABM user might be manual too
-                elif spl[2].lower() in GUserMails:
+                if Helpers.match_abm(i[1]) is True and NS.BFORCE_ALL is False: #spl[2].lower() == "abm" and msg[1].find("Automatic ABM commit") is not -1:
+                    continue #do nothing for now if ABM commit and automatic commit, careful now, since ABM user might be manual too
+                
+                if spl[2].lower() in GUserMails:
                     repo = None
                     if NS.TEST_GIT_REPO_NAME is not None:
                         repo = self.init_branch(NS.TEST_GIT_REPO_NAME, cleanup)
@@ -885,7 +886,7 @@ class ExportFn(Functor):
 
 ################################################ MAIN ################################################
 if __name__ == "__main__":
-
+    Utils.printwf("*************************************************************************************************")
     #hardcoded file/path to the db
     if Utils.db.load('db.json') is True:
         Utils.home()
@@ -993,7 +994,7 @@ if __name__ == "__main__":
             Utils.mkdir(NS.GIT_TEMP_DIR)
             Utils.mkdir(NS.SVN_TEMP_DIR)
             Utils.mkdir(NS.ABM_TEMP)
-            Utils.printwf(str("Starting migrating mode V2 w args [%s]\r\n" % args))
+            Utils.printwf(str("Starting SVN GIT migration tool on %s" % datetime.datetime.now()))
             Utils.printwf("This may take a while... please wait...\r\n")
             mix = None
             workCnt = 0
@@ -1031,6 +1032,9 @@ if __name__ == "__main__":
                                 Utils.printwf("ERROR: option [--tag] must be followed by mode (0, 1, 2)")
                                 tag_opt = -1
                         
+                        if args['--force'] is not None:
+                            NS.BFORCE_ALL = True
+
                         if args['--untag'] is not None:
                             enable_tag_mode = True
                             tag_opt = 1
@@ -1065,7 +1069,7 @@ if __name__ == "__main__":
                         _idump(mix, svn, git, branch, bDumpAll)
                         mix.finish()
                     else:
-                        #put test code here
+                        mix.do_merge("{2019-01-01}", cleanup=clean)
                         pass
 
                     mix.finish()
@@ -1081,6 +1085,9 @@ if __name__ == "__main__":
             Utils.printwf("See 'help' for more info")
 
     Utils.finalize()
+    Utils.printwf("*************************************************************************************************")
+
+
 
 #######################################################################################################################################
 # todo:

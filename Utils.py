@@ -63,12 +63,14 @@ class Utils(object):
         else:
             if NS.SVNGIT_ON_ABM:
                 Utils.printwf("Will commit db.json to the master repo")
+                gpull = str("git pull")
                 chkout = str("git checkout master")
                 cmmsg = "Automatic ABM commit for a DB file"
                 adddb = str("git add %s" % Utils.db.fname())
                 cmtdb = str("git commit -m \"%s\"" % cmmsg)
                 push = str("git push")
                 Utils.sshel.execute(chkout)
+                Utils.sshel.execute(gpull)
                 Utils.sshel.execute(adddb)
                 Utils.sshel.execute(cmtdb)
                 Utils.sshel.execute(push)
