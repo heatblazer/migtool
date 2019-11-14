@@ -4,16 +4,13 @@ class NS:
     TEST_GIT_REPO_NAME = None #"TST4" #"TODO_MIGRATE"
 
     GDEBUG = False
+    class Errors: #enum like
+        OK = 0
+        ERROR = 1
+        NO_CONNECTION_TO_SVN = 2
+        NO_CONNECTION_TO_GIT = 3
+        ERROR_INSUFFICIENT_CLONE_DEPTH = 4
 
-    OK = 0
-
-    ERROR = 1
-
-    NO_CONNECTION_TO_SVN = 2
-
-    NO_CONNECTION_TO_GIT = 3
-
-    ERROR_INSUFFICIENT_CLONE_DEPTH = 4
 
     REPO_BACKUP = "backup"
 
@@ -52,7 +49,7 @@ class NS:
     HELP_MESSAGE = """
 
     Usage:\r\n
-    For bfg mode to perform a cleanup use: sgutil.py --dobfg --file <file>\r\n
+    For bfg mode to perform a cleanup use: sgutil.py --bfg --file <file>\r\n
     For merge export svn to git use: sgutil.py --export --file <file>\r\n
     For tagging use: sgutil.py --file <file> --tag <0, 1, 2>\r\n
         \t(desc: where 0 is tag, 1 is untag, and 2 is retag (untag, tag) )\r\n

@@ -1,14 +1,10 @@
-import datetime
 from db import dbutil as DB
 from Globals import * 
 from Globals import NS
 from Shell import Cmd
-import time
-from time import sleep
 import os
 import subprocess 
 import sys
-import xml.etree.ElementTree as ET
 import warnings
 
 class Utils(object):
@@ -63,18 +59,19 @@ class Utils(object):
     def finalize():
         Utils.home()
         if Utils.db.save() is not True:
-            Utils.printwf("Failed to save db file")
+            Utils.printwf("ERROR: Failed to save db file")
         else:
             if NS.SVNGIT_ON_ABM:
                 Utils.printwf("Will commit db.json to the master repo")
+                chkout = str("git checkout master")
                 cmmsg = "Automatic ABM commit for a DB file"
-                cmd = Cmd()
                 adddb = str("git add %s" % Utils.db.fname())
                 cmtdb = str("git commit -m \"%s\"" % cmmsg)
                 push = str("git push")
-                cmd.execute(adddb)
-                cmd.execute(cmtdb)
-                cmd.execute(push)
+                Utils.sshel.execute(chkout)
+                Utils.sshel.execute(adddb)
+                Utils.sshel.execute(cmtdb)
+                Utils.sshel.execute(push)
 
         for i in Utils.memdmp:
             Utils.printwf(i)

@@ -22,6 +22,7 @@ from Shell import Cmd
 from Helpers import Helpers
 from Helpers import XmlUpdateContext
 from Helpers import Functor
+from Helpers import PThread
 from Globals import NS
 import json
 import time
@@ -48,6 +49,10 @@ class SvnGitMixin(object):
         def to_tag(self):
             return str("%s_%s_%s_%s_%s" %(self.majorv, self.minorv, self.branchv, self.minfixv, self.fixv))
 
+        def __str__(self):
+            return self.to_tag()
+
+    ##################################################################
 
     def __init__(self, svnuri=None, gituri=None, svnpath=None, gitpath=None, opt_tags=None):
         """ svn url, git url (both optional, git for bfg command is required), svn directory and git directory - required """
@@ -70,7 +75,6 @@ class SvnGitMixin(object):
         self._xmlContext = None
         self._git_forward_err = False
         self._tags = opt_tags # buffer all tags here
-        pass #debg
     
 
     def __del__(self):
@@ -395,7 +399,6 @@ class SvnGitMixin(object):
             else:
                 Utils.printwf("[UNTAG]Update db only...")
 
-            
         def parse_ver_msg(data):
             spl = data.split()
             return spl
@@ -526,12 +529,12 @@ class SvnGitMixin(object):
         if self._git_forward_err is True and remove_tag != 1:
             Utils.printwf("Git repo ahead of SVN")
             Utils.dump("ERROR: Git repo ahead of SVN")
-            return NS.ERROR
+            return NS.Errors.ERROR
 
         gitmeta = self._metagit
         if len(gitmeta) == 0 and haslog is False:
             Utils.dump("ERROR: NO_CONNECTION_TO_GIT")
-            return  NS.NO_CONNECTION_TO_GIT
+            return  NS.Errors.NO_CONNECTION_TO_GIT
 
         self._hkgit = Helpers.hwm(gitmeta)
         git_abm_top_internal, git_abm_top = 0, 0
@@ -551,19 +554,19 @@ class SvnGitMixin(object):
                 Utils.printwf("WARN: No ABM commits in git repo.")
                 self.svnlog(str(self._hkgit)) # get the upper git present in svn
             else:
-                return NS.ERROR_INSUFFICIENT_CLONE_DEPTH
+                return NS.Errors.ERROR_INSUFFICIENT_CLONE_DEPTH
 
         svnitems = self._metasvn.items()
         if len(svnitems) == 0:
             Utils.dump("ERROR: NO_CONNECTION_TO_SVN")
-            return NS.NO_CONNECTION_TO_SVN        
+            return NS.Errors.NO_CONNECTION_TO_SVN        
 
         #TODO: get the latest saved SVN rev
         currentSavedRev = Utils.db.get_svnrev(self._currentBranch)
         hsvn = Helpers.hwm(self._metasvn)
-        if hsvn == currentSavedRev and remove_tag == 0:
+        if hsvn == currentSavedRev and remove_tag==0:
             Utils.printwf("Current GIT state and SVN state are equal. Nothing to do.")
-            return NS.OK
+            return NS.Errors.OK
         
         Utils.db.add_svnrev(self._currentBranch, hsvn)
         svnitems.sort()
@@ -583,9 +586,9 @@ class SvnGitMixin(object):
                 untag(dirtytag)
                 dirtytag = versionh2.to_tag()
                 tag(dirtytag, commithashfix, oldmessage)
-                return NS.OK
+                return NS.Errors.OK
             else:
-                return NS.OK
+                return NS.Errors.OK
 
         i = 0
         if len(svnitems) == 0:
@@ -653,7 +656,7 @@ class SvnGitMixin(object):
                         Utils.dump(str("ERROR: %s revision from svn is not present in git " % k))
                 else:
                     Utils.dump("ERROR: Unable to compile tag from version.h file")
-        return NS.OK #by convention always return OK since do_tag can't retuyrn error state
+        return NS.Errors.OK #by convention always return OK since do_tag can't retuyrn error state
 
 
     def dumpn9(self):
@@ -674,7 +677,7 @@ class SvnGitMixin(object):
         gitmeta = self._metagit
         if len(gitmeta) == 0 and haslog is False:
             Utils.dump(str("ERROR: NO_CONNECTION_TO_GIT"))
-            return  NS.NO_CONNECTION_TO_GIT
+            return  NS.Errors.NO_CONNECTION_TO_GIT
 
         self._hkgit = Helpers.hwm(gitmeta)
         self.svnlog(str(self._hkgit))
@@ -682,12 +685,12 @@ class SvnGitMixin(object):
         svnmeta = self._metasvn
         if len(svnmeta) == 0:
             Utils.dump(str("ERROR: NO_CONNECTION_TO_SVN"))
-            return NS.NO_CONNECTION_TO_SVN
+            return NS.Errors.NO_CONNECTION_TO_SVN
         self._hksvn = Helpers.hwm(svnmeta)  
         
         if self._hksvn in gitmeta:
             #Utils.dump(str("[Up to date repo],%s" % r))
-            return NS.OK
+            return NS.Errors.OK
         else:
             pass
             #Utils.dump(str("[Needs fix],%s,git,%s,svn,%s" % (r, self._hkgit, self._hksvn))) 
@@ -729,12 +732,12 @@ class SvnGitMixin(object):
                         else:                        
                             Utils.printwf(str("Error: Repositories: %s and %s are probably deleted." % (self._repo, self._svnuri)))
                             Utils.dump(str("Error: Repositories: %s and %s are probably deleted." % (self._repo, self._svnuri)))                            
-                            return NS.ERROR
+                            return NS.Errors.ERROR
                 else:
                     Utils.printwf(str("Error: Mail %s not in the mailing list, aborting migration" % spl[2]))
                     Utils.dump(str("Error: Mail %s not in the mailing list, aborting migration" % spl[2]))
                     break
-        return NS.OK
+        return NS.Errors.OK
 
 
     def svn_checkout(self):
@@ -853,7 +856,6 @@ class SvnGitMixin(object):
         self.xml_tag()
         pass
 
-
     def abort(self):
         if self._shell is not None:
             self._shell.kill()
@@ -869,12 +871,25 @@ class SvnGitMixin(object):
 
 #end region SvnGitMixin
 
+gWorkers = []
+
+class ExportFn(Functor):
+        def __init__(self, data):
+            self._data = data
+
+        def do_work(self):
+            self._data.update_platforms()
+
+
+
+
 ################################################ MAIN ################################################
 if __name__ == "__main__":
 
     #hardcoded file/path to the db
     if Utils.db.load('db.json') is True:
-        Utils.printwf("OK, loaded db file")
+        Utils.home()
+        Utils.printwf("INFO: OK, loaded db file")
 
     def _intag(mix,svn,git,branch,depth,tagopt=0):
         if tagopt == 0:
@@ -886,8 +901,7 @@ if __name__ == "__main__":
         else:
             Utils.printwf("Unknown option... Aborting...")
             return False
-        
-        while mix.do_tag(remove_tag=tagopt, applyFix=True) == NS.ERROR_INSUFFICIENT_CLONE_DEPTH:
+        while mix.do_tag(remove_tag=tagopt, applyFix=True) == NS.Errors.ERROR_INSUFFICIENT_CLONE_DEPTH:
             Utils.printwf("Insufficient git depth. Could not obtain meaningful info.Now reclone with depth (%s)" % int(depth * 2))
             depth = 2 * depth
             mix.git_clone(git, branch, depth, rmdir=True)
@@ -972,7 +986,7 @@ if __name__ == "__main__":
         elif args['--file'] is not None:   
             if NS.GDEBUG is True: #debug stuff only
                 Utils.printwf("Enter debug mode")
-                Utils.load_svngit('updateplatforms.txt')
+                Utils.load_svngit('svngitmigrationtest1.txt')
             else:       
                 Utils.load_svngit(sys.argv[args['--file']+1])
 
@@ -982,7 +996,7 @@ if __name__ == "__main__":
             Utils.printwf(str("Starting migrating mode V2 w args [%s]\r\n" % args))
             Utils.printwf("This may take a while... please wait...\r\n")
             mix = None
-        
+            workCnt = 0
             for entry in NS.GSvnGitMeta:      
                 depth = NS.GDepth          
                 Utils.printwf("###############################################################")
@@ -1027,25 +1041,35 @@ if __name__ == "__main__":
 
                         if args['--merge'] is not None:
                             mix.do_merge("{2019-01-01}", cleanup=clean)
+
                         elif args['--export-platforms'] is not None and GXml is not None:
-                            Utils.printwf(str("Exporting xml file for: %s,%s,%s" % (svn, git, branch)))
+                            Utils.printwf(str("Exporting xml data for: %s,%s,%s" % (svn, git, branch)))
                             mix.update_platforms()
-                        elif args['--fullmerge'] is not None:
+
+                        elif args['--fullmerge'] is not None and enable_tag_mode is True:
+                            mix.do_merge("{2019-01-01}", cleanup=clean)
+                            _intag(mix, svn, git, branch, depth, tag_opt)
+
+                        elif args['--fullmerge'] is not None and enable_tag_mode is False:
                             mix.do_merge("{2019-01-01}", cleanup=clean)
                             _intag(mix, svn, git, branch, depth, 0)
+                            
                         elif args['--fullmerge'] is None and enable_tag_mode is True:
                             _intag(mix, svn, git, branch, depth, tag_opt) #tagonly
+
                         elif args['--purge-tags'] is not None:
                             mix.remove_tags()
+
                         else:
                             pass
                         _idump(mix, svn, git, branch, bDumpAll)
                         mix.finish()
                     else:
-                        Utils.printwf(str("Exporting xml file for: %s,%s,%s" % (svn, git, branch)))
-                        mix.update_platforms()
+                        #put test code here
+                        pass
 
                     mix.finish()
+
                 except Exception as mainEx:                    
                     Utils.printwf(str("Exception from main caught: %s" % mainEx.message))
 
