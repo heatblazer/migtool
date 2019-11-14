@@ -672,6 +672,9 @@ class SvnGitMixin(object):
     def do_merge(self, date, cleanup=True):
         """ merge svn repo to git """
         Utils.printwf("Entering a merging procedure")
+        if NS.BFORCE_ALL:
+            Utils.printwf("WARNING: Will perform a full migration on the repo")
+        
         r = self._repo.replace("\n", '').replace("\r", '')
         haslog = self.gitlog(" --date=short")
         gitmeta = self._metagit
