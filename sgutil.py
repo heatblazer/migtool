@@ -66,7 +66,6 @@ class SvnGitMixin(object):
         self._isrunning = True
         self._hkgit = 0 #highest git ver
         self._hksvn = 0 #highest svn ver
-        self._isInit = False
         self._repos = []       
         self._currentPID = None
         self._currentBranch = None
@@ -91,18 +90,6 @@ class SvnGitMixin(object):
             res = False
         return res
     
-
-    def append_db(self, key, val):
-        """unused"""
-        pass
- 
-
-    def write_db(self):
-        """ dump a json"""
-        fname = str("%s\\out.json" % Utils.home_dir())
-        with open(fname, 'w') as outfile:
-            json.dump(self._db, outfile)
-
 
     def gitlog(self, optargs=" ", addall=False):
         """ wrapper of git log"""
@@ -384,6 +371,7 @@ class SvnGitMixin(object):
             push = str("git push origin %s" % tagname)
             Utils.dump(str("INFO: %s" %commit))
             if NS.SVNGIT_UPDATE_DB_ONLY is False:
+                Utils.db.add_tag(self._currentBranch, tagname)
                 self._shell.execute(commit)
                 self._shell.execute(push)
             else:
@@ -453,7 +441,6 @@ class SvnGitMixin(object):
                     untag(deltag)
                     tag(deltag, commithashi, cmmsgi)
                 else:
-                    Utils.db.add_tag(self._currentBranch, deltag)
                     tag(deltag, commithashi, cmmsgi)
                     
                 while i < size:
@@ -517,6 +504,9 @@ class SvnGitMixin(object):
         Utils.printwf(str("Enter tag/untag mode for repo [%s]" % self._repo))
         Utils.dump(str("INFO: Enter tag/untag mode for repo [%s]" % self._repo))
        
+        #get the current svn saved state
+        currentSavedRev = Utils.db.get_svnrev(self._currentBranch) 
+        hsvn = 0 #highest svn
         r = self._repo.replace("\n", '').replace("\r", '')
         r = r.split(',')
         opdir = r[-1]
@@ -547,30 +537,32 @@ class SvnGitMixin(object):
             elif Helpers.match_abm(gititems[i][1][0]):
                 git_abm_top = gititems[i][0]
 
-        if git_abm_top_internal > 0:
-            self.svnlog(str(git_abm_top_internal))
+        #TODO: review this
+        if currentSavedRev > 0 and NS.BFORCE_ALL is False:
+            Utils.printwf("INFO: Will use %s as clone mark" % currentSavedRev)
+            self.svnlog(str(currentSavedRev)) #get the last rev from db
+            hsvn = Helpers.hwm(self._metasvn)
+            if hsvn == currentSavedRev and remove_tag==0:
+                Utils.printwf("INFO: Current GIT state and SVN state are equal. Nothing to do.")
+                return NS.Errors.OK
         else:
-            if git_abm_top_internal == 0 and git_abm_top == 0:
-                Utils.printwf("WARN: No ABM commits in git repo.")
-                self.svnlog(str(self._hkgit)) # get the upper git present in svn
+            if git_abm_top_internal > 0:
+                self.svnlog(str(git_abm_top_internal))
             else:
-                return NS.Errors.ERROR_INSUFFICIENT_CLONE_DEPTH
-
+                if git_abm_top_internal == 0 and git_abm_top == 0:
+                    Utils.printwf("WARN: No ABM commits in git repo.")
+                    self.svnlog(str(self._hkgit)) # get the upper git present in svn
+                else:
+                    return NS.Errors.ERROR_INSUFFICIENT_CLONE_DEPTH
+                
         svnitems = self._metasvn.items()
         if len(svnitems) == 0:
             Utils.dump("ERROR: NO_CONNECTION_TO_SVN")
             return NS.Errors.NO_CONNECTION_TO_SVN        
 
-        #TODO: get the latest saved SVN rev
-        currentSavedRev = Utils.db.get_svnrev(self._currentBranch)
-        hsvn = Helpers.hwm(self._metasvn)
-        if hsvn == currentSavedRev and remove_tag==0:
-            Utils.printwf("Current GIT state and SVN state are equal. Nothing to do.")
-            return NS.Errors.OK
-        
-        Utils.db.add_svnrev(self._currentBranch, hsvn)
-        svnitems.sort()
+        Utils.db.add_svnrev(self._currentBranch, hsvn) #record the highst svn in db 
 
+        svnitems.sort()
         latestuser = None
         dAbmMan = filter_fix_tag(svnitems)
         svnitems = dAbmMan['ok']
@@ -626,7 +618,6 @@ class SvnGitMixin(object):
                         tagname = versionh.to_tag()
                         vermsg = build_cm_msg(vermsg, 'commit:')
                         self._set_path(self._gitpath)
-                        Utils.db.add_tag(self._currentBranch, tagname)
                         if remove_tag == 1:
                             untag(tagname)
                         elif remove_tag == 2:
@@ -671,11 +662,9 @@ class SvnGitMixin(object):
 
     def do_merge(self, date, cleanup=True):
         """ merge svn repo to git """
-        Utils.printwf("Entering a merging procedure")
-        if NS.BFORCE_ALL:
-            Utils.printwf("WARNING: Will perform a full migration on the repo")
-        
         r = self._repo.replace("\n", '').replace("\r", '')
+        Utils.printwf("INFO: Entering a merging procedure on [%s]" % r)
+
         haslog = self.gitlog(" --date=short")
         gitmeta = self._metagit
         if len(gitmeta) == 0 and haslog is False:
@@ -692,10 +681,9 @@ class SvnGitMixin(object):
         self._hksvn = Helpers.hwm(svnmeta)  
         
         if self._hksvn in gitmeta:
-            #Utils.dump(str("[Up to date repo],%s" % r))
+            Utils.printwf("INFO: nothing to merge...")
             return NS.Errors.OK
-        else:
-            pass
+        
             #Utils.dump(str("[Needs fix],%s,git,%s,svn,%s" % (r, self._hkgit, self._hksvn))) 
         # sort the versions before exporting so you can add them to git in increasing order
         pydir = str(os.path.dirname(os.path.realpath(__file__)))       
@@ -990,7 +978,7 @@ if __name__ == "__main__":
         elif args['--file'] is not None:   
             if NS.GDEBUG is True: #debug stuff only
                 Utils.printwf("Enter debug mode")
-                Utils.load_svngit('svngitmigrationtest1.txt')
+                Utils.load_svngit('svngitmigration_Sau.txt')
             else:       
                 Utils.load_svngit(sys.argv[args['--file']+1])
 
@@ -1012,7 +1000,7 @@ if __name__ == "__main__":
                     branch = entry['branch']
                     git = entry['git']
                     mix = SvnGitMixin(svnuri=svn, gituri=NS.CSI_GIT_URI, svnpath=None, gitpath=None, opt_tags=tags)                        
-                    mix.git_clone(git, branch, 20)
+                    mix.git_clone(git, branch, NS.GDepth)
                     mix.svn_checkout()                    
                     mix.set_current("%s,%s,%s" % (svn, git, branch))
                     Utils.dump("---------------------------------------------------------------------------")
@@ -1072,7 +1060,7 @@ if __name__ == "__main__":
                         _idump(mix, svn, git, branch, bDumpAll)
                         mix.finish()
                     else:
-                        mix.do_merge("{2019-01-01}", cleanup=clean)
+                        #put test code here in Debug mode
                         pass
 
                     mix.finish()

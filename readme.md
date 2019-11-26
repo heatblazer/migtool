@@ -14,7 +14,7 @@ SVN to GIT migration tool
           "tags : [1,2,3,4]
          }
   }</code>
-
+- <code>sgutil.py --help </code> to see the full options, or browse the <code>Globals.py</code> for full options
 <mark>NOTES:</mark>
 
 - See eml.json for email registration of a new user
@@ -28,6 +28,6 @@ SVN to GIT migration tool
 
 <mark>TODO:</mark>
 
-- Use manual command example: git commit --allow-empty --author="yyordanov <yordan.yordanov@verint.com>" -m "Deleted binaries which are moved to nexus [cr: SStoykov] svn-revision:263262" --date=2019-08-19 when SVN not in GIT
+- Use manual command example: <code>git commit --allow-empty --author="yyordanov <yordan.yordanov@verint.com>" -m "Deleted binaries which are moved to nexus [cr: SStoykov] svn-revision:263262" --date=2019-08-19</code> when SVN not in GIT
 
 author: ilyan.zapryanov@verint.com
