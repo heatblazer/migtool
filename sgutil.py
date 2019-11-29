@@ -404,7 +404,7 @@ class SvnGitMixin(object):
             ret = {}
             ret['nok'] = list()
             ret['ok'] = list()
-            i, j = 1, 0
+            i, j = 0, 0
             
             while i < len(data):
                 if Helpers.match_abm(data[i][1]):
