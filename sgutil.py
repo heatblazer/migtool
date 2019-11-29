@@ -404,7 +404,7 @@ class SvnGitMixin(object):
             ret = {}
             ret['nok'] = list()
             ret['ok'] = list()
-            i, j = 0, 0
+            i, j = 1, 0
             
             while i < len(data):
                 if Helpers.match_abm(data[i][1]):
@@ -560,15 +560,22 @@ class SvnGitMixin(object):
             Utils.dump("ERROR: NO_CONNECTION_TO_SVN")
             return NS.Errors.NO_CONNECTION_TO_SVN        
 
-        Utils.db.add_svnrev(self._currentBranch, hsvn) #record the highst svn in db 
+        Utils.db.add_svnrev(self._currentBranch, Helpers.hwm(self._metasvn)) #record the highst svn in db 
 
         svnitems.sort()
         latestuser = None
         dAbmMan = filter_fix_tag(svnitems)
         svnitems = dAbmMan['ok']
         tobefix = dAbmMan['nok']
+        
         if len(tobefix) > 0:
             apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
+        else:            
+            for a in svnitems:
+                if Helpers.match_abm(a[1]):
+                    tobefix.append(a)                      
+            apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
+
 
         if NS.FIX_DIRTY_TAGS_SPECIAL: #remove after all tags are fixed !!!
             commithashfix, svnrev, dirtytag, oldmessage = get_tag_by_user()
@@ -1058,9 +1065,9 @@ if __name__ == "__main__":
                         else:
                             pass
                         _idump(mix, svn, git, branch, bDumpAll)
-                        mix.finish()
                     else:
                         #put test code here in Debug mode
+                        _intag(mix, svn, git, branch, depth, 0)                            
                         pass
 
                     mix.finish()
