@@ -11,6 +11,8 @@ class NS:
 
     TEST_GIT_REPO_NAME = None #"TST4" #"TODO_MIGRATE"
 
+    EXPLICIT_MATCH = "Sau_4_5_3"
+
     GDEBUG = False
 
     BFORCE_ALL = False #MUST BE False in Release!!!
@@ -29,7 +31,7 @@ class NS:
 
     SVNGIT_ON_ABM = False
 
-    GDepth = 40
+    GDepth = 20
 
     CMD_VERBOSE_MODE_ON = True
 
@@ -109,6 +111,8 @@ class NS:
     Gargs.update({'--update-db' : None})
     Gargs.update({'--abm' : None})
     Gargs.update({'--force' : None})
+    Gargs.update({'--explicit' : None})
+    
 
 
 #######################################################################################################################################

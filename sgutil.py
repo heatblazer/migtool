@@ -404,7 +404,7 @@ class SvnGitMixin(object):
             ret = {}
             ret['nok'] = list()
             ret['ok'] = list()
-            i, j = 0, 0
+            i, j = 1, 0
             
             while i < len(data):
                 if Helpers.match_abm(data[i][1]):
@@ -570,11 +570,12 @@ class SvnGitMixin(object):
         
         if len(tobefix) > 0:
             apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
-        else:            
-            for a in svnitems:
-                if Helpers.match_abm(a[1]):
-                    tobefix.append(a)                      
-            apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
+        else:
+            if self._currentBranch.find(NS.EXPLICIT_MATCH) is not -1:     
+                for a in svnitems:
+                    if Helpers.match_abm(a[1]):
+                        tobefix.append(a)                      
+                apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
 
 
         if NS.FIX_DIRTY_TAGS_SPECIAL: #remove after all tags are fixed !!!
@@ -996,6 +997,10 @@ if __name__ == "__main__":
             Utils.printwf("This may take a while... please wait...\r\n")
             mix = None
             workCnt = 0
+            if args['--explicit'] is not None:
+                NS.EXPLICIT_MATCH = str(sys.argv[args['--explicit']+1])
+                Utils.printwf("INFO: Using explicit %s" % NS.EXPLICIT_MATCH)
+
             for entry in NS.GSvnGitMeta:      
                 depth = NS.GDepth          
                 Utils.printwf("###############################################################")
@@ -1061,12 +1066,12 @@ if __name__ == "__main__":
 
                         elif args['--purge-tags'] is not None:
                             mix.remove_tags()
-
                         else:
                             pass
                         _idump(mix, svn, git, branch, bDumpAll)
                     else:
                         #put test code here in Debug mode
+                        
                         _intag(mix, svn, git, branch, depth, 0)                            
                         pass
 
