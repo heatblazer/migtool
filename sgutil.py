@@ -421,6 +421,7 @@ class SvnGitMixin(object):
         def apply_abm_fix(abmdata, opdir, utag=0, svnrev=None, topabm=0):
             i, size = 1, 0
             size = len(abmdata)
+            abmdata.sort()
             if size > 0:
                 commithashi = 0
                 k = abmdata[len(abmdata)-1][0]
@@ -567,15 +568,16 @@ class SvnGitMixin(object):
         dAbmMan = filter_fix_tag(svnitems)
         svnitems = dAbmMan['ok']
         tobefix = dAbmMan['nok']
-        
-        if len(tobefix) > 0:
+
+        if self._currentBranch.find(NS.EXPLICIT_MATCH) is not -1:
+            del tobefix
+            tobefix = []     
+            for a in self._metasvn.items():
+                if Helpers.match_abm(a[1]):
+                    tobefix.append(a)                      
             apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
-        else:
-            if self._currentBranch.find(NS.EXPLICIT_MATCH) is not -1:     
-                for a in svnitems:
-                    if Helpers.match_abm(a[1]):
-                        tobefix.append(a)                      
-                apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
+        elif len(tobefix) > 0:
+            apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
 
 
         if NS.FIX_DIRTY_TAGS_SPECIAL: #remove after all tags are fixed !!!
@@ -1071,8 +1073,6 @@ if __name__ == "__main__":
                         _idump(mix, svn, git, branch, bDumpAll)
                     else:
                         #put test code here in Debug mode
-                        
-                        _intag(mix, svn, git, branch, depth, 0)                            
                         pass
 
                     mix.finish()
