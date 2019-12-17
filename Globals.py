@@ -66,7 +66,7 @@ class NS:
     For updating a db file use: sgutil.py --update-db\r\n
     For hinting you are on a build machine use: sgutil.py --abm\r\n
     Usage for updateing ComponentsVersion.xml:\r\n
-    -cv0 <filename.xml> ... -cv<Filename.xml>\r\n
+    sgutil.py --file <path to csv repo file> --xml-file <path to ComponentsVersions.xml> --export-platforms \r\n
     ----------------------------------------------------------------------------\r\n
     """
 

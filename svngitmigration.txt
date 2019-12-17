@@ -357,3 +357,4 @@ http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/TestCiSn/TestCiSn_1_0_0,SDKP/testc
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/SinaElements/SinaElements_1_0_0,SDKP/sinaelements.git,SinaElements_1_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/ZPlayElements/ZPlayElements_1_0_0,SDKP/zplayelements.git,ZPlayElements_1_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/AdsAppnextElements/AdsAppnextElements_1_0_0,SDKP/AdsAppnextElements.git,AdsAppnextElements_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/FeelingtouchElements/FeelingtouchElements_1_0_0,SDKP/FeelingtouchElements.git,FeelingtouchElements_1_0_0

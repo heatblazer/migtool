@@ -74,6 +74,8 @@ class SvnGitMixin(object):
         self._xmlContext = None
         self._git_forward_err = False
         self._tags = opt_tags # buffer all tags here
+        self._doNotTag = False
+        self._hasNoAbm = False
     
 
     def __del__(self):
@@ -405,6 +407,9 @@ class SvnGitMixin(object):
             ret['nok'] = list()
             ret['ok'] = list()
             i, j = 1, 0
+            if self._hasNoAbm:
+                ret['ok'] = data
+                return ret    
             
             while i < len(data):
                 if Helpers.match_abm(data[i][1]):
@@ -417,6 +422,48 @@ class SvnGitMixin(object):
                 ret['ok'].append(data[j])
                 j += 1
             return ret
+
+        def apply_full_merge_fix(abmdata, svnrev, opdir, topabm):
+            size, j, commithashi, k = len(abmdata), 0, 0, 0
+            abmdata.sort()
+            sortedabm = list(abmdata)
+            todotag = []
+            i = size -1
+            if size == 0:
+                return 
+            while i >=0:
+                if Helpers.match_abm(sortedabm[i][1]):
+                    todotag.append(sortedabm[i])
+                elif Helpers.match_abm_aligned(sortedabm[i][1]):
+                    todotag.append(sortedabm[i])
+                else:
+                    break #foudn manual
+                i-=1
+
+            if len(todotag) > 0:
+                j = len(todotag) -1
+                commithashi = 0
+                k = todotag[0][0]
+                self._set_path(self._gitpath)
+                versionh2 = exp_get_ver(svnrev, opdir)
+                self._set_path(self._gitpath)
+                commithashi = self._metagit[k]
+                commithashi = commithashi[0].split('\n')[0]
+                deltag = versionh2.to_tag()
+                cmmsgi = str("Automatic ABM commit: Increase Component version to: %s.%s.%s.%s" % (versionh2.majorv, versionh2.minorv, versionh2.branchv, versionh2.fixv))
+                tag(deltag, commithashi, cmmsgi)
+
+                ii = j-1
+                while ii >=0:
+                    commithash = self._metagit[k]
+                    commithash = commithash[0].split('\n')[0]
+                    cmmsg = parse_ver_msg(todotag[ii][1])
+                    tagname = cmmsg[22].replace('.', '_')
+                    cmmsg = build_cm_msg(cmmsg, 'commit:')
+                    tag(tagname, commithash, cmmsg)
+                    ii-=1
+
+            pass
 
         def apply_abm_fix(abmdata, opdir, utag=0, svnrev=None, topabm=0):
             i, size = 1, 0
@@ -504,7 +551,6 @@ class SvnGitMixin(object):
         Utils.db.clear_tags(self._currentBranch)
         Utils.printwf(str("Enter tag/untag mode for repo [%s]" % self._repo))
         Utils.dump(str("INFO: Enter tag/untag mode for repo [%s]" % self._repo))
-       
         #get the current svn saved state
         currentSavedRev = Utils.db.get_svnrev(self._currentBranch) 
         hsvn = 0 #highest svn
@@ -546,22 +592,25 @@ class SvnGitMixin(object):
             if hsvn == currentSavedRev and remove_tag==0:
                 Utils.printwf("INFO: Current GIT state and SVN state are equal. Nothing to do.")
                 return NS.Errors.OK
-        else:
-            if git_abm_top_internal > 0:
-                self.svnlog(str(git_abm_top_internal))
+
+        if True: #socped check !!!!
+            if git_abm_top_internal >= 0:
+                if git_abm_top < currentSavedRev:
+                    self.svnlog(str(currentSavedRev))
+                else:
+                    self.svnlog(str(git_abm_top_internal))
             else:
                 if git_abm_top_internal == 0 and git_abm_top == 0:
+                    self._hasNoAbm = True
                     Utils.printwf("WARN: No ABM commits in git repo.")
-                    self.svnlog(str(self._hkgit)) # get the upper git present in svn
+                    self.svnlog(str(currentSavedRev)) # get the upper git present in svn
                 else:
                     return NS.Errors.ERROR_INSUFFICIENT_CLONE_DEPTH
-                
+            
         svnitems = self._metasvn.items()
         if len(svnitems) == 0:
             Utils.dump("ERROR: NO_CONNECTION_TO_SVN")
             return NS.Errors.NO_CONNECTION_TO_SVN        
-
-        Utils.db.add_svnrev(self._currentBranch, Helpers.hwm(self._metasvn)) #record the highst svn in db 
 
         svnitems.sort()
         latestuser = None
@@ -569,28 +618,16 @@ class SvnGitMixin(object):
         svnitems = dAbmMan['ok']
         tobefix = dAbmMan['nok']
 
-        if self._currentBranch.find(NS.EXPLICIT_MATCH) is not -1:
-            del tobefix
-            tobefix = []     
-            for a in self._metasvn.items():
-                if Helpers.match_abm(a[1]):
-                    tobefix.append(a)                      
-            apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
-        elif len(tobefix) > 0:
-            apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
+        if self._hasNoAbm is False:
+            if self._currentBranch.find(NS.EXPLICIT_MATCH) is not -1:
+                apply_full_merge_fix(self._metasvn.items(), git_abm_top_internal, opdir, git_abm_top)
+            elif len(tobefix) > 0:
+                apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
+            
+            Utils.db.add_svnrev(self._currentBranch, Helpers.hwm(self._metasvn)) #record the highst svn in db 
+        else:
+            Utils.db.add_svnrev(self._currentBranch, Helpers.hwm(currentSavedRev)) #keep the old
 
-
-        if NS.FIX_DIRTY_TAGS_SPECIAL: #remove after all tags are fixed !!!
-            commithashfix, svnrev, dirtytag, oldmessage = get_tag_by_user()
-            if commithashfix is not None and svnrev is not None and dirtytag is not None and oldmessage is not None:
-                versionh2 = exp_get_ver(svnrev, opdir)
-                self._set_path(self._gitpath)
-                untag(dirtytag)
-                dirtytag = versionh2.to_tag()
-                tag(dirtytag, commithashfix, oldmessage)
-                return NS.Errors.OK
-            else:
-                return NS.Errors.OK
 
         i = 0
         if len(svnitems) == 0:
@@ -1072,6 +1109,7 @@ if __name__ == "__main__":
                             pass
                         _idump(mix, svn, git, branch, bDumpAll)
                     else:
+                        #_intag(mix, svn, git, branch, depth, 0) #tagonly
                         #put test code here in Debug mode
                         pass
 
