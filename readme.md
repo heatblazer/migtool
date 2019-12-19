@@ -30,5 +30,6 @@ SVN to GIT migration tool
 <mark>TODO:</mark>
 
 - Use manual command example: <code>git commit --allow-empty --author="yyordanov <yordan.yordanov@verint.com>" -m "Deleted binaries which are moved to nexus [cr: SStoykov] svn-revision:263262" --date=2019-08-19</code> when SVN not in GIT
-
+- Review the Platforms.git 4_5_3 to verify if commits have to be removed and re-merged. Temporaly removed http://tlvsvn1/svn/repos-pdfe/Pdfe/Platforms/branches/4_5_3,https://cisbitbucket01/projects/IP/Platforms.git,4_5_3 the link from the file
+  
 author: ilyan.zapryanov@verint.com

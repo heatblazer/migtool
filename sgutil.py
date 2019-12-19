@@ -199,6 +199,39 @@ class SvnGitMixin(object):
         self._shell.execute(pushf)
         pass # breakpnt
 
+    def get_tag_by_user(self, commiter='yyordanov'):
+        Utils.printwf(str("Start fix on repo %s w user %s " % (self._repo, commiter)))
+        cm = str("git show-ref --tags -d")
+        self._shell.execute(cm)
+        spl = self._shell.std_out().split('\n')
+        tags = []
+        for entry in spl:
+            hash_commit = entry.split()
+            if len(hash_commit) > 1:
+                tag =  hash_commit[1].split('/')[2]
+                tags.append((hash_commit[0], tag))
+        i = 0
+        while i < len(tags):
+            cm = str("git show %s" % tags[i][1])
+            self._shell.execute(cm)
+            if commiter in self._shell.std_out():
+                try:
+                    svn = self._shell.std_out().split('git-svn-id:')[1].split('@')[1].split()[0]
+                except:
+                    return (None, None, None, None)
+                
+                cm2 = str("git tag -n9")
+                self._shell.execute(cm2)
+                spl2 = self._shell.std_out().split('\n')
+                for ii in spl2:
+                    spl3 = ii.split()                        
+                    if len(spl3) > 0 and tags[i][1] == spl3[0]:
+                        cmmmsg = " ".join(spl3[1:])
+                        return (tags[i][0], svn, spl3[0], cmmmsg)
+            i += 1
+
+        return (None, None, None, None)
+
 
     def set_current(self, repo):
         self._repo = repo
@@ -294,6 +327,13 @@ class SvnGitMixin(object):
         if push_to_repo is True:
             c.execute(push)
         Utils.printwf("<<<<<<<<<< Leaving BFG mode >>>>>>>>>>")
+
+
+    def get_latestcommit(self):
+        if self._metagit is not None and len(self._metagit) > 0:
+            it = self._metagit.items()
+            it.sort()
+            return it[-1]
 
     
     def do_tag(self, remove_tag=0, applyFix=False, fixDirty=False, filter=None, enable_dump=False):
@@ -406,7 +446,7 @@ class SvnGitMixin(object):
             ret = {}
             ret['nok'] = list()
             ret['ok'] = list()
-            i, j = 1, 0
+            i, j = 0, 0
             if self._hasNoAbm:
                 ret['ok'] = data
                 return ret    
@@ -513,42 +553,9 @@ class SvnGitMixin(object):
             else:
                 Utils.dump("INFO: nothing to fix for ABM tags")
                 return False
-
-        def get_tag_by_user(commiter='yyordanov'):
-            Utils.printwf(str("Start fix on repo %s w user %s " % (self._repo, commiter)))
-            cm = str("git show-ref --tags -d")
-            self._shell.execute(cm)
-            spl = self._shell.std_out().split('\n')
-            tags = []
-            for entry in spl:
-                hash_commit = entry.split()
-                if len(hash_commit) > 1:
-                    tag =  hash_commit[1].split('/')[2]
-                    tags.append((hash_commit[0], tag))
-            i = 0
-            while i < len(tags):
-                cm = str("git show %s" % tags[i][1])
-                self._shell.execute(cm)
-                if commiter in self._shell.std_out():
-                    try:
-                        svn = self._shell.std_out().split('git-svn-id:')[1].split('@')[1].split()[0]
-                    except:
-                        return (None, None, None, None)
-                    
-                    cm2 = str("git tag -n9")
-                    self._shell.execute(cm2)
-                    spl2 = self._shell.std_out().split('\n')
-                    for ii in spl2:
-                        spl3 = ii.split()                        
-                        if len(spl3) > 0 and tags[i][1] == spl3[0]:
-                            cmmmsg = " ".join(spl3[1:])
-                            return (tags[i][0], svn, spl3[0], cmmmsg)
-                i += 1
-
-            return (None, None, None, None)
-
+        
         #leave private region 
-        Utils.db.clear_tags(self._currentBranch)
+        #Utils.db.clear_tags(self._currentBranch)
         Utils.printwf(str("Enter tag/untag mode for repo [%s]" % self._repo))
         Utils.dump(str("INFO: Enter tag/untag mode for repo [%s]" % self._repo))
         #get the current svn saved state
@@ -593,6 +600,9 @@ class SvnGitMixin(object):
                 Utils.printwf("INFO: Current GIT state and SVN state are equal. Nothing to do.")
                 return NS.Errors.OK
 
+        if git_abm_top_internal == 0 and git_abm_top > 0 and currentSavedRev == 0:
+            return NS.Errors.ERROR_INSUFFICIENT_CLONE_DEPTH
+
         if True: #socped check !!!!
             if git_abm_top_internal >= 0:
                 if git_abm_top < currentSavedRev:
@@ -619,11 +629,12 @@ class SvnGitMixin(object):
         tobefix = dAbmMan['nok']
 
         if self._hasNoAbm is False:
-            if self._currentBranch.find(NS.EXPLICIT_MATCH) is not -1:
+            if self._hkgit == hsvn:
                 apply_full_merge_fix(self._metasvn.items(), git_abm_top_internal, opdir, git_abm_top)
+                Utils.db.add_svnrev(self._currentBranch, Helpers.hwm(self._metasvn))
+                return NS.Errors.OK
             elif len(tobefix) > 0:
-                apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)
-            
+                apply_abm_fix(tobefix, opdir, remove_tag, tobefix[-1][0], git_abm_top)            
             Utils.db.add_svnrev(self._currentBranch, Helpers.hwm(self._metasvn)) #record the highst svn in db 
         else:
             Utils.db.add_svnrev(self._currentBranch, Helpers.hwm(currentSavedRev)) #keep the old
@@ -783,7 +794,7 @@ class SvnGitMixin(object):
         os.chdir(str("%s\\%s" % (Utils.home_dir() , NS.SVN_TEMP_DIR)))
         spl = self._svnuri.split("/")
         reponame = spl[len(spl)-1]
-        checkout = str("svn checkout %s" % self._svnuri)
+        checkout = str("svn checkout %s %s" % (self._svnuri, reponame))
         self._svnpath = str("%s\\%s\\%s" % (Utils.home_dir(), NS.SVN_TEMP_DIR, reponame))
         c = self._shell
         c.execute(checkout)
@@ -794,8 +805,15 @@ class SvnGitMixin(object):
     def git_clone(self, path, branch, depth, rmdir=False):
         """ uri, branch, depth """
         try:
-            os.chdir(str("%s\\%s" % (Utils.home_dir() , NS.GIT_TEMP_DIR)))         
-            clone = str("git clone --depth %s --single-branch --branch %s %s%s %s" % (depth, branch, self._gituri, path, branch))
+            os.chdir(str("%s\\%s" % (Utils.home_dir() , NS.GIT_TEMP_DIR)))
+            clone = None
+            if NS.NO_GIT_URI:
+                spl = path.split('/')
+                fixpath = str("%s%s/%s" % (NS.CSI_GIT_URI, spl[4], spl[5]))
+                clone = str("git clone --depth %s --single-branch --branch %s %s %s" % (depth, branch, fixpath, branch))                         
+            else:
+                clone = str("git clone --depth %s --single-branch --branch %s %s%s %s" % (depth, branch, self._gituri, path, branch))        
+             
             self._currentBranch = branch
             checkout = str("git checkout %s" % branch)
             pull = str("git pull")
@@ -910,17 +928,6 @@ class SvnGitMixin(object):
 
 #end region SvnGitMixin
 
-gWorkers = []
-
-class ExportFn(Functor):
-        def __init__(self, data):
-            self._data = data
-
-        def do_work(self):
-            self._data.update_platforms()
-
-
-
 
 ################################################ MAIN ################################################
 if __name__ == "__main__":
@@ -986,6 +993,10 @@ if __name__ == "__main__":
     else:
         GXml = None
 
+    if args['--users'] is not None:
+        for user in GUserMails:
+            Utils.printwf(user)
+
     if args['--bfg'] is not None and args['--file'] is not None:
         Utils.printwf("Entering 'BFG' mode...")
         pcomps = sys.argv[args['--file']+1] # uncomment in release
@@ -1025,7 +1036,8 @@ if __name__ == "__main__":
         elif args['--file'] is not None:   
             if NS.GDEBUG is True: #debug stuff only
                 Utils.printwf("Enter debug mode")
-                Utils.load_svngit('svngitmigration_Sau.txt')
+                NS.NO_GIT_URI = True
+                Utils.load_svngit('svngitmigrationtest1.txt')
             else:       
                 Utils.load_svngit(sys.argv[args['--file']+1])
 
@@ -1036,11 +1048,13 @@ if __name__ == "__main__":
             Utils.printwf("This may take a while... please wait...\r\n")
             mix = None
             workCnt = 0
-            if args['--explicit'] is not None:
-                NS.EXPLICIT_MATCH = str(sys.argv[args['--explicit']+1])
-                Utils.printwf("INFO: Using explicit %s" % NS.EXPLICIT_MATCH)
 
-            for entry in NS.GSvnGitMeta:      
+            if args['--nohttps'] is not None:
+                Utils.printwf("INFO: Will not use https but ssh")
+                NS.NO_GIT_URI = True
+
+            for entry in NS.GSvnGitMeta:
+                
                 depth = NS.GDepth          
                 Utils.printwf("###############################################################")
                 try:
@@ -1109,10 +1123,10 @@ if __name__ == "__main__":
                             pass
                         _idump(mix, svn, git, branch, bDumpAll)
                     else:
-                        #_intag(mix, svn, git, branch, depth, 0) #tagonly
-                        #put test code here in Debug mode
+                        #NS.NO_GIT_URI = True
+                        #mix.do_merge("{2019-01-01}", cleanup=clean)
+                        #_intag(mix, svn, git, branch, depth, 0)
                         pass
-
                     mix.finish()
 
                 except Exception as mainEx:                    

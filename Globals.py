@@ -13,7 +13,7 @@ class NS:
 
     EXPLICIT_MATCH = "Sau_4_5_3"
 
-    GDEBUG = False
+    GDEBUG = True
 
     BFORCE_ALL = False #MUST BE False in Release!!!
 
@@ -34,6 +34,8 @@ class NS:
     GDepth = 20
 
     CMD_VERBOSE_MODE_ON = True
+
+    NO_GIT_URI = False
 
     CSI_GIT_URI = "ssh://git@cisbitbucket01:7999/"
 
@@ -112,8 +114,10 @@ class NS:
     Gargs.update({'--abm' : None})
     Gargs.update({'--force' : None})
     Gargs.update({'--explicit' : None})
+    Gargs.update({'--validate' : None})
+    Gargs.update({'--nohttps' : None})
+    Gargs.update({'--users' : None})
     
-
 
 #######################################################################################################################################
 #bdata section (put binary or RO data below) w/marker tag
