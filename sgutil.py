@@ -794,8 +794,8 @@ class SvnGitMixin(object):
         os.chdir(str("%s\\%s" % (Utils.home_dir() , NS.SVN_TEMP_DIR)))
         spl = self._svnuri.split("/")
         reponame = spl[len(spl)-1]
-        checkout = str("svn checkout %s %s" % (self._svnuri, reponame))
-        self._svnpath = str("%s\\%s\\%s" % (Utils.home_dir(), NS.SVN_TEMP_DIR, reponame))
+        checkout = str("svn checkout %s %s_%s" % (self._svnuri, reponame, spl[-1-1]))
+        self._svnpath = str("%s\\%s\\%s_%s" % (Utils.home_dir(), NS.SVN_TEMP_DIR, reponame, spl[-1-1]))
         c = self._shell
         c.execute(checkout)
         os.chdir(os.path.dirname(os.path.realpath(__file__)))

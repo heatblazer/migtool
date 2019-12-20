@@ -13,7 +13,7 @@ class NS:
 
     EXPLICIT_MATCH = "Sau_4_5_3"
 
-    GDEBUG = True
+    GDEBUG = False
 
     BFORCE_ALL = False #MUST BE False in Release!!!
 
