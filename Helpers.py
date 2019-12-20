@@ -83,9 +83,8 @@ class PThread(Thread):
         self._fn = fn
 
     def run(self):
-        if self._fn is not None and self._udata is not None:
+        if self._fn is not None:
             self._fn()
-            sleep(1)
                 
 
 
