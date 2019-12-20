@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Components>
+	<Component Name="Infra" Version="76" MinVersion="71"/>
+	<Component Name="WebInfra" Version="79" MinVersion="66"/>
+	<Component Name="ImPspInfra" Version="52" MinVersion="52"/>
+	<Component Name="Sau" Version="245" MinVersion="153"/>
+	<Component Name="SdkBindings" Version="74" MinVersion="74"/>
+	<Component Name="Sdk" Version="122" MinVersion="122"/>
+	<Component Name="WhatsAppIm" Version="21" MinVersion="1"/>
+	<Component Name="SkypeIm" Version="25" MinVersion="8"/>
+	<Component Name="SkoutIm" Version="24" MinVersion="1"/>
+	<Component Name="LineIm" Version="31" MinVersion="2"/>
+	<Component Name="_163Mail" Version="4" MinVersion="3"/>
+	<Component Name="AccessedUrl" Version="78"/>
+	<Component Name="AolMail" Version="157" MinVersion="101"/>
+	<Component Name="ExciteMail" Version="142"/>
+	<Component Name="FacebookMail" Version="86"/>
+	<Component Name="FacebookSN" Version="82"/>
+	<Component Name="GmailMail" Version="227"/>
+	<Component Name="GmxDotComMail" Version="132"/>
+	<Component Name="HotmailMail" Version="128"/>
+	<Component Name="HttpTester" Version="75"/>
+	<Component Name="Htft" Version="86"/>
+	<Component Name="HttpAggregation" Version="79"/>
+	<Component Name="Iax2" Version="82" MinVersion="81"/>
+	<Component Name="Instagram" Version="40" MinVersion="1"/>
+	<Component Name="Mail2WebMail" Version="139"/>
+	<Component Name="Mail2WorldMail" Version="153"/>
+	<Component Name="MailDotComMail" Version="149"/>
+	<Component Name="MailDotRuMail" Version="150"/>
+	<Component Name="MyWayMail" Version="151"/>
+	<Component Name="QipDotRuMail" Version="141"/>
+	<Component Name="Rainbow" Version="114" MinVersion="113"/>
+	<Component Name="RamblerRuMail" Version="84"/>
+	<Component Name="RediffMail" Version="144"/>
+	<Component Name="Sample" Version="50"/>
+	<Component Name="ShufDotComMail" Version="126"/>
+	<Component Name="SinaMail" Version="112" MinVersion="1"/>
+	<Component Name="SingnetMail" Version="131"/>
+	<Component Name="Tango" Version="82" MinVersion="1"/>
+	<Component Name="UkrMail" Version="137"/>
+	<Component Name="YahooMail" Version="281"/>
+	<Component Name="YandexRuMail" Version="156" MinVersion="77"/>
+	<Component Name="BeboChat" Version="108" MinVersion="108"/>
+	<Component Name="eBuddyMessenger" Version="108" MinVersion="108"/>
+	<Component Name="FacebookChat" Version="110"/>
+	<Component Name="GTalkMessenger" Version="95" MinVersion="95"/>
+	<Component Name="ICQMessengerHTTP" Version="116" MinVersion="116"/>
+	<Component Name="IMVUChat" Version="109" MinVersion="109"/>
+	<Component Name="M1SMS" Version="110" MinVersion="110"/>
+	<Component Name="Mrim" Version="110" MinVersion="110"/>
+	<Component Name="MSNMessengerHTTP" Version="107" MinVersion="107"/>
+	<Component Name="PaltalkHTTP" Version="111" MinVersion="111"/>
+	<Component Name="StarhubSMS" Version="110" MinVersion="110"/>
+	<Component Name="Twitter" Version="109" MinVersion="109"/>
+	<Component Name="WhatsApp" Version="109" MinVersion="109"/>
+	<Component Name="XFire" Version="113" MinVersion="113"/>
+	<Component Name="YahooMobileMessenger" Version="110" MinVersion="110"/>
+	<Component Name="GeneralInstantMessaging" Version="140"/>
+	<Component Name="Elements" Version="29" MinVersion="1"/>
+	<Component Name="TestCiMail" Version="68" MinVersion="4"/>
+	<Component Name="Nimbuzz" Version="17" MinVersion="5"/>
+</Components>

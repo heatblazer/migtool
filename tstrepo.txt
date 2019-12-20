@@ -1,0 +1,7 @@
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WebAuthentication/WebAuthentication_1_0_0,https://cisbitbucket01/projects/sdkp/WebAuthentication.git, WebAuthentication_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/YouTubeSN/YouTubeSN_1_0_0,https://cisbitbucket01/projects/sdkp/YouTubeSN.git, YouTubeSN_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WebLogin/WebLogin_1_0_0,https://cisbitbucket01/projects/sdkp/WebLogin.git, WebLogin_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WhatsAppCsv/WhatsAppCsv_1_0_0,https://cisbitbucket01/projects/sdkp/WhatsAppCsv.git, WhatsAppCsv_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WhatsAppIm/WhatsAppIm_1_0_0,https://cisbitbucket01/projects/sdkp/WhatsAppIm.git, WhatsAppIm_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WhatsAppIm/WhatsAppIm_1_1_0,https://cisbitbucket01/projects/sdkp/WhatsAppIm.git, WhatsAppIm_1_1_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/YouTubeSN/YouTubeSN_1_0_0,https://cisbitbucket01/projects/sdkp/YouTubeSN.git, YouTubeSN_1_0_0

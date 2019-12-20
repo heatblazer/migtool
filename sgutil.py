@@ -76,6 +76,7 @@ class SvnGitMixin(object):
         self._tags = opt_tags # buffer all tags here
         self._doNotTag = False
         self._hasNoAbm = False
+        self._hasError = False
     
 
     def __del__(self):
@@ -558,12 +559,15 @@ class SvnGitMixin(object):
         #Utils.db.clear_tags(self._currentBranch)
         Utils.printwf(str("Enter tag/untag mode for repo [%s]" % self._repo))
         Utils.dump(str("INFO: Enter tag/untag mode for repo [%s]" % self._repo))
+        if self._hasError:
+            return NS.Errors.ERROR
         #get the current svn saved state
         currentSavedRev = Utils.db.get_svnrev(self._currentBranch) 
         hsvn = 0 #highest svn
         r = self._repo.replace("\n", '').replace("\r", '')
         r = r.split(',')
         opdir = r[-1]
+        opdir = opdir.replace(' ', '')
         abmcommit = []
         #check if raw log is ok:
         #removed --no-walk  option and --pretty=\"%h %d %s\"
@@ -720,6 +724,9 @@ class SvnGitMixin(object):
 
     def do_merge(self, date, cleanup=True):
         """ merge svn repo to git """
+        if self._hasError:
+            return NS.Errors.ERROR
+
         r = self._repo.replace("\n", '').replace("\r", '')
         Utils.printwf("INFO: Entering a merging procedure on [%s]" % r)
 
@@ -791,15 +798,19 @@ class SvnGitMixin(object):
 
 
     def svn_checkout(self):
-        os.chdir(str("%s\\%s" % (Utils.home_dir() , NS.SVN_TEMP_DIR)))
-        spl = self._svnuri.split("/")
-        reponame = spl[len(spl)-1]
-        checkout = str("svn checkout %s %s_%s" % (self._svnuri, reponame, spl[-1-1]))
-        self._svnpath = str("%s\\%s\\%s_%s" % (Utils.home_dir(), NS.SVN_TEMP_DIR, reponame, spl[-1-1]))
-        c = self._shell
-        c.execute(checkout)
-        os.chdir(os.path.dirname(os.path.realpath(__file__)))
-        pass
+        try:
+            os.chdir(str("%s\\%s" % (Utils.home_dir() , NS.SVN_TEMP_DIR)))
+            spl = self._svnuri.split("/")
+            reponame = spl[len(spl)-1]
+            checkout = str("svn checkout %s %s_%s" % (self._svnuri, reponame, spl[-1-1]))
+            self._svnpath = str("%s\\%s\\%s_%s" % (Utils.home_dir(), NS.SVN_TEMP_DIR, reponame, spl[-1-1]))
+            c = self._shell
+            c.execute(checkout)
+            os.chdir(os.path.dirname(os.path.realpath(__file__)))
+            pass
+        except Exception as ex1:
+            Utils.printwf("Exception: ex in svn_checkoit(...)  %s" % ex1.message)
+            self._hasError = True
 
 
     def git_clone(self, path, branch, depth, rmdir=False):
@@ -807,13 +818,15 @@ class SvnGitMixin(object):
         try:
             os.chdir(str("%s\\%s" % (Utils.home_dir() , NS.GIT_TEMP_DIR)))
             clone = None
+            branch = branch.replace(' ', '')
             if NS.NO_GIT_URI:
                 spl = path.split('/')
                 fixpath = str("%s%s/%s" % (NS.CSI_GIT_URI, spl[4], spl[5]))
                 clone = str("git clone --depth %s --single-branch --branch %s %s %s" % (depth, branch, fixpath, branch))                         
             else:
                 clone = str("git clone --depth %s --single-branch --branch %s %s%s %s" % (depth, branch, self._gituri, path, branch))        
-             
+            
+
             self._currentBranch = branch
             checkout = str("git checkout %s" % branch)
             pull = str("git pull")
@@ -828,12 +841,13 @@ class SvnGitMixin(object):
             os.chdir(os.path.dirname(os.path.realpath(__file__)))
             Utils.db.add_record(self._currentBranch)
         except Exception as ex1:
-            Utils.printwf(str("Exception in git_clone: (%s)" % ex1.message))
+            Utils.printwf(str("Exception: ex in git_clone: (%s)" % ex1.message))
+            self._hasError = True
             pass    
 
     
     def xml_tag(self):
-
+        """xml tag component with commithash of the highest tag"""
         def validate_tag(data):
             ver, name = self._xmlContext.get_vername()
             xmlver = self._xmlContext.get_attrib_by_name(name).attrib['Version']
@@ -985,13 +999,16 @@ if __name__ == "__main__":
         LOG_DISABLED = True
 
     # we need do bfg with file .platform.comps
-    #DELETE the True and uncomment the args 
-    if args['--xml-file'] is not None:
-        GXml = XmlUpdateContext(sys.argv[args['--xml-file']+1])
-    elif NS.GDEBUG is True:
-        GXml = XmlUpdateContext("ComponentsVersions.xml")
-    else:
-        GXml = None
+    #DELETE the True and uncomment the args
+    try: 
+        if args['--xml-file'] is not None:
+            GXml = XmlUpdateContext(sys.argv[args['--xml-file']+1])
+        elif NS.GDEBUG is True:
+            GXml = XmlUpdateContext("ComponentsVersions.xml")
+        else:
+            GXml = None
+    except:
+        Utils.printwf("WARNING: No Components Version loaded")
 
     if args['--users'] is not None:
         for user in GUserMails:
@@ -1037,7 +1054,7 @@ if __name__ == "__main__":
             if NS.GDEBUG is True: #debug stuff only
                 Utils.printwf("Enter debug mode")
                 NS.NO_GIT_URI = True
-                Utils.load_svngit('svngitmigrationtest1.txt')
+                Utils.load_svngit('tstrepo.txt')
             else:       
                 Utils.load_svngit(sys.argv[args['--file']+1])
 
@@ -1064,7 +1081,8 @@ if __name__ == "__main__":
                     svn = entry['svn']
                     branch = entry['branch']
                     git = entry['git']
-                    mix = SvnGitMixin(svnuri=svn, gituri=NS.CSI_GIT_URI, svnpath=None, gitpath=None, opt_tags=tags)                        
+                    mix = SvnGitMixin(svnuri=svn, gituri=NS.CSI_GIT_URI, svnpath=None, gitpath=None, opt_tags=tags)
+                    Utils.printwf(str("INFO: Cloning repos %s\t%s with branch %s" % (svn, git, branch)))                        
                     mix.git_clone(git, branch, NS.GDepth)
                     mix.svn_checkout()                    
                     mix.set_current("%s,%s,%s" % (svn, git, branch))
@@ -1123,7 +1141,6 @@ if __name__ == "__main__":
                             pass
                         _idump(mix, svn, git, branch, bDumpAll)
                     else:
-                        #NS.NO_GIT_URI = True
                         #mix.do_merge("{2019-01-01}", cleanup=clean)
                         #_intag(mix, svn, git, branch, depth, 0)
                         pass
