@@ -1,5 +1,10 @@
 http://tlvsvn1/svn/repos-pdfe/Pdfe/Infra/Infra_1_2_4,https://cisbitbucket01/projects/IP/Infra,Infra_1_2_4
 http://tlvsvn1/svn/repos-pdfe/Pdfe/WebInfra/WebInfra_1_3_0,https://cisbitbucket01/projects/IP/WebInfra,WebInfra_1_3_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/IPProbe/branches/F_4_1_0_0/Pdfe,https://cisbitbucket01/projects/IP/IPProbe.git,Sau_4_1_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/IPProbe/branches/F_4_2_0_0/Pdfe,https://cisbitbucket01/projects/IP/IPProbe.git,Sau_4_2_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/IPProbe/branches/F_4_5_0_0/Pdfe,https://cisbitbucket01/projects/IP/IPProbe.git,Sau_4_5_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/IPProbe/branches/F_4_5_1_0/Pdfe,https://cisbitbucket01/projects/IP/IPProbe.git,Sau_4_5_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/IPProbe/branches/F_4_5_2_0/Pdfe,https://cisbitbucket01/projects/IP/IPProbe.git,Sau_4_5_2
 http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspInfra/branches/ImPspInfra_4_0_1,https://cisbitbucket01/projects/IP/ImPspInfra,ImPspInfra_4_0_1
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkBindings/SdkBindings_1_3_3,https://cisbitbucket01/projects/IP/SdkBindings,SdkBindings_1_3_3
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SAUClusterManager/SAUClusterManager_1_0_0,https://cisbitbucket01/projects/IP/SAUClusterManager,SAUClusterManager_1_0_0
@@ -352,7 +357,7 @@ http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkFrameworks/SdkSip/SdkSip_1_0_2,https://cis
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkFrameworks/SdkFile/SdkFile_1_0_0,https://cisbitbucket01/projects/SDKFRAM/SdkFile,SdkFile_1_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/RCS/RCS_1_0_1,https://cisbitbucket01/projects/SDKP/RCS,RCS_1_0_1
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/FordealElements/FordealElements_1_0_0,https://cisbitbucket01/projects/SDKP/FordealElements,FordealElements_1_0_0
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/FacebookSN/FacebookSN_2_1_0,https://cisbitbucket01/projects/SDKP/repos/facebooksn,FacebookSN_2_1_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/FacebookSN/FacebookSN_2_1_0,https://cisbitbucket01/projects/SDKP/facebooksn,FacebookSN_2_1_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/BeboChat/BeboChat_4_0_0,https://cisbitbucket01/projects/IM/BeboChat,BeboChat_4_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/eBuddyMessenger/eBuddyMessenger_4_0_0,https://cisbitbucket01/projects/IM/eBuddyMessenger,eBuddyMessenger_4_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/FacebookChat/FacebookChat_4_0_0,https://cisbitbucket01/projects/IM/FacebookChat,FacebookChat_4_0_0

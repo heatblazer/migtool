@@ -633,7 +633,7 @@ class SvnGitMixin(object):
         tobefix = dAbmMan['nok']
 
         if self._hasNoAbm is False:
-            if self._hkgit == hsvn:
+            if self._hkgit == hsvn and Helpers.match_abm(self._metasvn[self._hkgit]):
                 apply_full_merge_fix(self._metasvn.items(), git_abm_top_internal, opdir, git_abm_top)
                 Utils.db.add_svnrev(self._currentBranch, Helpers.hwm(self._metasvn))
                 return NS.Errors.OK
@@ -1142,7 +1142,7 @@ if __name__ == "__main__":
                         _idump(mix, svn, git, branch, bDumpAll)
                     else:
                         #mix.do_merge("{2019-01-01}", cleanup=clean)
-                        #_intag(mix, svn, git, branch, depth, 0)
+                        _intag(mix, svn, git, branch, depth, 0)
                         pass
                     mix.finish()
 
