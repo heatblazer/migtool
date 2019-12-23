@@ -90,7 +90,7 @@
 	<Component Name="MailDotRuMail" Version="56"/>
 	<Component Name="Myspace" Version="22" MinVersion="3"/>
 	<Component Name="MyWayMail" Version="63"/>
-	<Component Name="OutlookMail" Version="26" MinVersion="2"/>
+	<Component Name="OutlookMail" Version="27" MinVersion="2"/>
 	<Component Name="OutlookNativeMail" Version="21" MinVersion="3"/>
 	<Component Name="QipDotRuMail" Version="56"/>
 	<Component Name="QqIm" Version="21" MinVersion="3"/>
@@ -107,7 +107,7 @@
 	<Component Name="ThaiMail" Version="56"/>
 	<Component Name="UkrMail" Version="57"/>
 	<Component Name="WebAuthentication" Version="20" MinVersion="3"/>
-	<Component Name="YahooMail" Version="107"/>
+	<Component Name="YahooMail" Version="108"/>
 	<Component Name="YandexRuMail" Version="20" MinVersion="2"/>
 	<Component Name="BeboChat" Version="16" MinVersion="16"/>
 	<Component Name="eBuddyMessenger" Version="16" MinVersion="16"/>
@@ -359,4 +359,5 @@
 	<Component Name="ZPlayElements" Version="4" MinVersion="1"/>
 	<Component Name="AdsAppnextElements" Version="2" MinVersion="1"/>
 	<Component Name="FeelingtouchElements" Version="2" MinVersion="1"/>
+	<Component Name="PizzaHutElements" Version="1" MinVersion="1"/>
 </Components>

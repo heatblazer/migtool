@@ -87,7 +87,7 @@
 	<Component Name="MailDotRuMail" Version="109"/>
 	<Component Name="Myspace" Version="112" MinVersion="92"/>
 	<Component Name="MyWayMail" Version="137"/>
-	<Component Name="OutlookMail" Version="152" MinVersion="13"/>
+	<Component Name="OutlookMail" Version="153" MinVersion="13"/>
 	<Component Name="OutlookNativeMail" Version="110" MinVersion="10"/>
 	<Component Name="QipDotRuMail" Version="109"/>
 	<Component Name="QqIm" Version="109" MinVersion="1"/>
@@ -104,7 +104,7 @@
 	<Component Name="ThaiMail" Version="106"/>
 	<Component Name="UkrMail" Version="110"/>
 	<Component Name="WebAuthentication" Version="108" MinVersion="64"/>
-	<Component Name="YahooMail" Version="212"/>
+	<Component Name="YahooMail" Version="213"/>
 	<Component Name="YandexRuMail" Version="109" MinVersion="1"/>
 	<Component Name="BeboChat" Version="73" MinVersion="73"/>
 	<Component Name="eBuddyMessenger" Version="72" MinVersion="72"/>

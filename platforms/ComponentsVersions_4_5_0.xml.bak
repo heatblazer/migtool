@@ -2,7 +2,7 @@
 	<Component CommitHash="fff9cf11fe182915ca2b6c2663fe24d30966550e" MinVersion="84" Name="Infra" Version="98" />
 	<Component CommitHash="77ee57f444e767c7dba782567e87414c6ca9f4f4" MinVersion="86" Name="WebInfra" Version="111" />
 	<Component CommitHash="2a3f199ed7e39078163f90d21b59a82e7e87a631" MinVersion="89" Name="ImPspInfra" Version="89" />
-	<Component MinVersion="29" Name="Sau" Version="274" />
+	<Component CommitHash="8039eb200e8c2be12d252d8dfa606bc489d4a684" MinVersion="29" Name="Sau" Version="274" />
 	<Component CommitHash="aa27eed36454aa7307004758231871b3170d5557" MinVersion="98" Name="SdkBindings" Version="98" />
 	<Component CommitHash="a22961c41213b0803898246507723efff5880664" MinVersion="218" Name="Sdk" Version="224" />
 	<Component CommitHash="9164b694640762ad2f16a994638fe80a1a9020cf" MinVersion="94" Name="SdkMsrp" Version="95" />
@@ -96,7 +96,7 @@
 	<Component CommitHash="60ca92562c5dd4e29c85adca7b93327cd404cbd1" MinVersion="3" Name="TestWebIm" Version="166" />
 	<Component CommitHash="15602ee234ae20bcfb9ce1bdf7bc0bb0600b3c23" Name="ThaiMail" Version="162" />
 	<Component CommitHash="e957d01c5554bca5db698f38fa7dcac9ff1f2ede" Name="UkrMail" Version="173" />
-	<Component MinVersion="150" Name="WebAuthentication" Version="168" />
+	<Component CommitHash="d3e2968fa4ec338264387dd47412b7adf8636e87" MinVersion="150" Name="WebAuthentication" Version="168" />
 	<Component CommitHash="2ff2c6eb38b593df1ccf913ddd7f674c5fdea1a8" Name="YahooMail" Version="290" />
 	<Component CommitHash="342d8ecf3fd48d23d8da88f78b59faabaef00202" MinVersion="4" Name="YandexRuMail" Version="179" />
 	<Component CommitHash="66e0578cc9a0592224a0e66c5a55828849c25311" MinVersion="90" Name="BeboChat" Version="90" />
@@ -113,7 +113,7 @@
 	<Component CommitHash="5d4b3517db806034dae1323f6f3a67568eb290d5" MinVersion="88" Name="WhatsApp" Version="88" />
 	<Component CommitHash="3661fe93030e6f13adb626e4d47fbd2eb0536b1e" MinVersion="88" Name="XFire" Version="88" />
 	<Component CommitHash="06c12bd0fdac7f866b3156772a51eb7f75bcf0c7" MinVersion="88" Name="YahooMobileMessenger" Version="88" />
-	<Component Name="GeneralInstantMessaging" Version="97" />
+	<Component CommitHash="0797a76dd6a9b4d754614cc10935ae545c9cc29b" Name="GeneralInstantMessaging" Version="97" />
 	<Component CommitHash="b1c180e5e8c8377985e7234cac1cd95bfaf4c838" MinVersion="1" Name="SipTester" Version="60" />
 	<Component CommitHash="07e18c4cc3b842599df52c0c745e68fd85d9391d" MinVersion="160" Name="TestPython" Version="178" />
 	<Component CommitHash="6423aa294df499722a98e30a56874060be36d231" MinVersion="159" Name="LivejournalMail" Version="173" />

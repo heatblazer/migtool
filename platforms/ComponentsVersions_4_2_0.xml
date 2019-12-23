@@ -62,7 +62,7 @@
 	<Component Name="ThaiMail" Version="244"/>
 	<Component Name="UkrMail" Version="257"/>
 	<Component Name="WebAuthentication" Version="208" MinVersion="89"/>
-	<Component Name="YahooMail" Version="385"/>
+	<Component Name="YahooMail" Version="386"/>
 	<Component Name="YandexRuMail" Version="208" MinVersion="65"/>
 	<Component Name="BeboChat" Version="118" MinVersion="118"/>
 	<Component Name="eBuddyMessenger" Version="117" MinVersion="117"/>

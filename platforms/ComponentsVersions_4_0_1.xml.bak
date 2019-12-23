@@ -2,7 +2,7 @@
 	<Component CommitHash="685b2c79f1df80ba7e1796c5a0e0117bc476861c" MinVersion="71" Name="Infra" Version="76" />
 	<Component CommitHash="72750514dc914c5e407072d254c5b4ffe704a605" MinVersion="66" Name="WebInfra" Version="79" />
 	<Component CommitHash="a0ba7404177f9d784f204e02f0df77dc6072a2d5" MinVersion="52" Name="ImPspInfra" Version="52" />
-	<Component MinVersion="153" Name="Sau" Version="245" />
+	<Component CommitHash="566685c2a8166a8a0de6d1410f45ff7bb057d2e4" MinVersion="153" Name="Sau" Version="245" />
 	<Component MinVersion="74" Name="SdkBindings" Version="74" />
 	<Component CommitHash="f9b3b7be80e312d49d5ca91cc3aafae593870679" MinVersion="122" Name="Sdk" Version="122" />
 	<Component CommitHash="19f1a188d796fdd940ce459776165903db2edb77" MinVersion="1" Name="WhatsAppIm" Version="21" />
@@ -55,7 +55,7 @@
 	<Component CommitHash="5d4b3517db806034dae1323f6f3a67568eb290d5" MinVersion="109" Name="WhatsApp" Version="109" />
 	<Component CommitHash="79c40b7eb1ff7bd282cc93eedb6bbe471f054d99" MinVersion="113" Name="XFire" Version="113" />
 	<Component CommitHash="8e6307caa419e231aebd9de27d1821be1ee3cb5b" MinVersion="110" Name="YahooMobileMessenger" Version="110" />
-	<Component Name="GeneralInstantMessaging" Version="140" />
+	<Component CommitHash="0797a76dd6a9b4d754614cc10935ae545c9cc29b" Name="GeneralInstantMessaging" Version="140" />
 	<Component CommitHash="765b21fb9925dc3cd25ed95f749635d0880d40c3" MinVersion="1" Name="Elements" Version="29" />
 	<Component CommitHash="9d913c4a0887bce1ffc6295ba37a5462437958fa" MinVersion="4" Name="TestCiMail" Version="68" />
 	<Component CommitHash="968db1dcea478a498631cd8514b5ffcd1c8aaa1c" MinVersion="5" Name="Nimbuzz" Version="17" />
