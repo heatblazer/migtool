@@ -821,7 +821,7 @@ class SvnGitMixin(object):
             branch = branch.replace(' ', '')
             if NS.NO_GIT_URI:
                 spl = path.split('/')
-                fixpath = str("%s%s/%s" % (NS.CSI_GIT_URI, spl[4], spl[5]))
+                fixpath = str("%s%s/%s" % (NS.CSI_GIT_URI, spl[-1-1], spl[-1]))
                 clone = str("git clone --depth %s --single-branch --branch %s %s %s" % (depth, branch, fixpath, branch))                         
             else:
                 clone = str("git clone --depth %s --single-branch --branch %s %s%s %s" % (depth, branch, self._gituri, path, branch))        
