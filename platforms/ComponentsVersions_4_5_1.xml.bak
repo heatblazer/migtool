@@ -2,7 +2,7 @@
 	<Component CommitHash="5df03ae397f444f6c1ecbedad3a949ab1c45a15a" MinVersion="84" Name="Infra" Version="92" />
 	<Component CommitHash="77ee57f444e767c7dba782567e87414c6ca9f4f4" MinVersion="30" Name="WebInfra" Version="88" />
 	<Component CommitHash="2a3f199ed7e39078163f90d21b59a82e7e87a631" MinVersion="73" Name="ImPspInfra" Version="73" />
-	<Component MinVersion="1" Name="Sau" Version="261" />
+	<Component MinVersion="1" Name="Sau" Version="262" />
 	<Component CommitHash="a71a53e9e8a612d15a635a1488be08219b6ddf28" MinVersion="81" Name="SdkBindings" Version="81" />
 	<Component CommitHash="5b71eeef5ecbe869cd6fc7af8c045fcec8e4cf28" MinVersion="140" Name="Sdk" Version="140" />
 	<Component CommitHash="9164b694640762ad2f16a994638fe80a1a9020cf" MinVersion="110" Name="SdkMsrp" Version="111" />
@@ -29,19 +29,19 @@
 	<Component CommitHash="ea5a47e02b519265c40748f488c9be67a0d38049" MinVersion="1" Name="MdrTester" Version="138" />
 	<Component CommitHash="625e0c88d166c06b945bfd04f276c8044a2ad634" MinVersion="0" Name="AntiVirus" Version="101" />
 	<Component CommitHash="fd2fcdbcef2081057630f49cdef3ffa86c04b272" MinVersion="1" Name="TwitterSN" Version="105" />
-	<Component CommitHash="c659dc105f1d4d00ab56c523c68823d56ca887a6" MinVersion="1" Name="AccuWeatherElements" Version="114" />
-	<Component CommitHash="ebbdd4371b3fbd8dbbe176da79d31038088005ab" MinVersion="1" Name="YahooWeatherElements" Version="112" />
+	<Component CommitHash="55a3ef48034c24530760afae9073bd8ea9d75150" MinVersion="1" Name="AccuWeatherElements" Version="116" />
+	<Component CommitHash="8712bb8d5a6c0c1d654c8df5a8ebd1d3efa88c58" MinVersion="1" Name="YahooWeatherElements" Version="114" />
 	<Component CommitHash="15557634943a637163625dd69cedf4be654198a8" MinVersion="1" Name="ChatOnElements" Version="113" />
 	<Component CommitHash="ddb74e8b00fbf6e8ccf0aab70ec1aa537da3d938" MinVersion="1" Name="SdkTester" Version="104" />
-	<Component CommitHash="6aa9875aae96e135c0801b2bc7c1de85ec38b663" MinVersion="1" Name="AdsMopubElements" Version="121" />
-	<Component CommitHash="99b8fe542ad41da62ebf71550d401baa4cc045b9" MinVersion="1" Name="AdsAdNexusElements" Version="123" />
-	<Component CommitHash="0be9b282d7f7eb464c51477ea84ef0d1578d70f7" MinVersion="1" Name="SamsungMobileWeatherElements" Version="112" />
+	<Component CommitHash="2fb60f81e2d32c45f67166f83c1a9f921c47f9d8" MinVersion="1" Name="AdsMopubElements" Version="123" />
+	<Component CommitHash="b76ed19dcbf998ff1868c2fc06e0357e7258a91c" MinVersion="1" Name="AdsAdNexusElements" Version="125" />
+	<Component CommitHash="3aa8522ba9f732728142484cfa713975a6890909" MinVersion="1" Name="SamsungMobileWeatherElements" Version="114" />
 	<Component CommitHash="fb4f867e90114201ca3e02f09274b3b22fa85eb6" MinVersion="1" Name="SkypePython" Version="110" />
 	<Component CommitHash="04fee2638ec0bc382076e635a4cdce4e56c55eb0" MinVersion="1" Name="TwitterPython" Version="117" />
-	<Component CommitHash="a5e43b93d6ca714a7b51f7227d0b1508e91cb391" MinVersion="1" Name="GetTaxiElements" Version="115" />
-	<Component CommitHash="ada31273222f58a32944f306521eb07ce9c3ec39" MinVersion="1" Name="MoovitElements" Version="114" />
-	<Component CommitHash="c33c1557bdf15e1998817a6edbdf8ad0c749ddd0" MinVersion="1" Name="Camera360Elements" Version="120" />
-	<Component CommitHash="b12c72d2822d8df7446f904fb48005445477d2bb" MinVersion="1" Name="SygicElements" Version="114" />
+	<Component CommitHash="ea86208a7569b2982fc576bc961cb1fb66e49d14" MinVersion="1" Name="GetTaxiElements" Version="117" />
+	<Component CommitHash="67b5364de06bd5ee71e37ed61cb244731a3236f4" MinVersion="1" Name="MoovitElements" Version="116" />
+	<Component CommitHash="cb85022e04ce89aa64cf6c5a2a2dfca038110a9d" MinVersion="1" Name="Camera360Elements" Version="122" />
+	<Component CommitHash="b12c72d2822d8df7446f904fb48005445477d2bb" MinVersion="1" Name="SygicElements" Version="116" />
 	<Component CommitHash="fe4227558dfb37ea8d6ca52023cebfaa32f30fba" MinVersion="109" Name="SdkSip" Version="110" />
 	<Component CommitHash="e29dcc037dfa573d9f6a6c3194b8400597c4276f" MinVersion="111" Name="SdkVoip" Version="122" />
 	<Component CommitHash="7805d69f931efc1021bf6e9b1d8fd0511e47ae87" MinVersion="126" Name="SdkRtp" Version="127" />
@@ -57,14 +57,14 @@
 	<Component CommitHash="9163fcdf1e94893247d947e3180a4eb661c4f8e1" MinVersion="93" Name="SamplePython" Version="117" />
 	<Component CommitHash="7754edee8dc168ea94914e76da54abfb71263794" MinVersion="125" Name="WhatsAppIm" Version="129" />
 	<Component CommitHash="87c9f1b843882ea31ce6272c03e0eb03edd3e1e1" MinVersion="99" Name="SkoutIm" Version="133" />
-	<Component CommitHash="86ed569b4724de2f7237e25ef221e84b4531b429" MinVersion="138" Name="SkypeIm" Version="140" />
+	<Component CommitHash="259450f6601075821491326f47767f2dd3127c6c" MinVersion="138" Name="SkypeIm" Version="142" />
 	<Component CommitHash="8968a2e934c8f3a680d12ecf89b26fc90f08e23a" MinVersion="1" Name="DnsQuery" Version="104" />
 	<Component CommitHash="217f4998ec6e9910a0077c09190ffd37ce018f09" MinVersion="1" Name="_163Mail" Version="120" />
 	<Component CommitHash="e9c0851c21a29913f811f21d29928e7a4f88a86e" MinVersion="1" Name="AccessedUrl" Version="102" />
 	<Component CommitHash="534b3ac749ae40ce5798a8463cafe978f59ee913" MinVersion="1" Name="AolMail" Version="119" />
-	<Component CommitHash="eb364ef6a879344e32c45a9c0dd6091581264d00" Name="ExciteMail" Version="115" />
+	<Component CommitHash="418c1b40590a1137084d824ab5bf61fd7025c40c" Name="ExciteMail" Version="117" />
 	<Component CommitHash="3be16eaced7c65f9f9290a54d1fd87e6e7ff095d" MinVersion="1" Name="EuaTwitterPython" Version="158" />
-	<Component CommitHash="7e16da5807e59a77168bca3fad1bf6c2543c1b04" MinVersion="230" Name="FacebookSN" Version="245" />
+	<Component CommitHash="f01675be5c4f120f74a68fb3b20c3b647f275310" MinVersion="230" Name="FacebookSN" Version="246" />
 	<Component CommitHash="41dffdb64af044ac29e275a6679bc19fb37990fc" MinVersion="1" Name="YouTubeSN" Version="106" />
 	<Component CommitHash="6566c632db8b0216fa8ddab0b3b773f7243650e5" MinVersion="1" Name="Instagram" Version="101" />
 	<Component CommitHash="cbc513c2f674edca3643a1df95cc4b84c503f355" MinVersion="0" Name="OdnoklassnikiSN" Version="137" />
@@ -77,20 +77,20 @@
 	<Component CommitHash="71df49f5257cf6cc84e2ce3f3ebefe13aeed1aff" Name="HotmailMail" Version="106" />
 	<Component CommitHash="2f438857033860968f4a535a16250dce63c286d0" MinVersion="1" Name="HttpTester" Version="101" />
 	<Component CommitHash="04ca6d0b6316cca1d42deeca500e3e5233ed3159" MinVersion="104" Name="Htft" Version="105" />
-	<Component MinVersion="120" Name="HttpAggregation" Version="121" />
+	<Component CommitHash="ea8172c0f544f925b509ff38f30f54577ac20727" MinVersion="120" Name="HttpAggregation" Version="121" />
 	<Component CommitHash="671f8973c7a7d95799b574b9fdbe7f2f680d0f50" MinVersion="79" Name="HttpFiles" Version="80" />
 	<Component CommitHash="91dadd3037a47890a636004eba05e82794cb77f8" MinVersion="1" Name="Iax2" Version="119" />
 	<Component CommitHash="fa80e626cfaa86e46395d7a673bee0e2af3933d4" Name="Mail2WebMail" Version="112" />
-	<Component CommitHash="8f7d6d317152ef1cdae2a394327a9758049e4ce3" Name="Mail2WorldMail" Version="123" />
+	<Component CommitHash="bbbe8c3323d3dabd9b06272d6f38f76fc0e86b8c" Name="Mail2WorldMail" Version="125" />
 	<Component CommitHash="bfbb398e32c60e9fbcb36ff742fb9095d8b3bddd" Name="MailDotComMail" Version="106" />
 	<Component CommitHash="ffe501a692a10966369ce331a33436da566e11bf" Name="MailDotRuMail" Version="109" />
 	<Component CommitHash="90c4bc12a6775b8e36fa6b2100ba32b111b1d4c8" MinVersion="92" Name="Myspace" Version="112" />
 	<Component CommitHash="a2409d4674b722f5e61124a26e72743c543b3c63" Name="MyWayMail" Version="137" />
-	<Component CommitHash="d86485f418d80bd0b31af08b433fdcabefec76ac" MinVersion="13" Name="OutlookMail" Version="152" />
+	<Component CommitHash="768ba7c904844fabb99a5179abca3480912fb4f4" MinVersion="13" Name="OutlookMail" Version="153" />
 	<Component CommitHash="96b7882095e67cb82664b4de1b0efe07afff69c1" MinVersion="10" Name="OutlookNativeMail" Version="110" />
 	<Component CommitHash="90d730380f9668c8ed94942a8602b7ff19fd8add" Name="QipDotRuMail" Version="109" />
 	<Component CommitHash="a083740e65277c5b6b90b0cd416fce27e314c4da" MinVersion="1" Name="QqIm" Version="109" />
-	<Component CommitHash="a542d00aa252bc529f7da8cb12fbd47c19c543ba" MinVersion="0" Name="QqMail" Version="117" />
+	<Component CommitHash="0fc29dd4bc14be50bca3fb38e0c48426634b49f8" MinVersion="0" Name="QqMail" Version="119" />
 	<Component CommitHash="2ff32e98bc32c3bfe9c60c4fa962fe4eece1acb4" MinVersion="105" Name="Rainbow" Version="106" />
 	<Component CommitHash="2836c02bc95d96293ce72853ef6e0f0b8561c324" MinVersion="0" Name="RamblerRuMail" Version="108" />
 	<Component CommitHash="805e06d4e12d81f37b6d93f523cd74890238de4d" Name="RediffMail" Version="108" />
@@ -98,12 +98,12 @@
 	<Component CommitHash="bea89e18baf4c2dafd1018b649ea61298ba75282" MinVersion="1" Name="SinaMail" Version="124" />
 	<Component CommitHash="41ca72a3106a4b2bc57533f93d0d1acc543cb0d9" Name="SingnetMail" Version="106" />
 	<Component CommitHash="1534b9f5776c35b3e23af81c7f447c262d9c5fd8" MinVersion="103" Name="Ssl" Version="104" />
-	<Component CommitHash="b6ed00d8b016c807388d6198b5d4113c40d90836" MinVersion="105" Name="Tango" Version="159" />
+	<Component CommitHash="4c5038985a735694735d96ccfaea0e6194befe79" MinVersion="105" Name="Tango" Version="161" />
 	<Component CommitHash="60ca92562c5dd4e29c85adca7b93327cd404cbd1" MinVersion="1" Name="TestWebIm" Version="109" />
 	<Component CommitHash="15602ee234ae20bcfb9ce1bdf7bc0bb0600b3c23" Name="ThaiMail" Version="106" />
 	<Component CommitHash="e957d01c5554bca5db698f38fa7dcac9ff1f2ede" Name="UkrMail" Version="110" />
-	<Component CommitHash="d3e2968fa4ec338264387dd47412b7adf8636e87" MinVersion="64" Name="WebAuthentication" Version="108" />
-	<Component CommitHash="2ff2c6eb38b593df1ccf913ddd7f674c5fdea1a8" Name="YahooMail" Version="212" />
+	<Component CommitHash="dd0ea5805c079090bed872bf2278db6592f401df" MinVersion="64" Name="WebAuthentication" Version="110" />
+	<Component CommitHash="d69bc4f98ed792162ba46cfc8484497dd5ad5f5f" Name="YahooMail" Version="214" />
 	<Component CommitHash="342d8ecf3fd48d23d8da88f78b59faabaef00202" MinVersion="1" Name="YandexRuMail" Version="109" />
 	<Component CommitHash="66e0578cc9a0592224a0e66c5a55828849c25311" MinVersion="73" Name="BeboChat" Version="73" />
 	<Component CommitHash="0fc6a124aa5c5d55b391369712dcf0969a610b2d" MinVersion="72" Name="eBuddyMessenger" Version="72" />
@@ -122,7 +122,7 @@
 	<Component CommitHash="0797a76dd6a9b4d754614cc10935ae545c9cc29b" Name="GeneralInstantMessaging" Version="76" />
 	<Component MinVersion="0" Name="SipTester" Version="0" />
 	<Component CommitHash="07e18c4cc3b842599df52c0c745e68fd85d9391d" MinVersion="95" Name="TestPython" Version="119" />
-	<Component CommitHash="6423aa294df499722a98e30a56874060be36d231" MinVersion="92" Name="LivejournalMail" Version="111" />
+	<Component CommitHash="aa54ef5744ee57b6958803bf55565c788e0449ad" MinVersion="92" Name="LivejournalMail" Version="113" />
 	<Component CommitHash="9795f5ee6d0bf40c7311d8fccee5e8e81f7b72de" MinVersion="58" Name="Sample" Version="77" />
 	<Component CommitHash="9d913c4a0887bce1ffc6295ba37a5462437958fa" MinVersion="1" Name="TestCiMail" Version="108" />
 	<Component CommitHash="5f133cc8e8f2747c6a7eab117f143ef8c15dbfd1" MinVersion="1" Name="TestCiSn" Version="109" />
@@ -130,94 +130,94 @@
 	<Component CommitHash="4db350e7b89032aa13f6c90bf5261f1112c24fa9" MinVersion="1" Name="DropBox" Version="116" />
 	<Component CommitHash="dda690033174894121bbb1cfbda0a5537b9f336d" MinVersion="91" Name="AtMail" Version="109" />
 	<Component CommitHash="d7aa9386116c86277d208f5c9c000146df5bf9b4" MinVersion="1" Name="HordeMail" Version="119" />
-	<Component CommitHash="a059c24afbf5e7854cae63e31f5c7ab608b757a7" MinVersion="1" Name="WorldClientMail" Version="107" />
-	<Component CommitHash="fcb3c626263d87bb6480e67121b13a171bf7776f" MinVersion="1" Name="SquirrelMail" Version="116" />
-	<Component CommitHash="a65811ec3b235ed24057a85e8259b418d8f6dd2e" MinVersion="1" Name="RoundcubeMail" Version="130" />
-	<Component CommitHash="968db1dcea478a498631cd8514b5ffcd1c8aaa1c" MinVersion="1" Name="Nimbuzz" Version="112" />
-	<Component CommitHash="f9fbf6df73bfe7ac2ea0d1c4456d3c226c9133b1" MinVersion="1" Name="GoogleSearchElements" Version="112" />
+	<Component CommitHash="c6a7eb8c47fd3e0ba90de3d15d7c527a3362cd54" MinVersion="1" Name="WorldClientMail" Version="109" />
+	<Component CommitHash="1b645afe2109480ba8f46ff4d6101756902f410f" MinVersion="1" Name="SquirrelMail" Version="118" />
+	<Component CommitHash="9925b398696f0415ab036b7c9fccef40905894d3" MinVersion="1" Name="RoundcubeMail" Version="132" />
+	<Component CommitHash="968db1dcea478a498631cd8514b5ffcd1c8aaa1c" MinVersion="1" Name="Nimbuzz" Version="114" />
+	<Component CommitHash="4248a7d398ed8bfa1af9e8f0d16fdb3ae039778b" MinVersion="1" Name="GoogleSearchElements" Version="114" />
 	<Component CommitHash="69b3095bb649d291095c9564f2441b8a7fc902a8" MinVersion="1" Name="YandexSearchElements" Version="112" />
-	<Component CommitHash="2532a4da70b31e25e71cf518f4434d875ab9c209" MinVersion="1" Name="WazeElements" Version="112" />
-	<Component CommitHash="bd09c644b071949bc420c82c86f8ef6b5f5c0c48" MinVersion="1" Name="AdsDoubleclickElements" Version="113" />
-	<Component CommitHash="755f5c2bf4a175dd9b3c4cee8bcb5cf0c062deff" MinVersion="1" Name="AdsDrawbridElements" Version="116" />
-	<Component CommitHash="28f7f4603b5bba69efa3ad7e8e148d10e5d082c1" MinVersion="1" Name="AdsAdMarvelElements" Version="115" />
+	<Component CommitHash="794186efb8122bb3a6793fdc0c3acc70f9107adf" MinVersion="1" Name="WazeElements" Version="114" />
+	<Component CommitHash="a12fabd3d1b34022c387880b3a70ce0150705ec5" MinVersion="1" Name="AdsDoubleclickElements" Version="115" />
+	<Component CommitHash="2776a1d8b6fa01162bdfb70727160e661c22f8cb" MinVersion="1" Name="AdsDrawbridElements" Version="118" />
+	<Component CommitHash="1d2706c4ac4eb70c904e95ef0e5233359e0132f2" MinVersion="1" Name="AdsAdMarvelElements" Version="117" />
 	<Component CommitHash="aad420c7c3f2f08d38c10c8f480e0166d2ef08b0" MinVersion="1" Name="TestCIIM" Version="111" />
 	<Component CommitHash="a5713f817c6ed48982ac5792b20607afb24d874c" MinVersion="1" Name="TestCiApp" Version="119" />
-	<Component CommitHash="5a14ed23f65577f765820a7147dd5d6350011059" MinVersion="1" Name="TheWeatherChannelElements" Version="116" />
+	<Component CommitHash="586b04d06af6460d1e4d2625bc98094815c53ead" MinVersion="1" Name="TheWeatherChannelElements" Version="118" />
 	<Component CommitHash="c16cee309182ea17632e1754992fd5e9a9c8657f" MinVersion="1" Name="WhatsAppEpi" Version="108" />
 	<Component CommitHash="300e905d05fa95749d624a04dd242d25e8fcb837" MinVersion="1" Name="iCloudAuthentication" Version="108" />
-	<Component CommitHash="5a31e5aeb6ab16666dacfe23a934fbd1d242a66d" MinVersion="1" Name="NavmiiElements" Version="110" />
-	<Component CommitHash="97711a18bf1a16f6b915b6250dcb28f20877b674" MinVersion="1" Name="NavfreeElements" Version="104" />
-	<Component CommitHash="728e3b5e25df776641a6cc638b826b0aaf7ea76a" MinVersion="1" Name="PeperonityElements" Version="103" />
+	<Component CommitHash="5e022c160176d6faf393a9ba458a4487844c607d" MinVersion="1" Name="NavmiiElements" Version="112" />
+	<Component CommitHash="2f4976e87c85a2e6c279ec76ad22a1cc18375f65" MinVersion="1" Name="NavfreeElements" Version="106" />
+	<Component CommitHash="c9e378adc084e10d35a27b3f995e5bd9d154ca8b" MinVersion="1" Name="PeperonityElements" Version="105" />
 	<Component CommitHash="14a7ca8b5cec93a61ac4cf07612cd22635bd613e" MinVersion="1" Name="Mnbr" Version="122" />
 	<Component CommitHash="5c904681566281e9c0cdd865991ddd8da6bdcf17" MinVersion="13" Name="SdkFile" Version="105" />
 	<Component CommitHash="42a1b42aaf895c43d4bf84720e6cadd512ccc3ea" MinVersion="19" Name="SdkSqlite" Version="102" />
 	<Component CommitHash="9f7a99ed76652652ee39f8ed4c677d7ee3d5ee99" MinVersion="2" Name="WhatsAppAndroidDB" Version="103" />
-	<Component CommitHash="fa3b8d32532f4318f2ab0a3ce855a5949d3dd864" MinVersion="1" Name="ZorpiaElements" Version="103" />
-	<Component CommitHash="45cd2f82a41f8a8261aa6a991c2601e7f85c6682" MinVersion="1" Name="OutbrainElements" Version="93" />
-	<Component CommitHash="1af0dcd5625ad91e522d08effa926d56a7706bfc" MinVersion="1" Name="TaboolaElements" Version="91" />
-	<Component CommitHash="3176f318ead5aed6a72550edca3ef203f5974c09" MinVersion="2" Name="AdsMydasMobiElements" Version="97" />
-	<Component CommitHash="dc5ecdef6c352c32ea39a0b06c4521df5761bd22" MinVersion="2" Name="AdsNexageElements" Version="92" />
-	<Component CommitHash="1e9b19f03ec6855d9d57ca1d99bcd5a3b70efa0f" MinVersion="1" Name="CrowdControlElements" Version="82" />
-	<Component CommitHash="b36c6bb1b427567c20868d2e1b8df4054b8b1890" MinVersion="1" Name="ScorecardResearchElements" Version="83" />
-	<Component CommitHash="c54a07c67277ecd99726f20fa4f3699e0e5dfafe" MinVersion="1" Name="TuneInElements" Version="71" />
+	<Component CommitHash="197e37c46610743d3ead45877060dcaf037c9137" MinVersion="1" Name="ZorpiaElements" Version="105" />
+	<Component CommitHash="83aa022c1e460acdddb5a357fc04b14e44782ed5" MinVersion="1" Name="OutbrainElements" Version="95" />
+	<Component CommitHash="b996d3559e1d2206591c14d6c41c0bff980e8a41" MinVersion="1" Name="TaboolaElements" Version="93" />
+	<Component CommitHash="4b3f11daefa62ee33bdb672e9506a8ea2e84b3d3" MinVersion="2" Name="AdsMydasMobiElements" Version="99" />
+	<Component CommitHash="a551610087e58212b53d78b9fd7a672850d30772" MinVersion="2" Name="AdsNexageElements" Version="94" />
+	<Component CommitHash="b3e7a8a6ee3dde7554aae70c9450d8f3980f2c5b" MinVersion="1" Name="CrowdControlElements" Version="84" />
+	<Component CommitHash="341aeba8d4f64aefe670b9ccb970b4cf51c368bc" MinVersion="1" Name="ScorecardResearchElements" Version="85" />
+	<Component CommitHash="e192104f6aa0633765fe1b8f5842b43b47bd21e3" MinVersion="1" Name="TuneInElements" Version="73" />
 	<Component CommitHash="33be9962807f47a0dca03ac664848a79c91c6d58" MinVersion="1" Name="AdsMopubTuneInElements" Version="71" />
 	<Component CommitHash="13c3ae00aa8ba757bba4a0f3def10e5776df1414" MinVersion="1" Name="AdsOpenXTuneInElements" Version="68" />
-	<Component CommitHash="461c277ebc1677e32f4a61782c989e4ca11e1e5c" MinVersion="1" Name="AdsWizzTuneInElements" Version="71" />
-	<Component CommitHash="4c365e12075b1f44a06f132ad13022d4ebe26094" MinVersion="1" Name="FacebookCookieElements" Version="70" />
-	<Component CommitHash="acffa7f7f47c027a72021e39c5e25bf97f2f86b1" MinVersion="1" Name="AdsSmaatoElements" Version="73" />
-	<Component CommitHash="6b917ea6530924e5144e97e9e774b4eabad086d1" MinVersion="1" Name="SVoiceElements" Version="66" />
-	<Component CommitHash="cf53d720f92ae7eabb7b6b548905852935b5dc51" MinVersion="1" Name="AdsPubMaticElements" Version="71" />
+	<Component CommitHash="87150ab54db4be8212cf7a4adb6d3ed8e30d9e90" MinVersion="1" Name="AdsWizzTuneInElements" Version="73" />
+	<Component CommitHash="2349bb546083292b3999da9cc14b333f080258b2" MinVersion="1" Name="FacebookCookieElements" Version="72" />
+	<Component CommitHash="35ea5cee2e7ca3e2a6f595a9e67d28dea6baf3c2" MinVersion="1" Name="AdsSmaatoElements" Version="75" />
+	<Component CommitHash="7be329f2dbad67c2ce6807268a311e564202ef9f" MinVersion="1" Name="SVoiceElements" Version="68" />
+	<Component CommitHash="e6959fcc4339a09a6b969d18c8ab29ef03b9d074" MinVersion="1" Name="AdsPubMaticElements" Version="73" />
 	<Component CommitHash="b40f843e500c71822803265afda22d4098f8ae0a" MinVersion="43" Name="OovooIm" Version="71" />
 	<Component CommitHash="ab21b3281665e2bdcf30b3c93f4b05a61974acbb" MinVersion="1" Name="YahooIm" Version="66" />
-	<Component CommitHash="3afe309d00dec2638dc839e1e99c8fefc0cd0499" MinVersion="1" Name="AdsWizzElements" Version="66" />
-	<Component CommitHash="2c7ea226e2c6646fe96fca9179dc707b361010f2" MinVersion="1" Name="AdsOpenXElements" Version="67" />
-	<Component CommitHash="d907e5345f0645a5c4c3010dcb5eddfc7e2f778c" MinVersion="1" Name="TangoElements" Version="67" />
-	<Component CommitHash="bcab48d1a1dc86a9a5dbd6c07e77b5879cea5505" MinVersion="1" Name="OovooElements" Version="66" />
-	<Component CommitHash="c83a4cd36b504bc552d38fecd1a22141de70925e" MinVersion="2" Name="BigoLiveElements" Version="68" />
-	<Component MinVersion="1" Name="Edr" Version="54" />
-	<Component CommitHash="9ea81174edc0b254048cf9885d6933e9104af9d3" MinVersion="1" Name="AdsAmazonElements" Version="62" />
-	<Component CommitHash="ac78f5e0514ec731fab364901b78977e0ced2bf5" MinVersion="1" Name="VgfitElements" Version="59" />
-	<Component CommitHash="5150be01a9f2bef4914f00e3e22a79d63cc370b5" MinVersion="2" Name="Zello" Version="73" />
-	<Component CommitHash="56ab419246b2243f71684e7e7d803716ca55fe7b" MinVersion="1" Name="Indoona" Version="53" />
-	<Component CommitHash="6d4216d3c878ffd765c630a90eae3ebbe1784d80" MinVersion="48" Name="IndoonaIm" Version="60" />
-	<Component CommitHash="42efaa46784f6e68051b06c2628c0b62bc009d46" MinVersion="1" Name="DubizzleElements" Version="58" />
+	<Component CommitHash="987206eff4e8019dad8ebb737e5d1422136cd50a" MinVersion="1" Name="AdsWizzElements" Version="68" />
+	<Component CommitHash="831b5867dc3de32d13c9d45420cd524aeeb14a9f" MinVersion="1" Name="AdsOpenXElements" Version="69" />
+	<Component CommitHash="37c65dd432fc4b68555a946ad3de844bd98e280c" MinVersion="1" Name="TangoElements" Version="69" />
+	<Component CommitHash="3fde641c9a77696f371433ad23948e9e46604573" MinVersion="1" Name="OovooElements" Version="68" />
+	<Component CommitHash="db86bfb2c6132193d0ce86e31640681c08c0c7ea" MinVersion="2" Name="BigoLiveElements" Version="70" />
+	<Component CommitHash="50194a7c918ec214d0c56f2254b346dcdfdbbe6e" MinVersion="1" Name="Edr" Version="54" />
+	<Component CommitHash="c66ad04b5d0e8ff3adbc80bc85999217af37f984" MinVersion="1" Name="AdsAmazonElements" Version="64" />
+	<Component CommitHash="b5b4a192ab76f0a64e61d9949c99fb9c53c43adb" MinVersion="1" Name="VgfitElements" Version="61" />
+	<Component CommitHash="3f2fe59688a3129886bc9db8a26eb0d3d8d8b0e2" MinVersion="2" Name="Zello" Version="75" />
+	<Component CommitHash="7238d8dc8dbcf516c3041b8b1882c9a44a38f260" MinVersion="1" Name="Indoona" Version="55" />
+	<Component CommitHash="f0690a386b97bf5cf0a3088dfc466f84142334da" MinVersion="48" Name="IndoonaIm" Version="62" />
+	<Component CommitHash="0897c693fc4826cbfca5d9fcf245b8a81d8ecc53" MinVersion="1" Name="DubizzleElements" Version="60" />
 	<Component CommitHash="d15ef992f38336b1684e7b60db86c8f1f120cada" MinVersion="53" Name="SdkApc" Version="54" />
 	<Component CommitHash="317615a902fdc0cae953fef169ccccebc1c8dabf" MinVersion="9" Name="NetworkUtils" Version="35" />
 	<Component CommitHash="25d704c780ec9d7e1f7b7f2ec992f01ea1ac46d8" MinVersion="47" Name="Mdc" Version="50" />
 	<Component CommitHash="a78cda2142f60674d5b031ee60a65e1e1640b58d" MinVersion="2" Name="DNat" Version="59" />
-	<Component CommitHash="5744ff714d227681e59068152f9ddecfff36ee48" MinVersion="1" Name="AdobeAnalyticsElements" Version="55" />
-	<Component CommitHash="5795a1413b3e0abd925831aedb84f272b9df6648" MinVersion="1" Name="ApsalarAnalyticsElements" Version="56" />
-	<Component CommitHash="ab5ad08c21b46c03de179b7a7ce7c71873f94a08" MinVersion="1" Name="InstaMessage" Version="50" />
-	<Component CommitHash="1d5063da8594f2e9e54dc9a0ba21c669e89518cc" MinVersion="1" Name="AdsAdXElements" Version="52" />
+	<Component CommitHash="2d5ddfb630c29803ab5d77ad5108e983494afed5" MinVersion="1" Name="AdobeAnalyticsElements" Version="57" />
+	<Component CommitHash="99f8bda3f74fe3f3dd4619dccfeefdce9dbe77e3" MinVersion="1" Name="ApsalarAnalyticsElements" Version="58" />
+	<Component CommitHash="e6a9f7ca0e3030404775d1ec1dac3022ef7da723" MinVersion="1" Name="InstaMessage" Version="52" />
+	<Component CommitHash="95e314fdbd610b65cafc3843fe6bf5ea780966f9" MinVersion="1" Name="AdsAdXElements" Version="54" />
 	<Component CommitHash="2c4886d87f88e9b74c7087a57eee3b734b2606e3" MinVersion="1" Name="SdkBdr" Version="41" />
-	<Component CommitHash="b3b652b2733c0f6e38bde6612dc9236cafd96c96" MinVersion="1" Name="TruecallerElements" Version="48" />
-	<Component CommitHash="a29a869c0b39fa42a363b2a3a045cb64ce3b5d4f" MinVersion="1" Name="AdsRubiconProjectElements" Version="49" />
-	<Component CommitHash="d1d6fc0ad2b4f057251f4dac83c320e9d33f4a4e" MinVersion="1" Name="Bitcoin" Version="38" />
-	<Component CommitHash="6651892a46c6e5e18062827cce64d7c309b25ecb" MinVersion="1" Name="Vtalk" Version="46" />
-	<Component CommitHash="515619703ece7f6aa2a0f0692df49a737cb7d31c" MinVersion="1" Name="BookingElements" Version="40" />
-	<Component CommitHash="7847f630aa8b0c9dcd0cfcef3518e8f794d38930" MinVersion="1" Name="SmartDriveElements" Version="40" />
-	<Component CommitHash="3c4a75b27a78e3bb2fbc57eabb28b8400b786145" MinVersion="1" Name="MakeMyTripElements" Version="41" />
-	<Component CommitHash="200d3a3bd980c8c9e367ba94b81fdfe071684720" MinVersion="1" Name="PoyntElements" Version="38" />
-	<Component CommitHash="59f14dd03fbed01f74e6afee2d96a0d36b421619" MinVersion="1" Name="KoreanAirElements" Version="39" />
-	<Component CommitHash="c8a1596fc7abcff0293c5df39adafc691f1023b1" MinVersion="1" Name="HotspotShieldVPNElements" Version="40" />
-	<Component CommitHash="cf0184f41c432c65a9c47932814d709a0d25830c" MinVersion="1" Name="TrivagoElements" Version="38" />
+	<Component CommitHash="b5301933e7543d4fb6c086a887d4b56293df7d4d" MinVersion="1" Name="TruecallerElements" Version="50" />
+	<Component CommitHash="2a1ab89ea37dc2306c15b0c81e46d9cdb6c92c7f" MinVersion="1" Name="AdsRubiconProjectElements" Version="51" />
+	<Component CommitHash="b74e89b352d34fa0397bfffe9381dd274efce0f2" MinVersion="1" Name="Bitcoin" Version="40" />
+	<Component CommitHash="7180554d12dd19b26ce10c5996fe04abcbaae22f" MinVersion="1" Name="Vtalk" Version="48" />
+	<Component CommitHash="819a10a032b2d01ab46b4b52393abe233cd2c9b1" MinVersion="1" Name="BookingElements" Version="42" />
+	<Component CommitHash="9e5c334c5bbe612f8a04d9184b074425753d03c1" MinVersion="1" Name="SmartDriveElements" Version="42" />
+	<Component CommitHash="105fb2374c710e88f0156bfa42b1866e05d6eb61" MinVersion="1" Name="MakeMyTripElements" Version="43" />
+	<Component CommitHash="631b9fc4fb77888832974033bbb3459d8d75d8ad" MinVersion="1" Name="PoyntElements" Version="40" />
+	<Component CommitHash="9346eb9942b669bb4febb09455892ecbd9736eee" MinVersion="1" Name="KoreanAirElements" Version="41" />
+	<Component CommitHash="24d3be638c687343a77349719beaf7818405eee2" MinVersion="1" Name="HotspotShieldVPNElements" Version="42" />
+	<Component CommitHash="c23026b43bb17eeb76cf87679058afc2dd3efc63" MinVersion="1" Name="TrivagoElements" Version="40" />
 	<Component CommitHash="9634377e799b15036ebbccb07bac42fef6884430" MinVersion="2" Name="SkyScannerElements" Version="37" />
-	<Component CommitHash="ac8d308ca0b15a1717216f1f3aebb7a397f62920" MinVersion="2" Name="SkoutElements" Version="41" />
-	<Component CommitHash="ebc7ad78ce2b91e7cfaa5871b92c49c644eab60f" MinVersion="2" Name="WeatherUndergroundElements" Version="41" />
-	<Component CommitHash="998d42f917584204314b185e82aaa57262317143" MinVersion="2" Name="KakaoTalkElements" Version="39" />
-	<Component CommitHash="e2acd2bfeabc429e6aa38a724dc364cd9a8f904a" MinVersion="1" Name="ASKfmElements" Version="36" />
+	<Component CommitHash="6c007f41c38306c268df1b4b13f11934ff848401" MinVersion="2" Name="SkoutElements" Version="44" />
+	<Component CommitHash="f3c1cbcfb033b9f0ab27da0c530580b6b2b9e5a3" MinVersion="2" Name="WeatherUndergroundElements" Version="43" />
+	<Component CommitHash="ae37e018b3a61b7b74efef4e5aa74afa4fd61675" MinVersion="2" Name="KakaoTalkElements" Version="41" />
+	<Component CommitHash="f651d8e715d619f844ef9eb6d460ea96bd9e2224" MinVersion="1" Name="ASKfmElements" Version="38" />
 	<Component MinVersion="1" Name="WhatsAppCsv" Version="45" />
-	<Component CommitHash="4842bb27bb5d08d5f0304285aba96f5da9d8bbfa" MinVersion="1" Name="AbsWorkoutElements" Version="33" />
-	<Component CommitHash="8f9767a1a0a92bb72c7618fb088e4edeb3c625fa" MinVersion="1" Name="VideoTubeElements" Version="34" />
+	<Component CommitHash="37c5073e56f4359693ee1fe67bdf385b2d2d20a6" MinVersion="1" Name="AbsWorkoutElements" Version="35" />
+	<Component CommitHash="1fe605cee153c6bf61d1bb65e7e8289f81380eb0" MinVersion="1" Name="VideoTubeElements" Version="36" />
 	<Component CommitHash="89c2fc63a83fbcdf6ac3fcd659f20c9904fdfd22" MinVersion="1" Name="EuaTelegram" Version="60" />
 	<Component CommitHash="7bd467e886a27ce268f63829310ab8323474354c" MinVersion="2" Name="EuaWhatsApp" Version="52" />
 	<Component CommitHash="36d47b5d2fa5a000f2200eb2d09e9a6c9c3b0648" MinVersion="2" Name="EuaFacebook" Version="82" />
 	<Component CommitHash="9c733756515e76b477f194953ba2a5ede9550a6f" MinVersion="2" Name="EuaTwitter" Version="70" />
 	<Component CommitHash="5f946581e7deb6c25a07371f002e43758cf798b7" MinVersion="2" Name="EuaGmail" Version="36" />
-	<Component CommitHash="76dc25d6748e383eaccb0d6154455958aa1d9062" MinVersion="2" Name="DejaFashionElements" Version="28" />
-	<Component CommitHash="3b84b003a67b67e3d75bc0fe1a0ab001e9d06641" MinVersion="2" Name="AdsMobfoxElements" Version="33" />
+	<Component CommitHash="0978ac897c55f4a434f281fc9927e93912ca741f" MinVersion="2" Name="DejaFashionElements" Version="30" />
+	<Component CommitHash="b88b6fa7be068b45f189bd9c6e8d18e5ca88e2c9" MinVersion="2" Name="AdsMobfoxElements" Version="35" />
 	<Component CommitHash="6e70786c5985928f96fa5bee29e3069da9f7efdd" MinVersion="5" Name="EuaDropbox" Version="42" />
-	<Component CommitHash="cee43a61ef9dd24e82990b67230d6fbc1c43ae6a" MinVersion="2" Name="AppleMapTileElements" Version="24" />
+	<Component CommitHash="f85935edf9485f14029d935673cb4ac91f0f0208" MinVersion="2" Name="AppleMapTileElements" Version="26" />
 	<Component CommitHash="74a20ec81844b4677eeeffdc2bf3650dcbd1bb2e" MinVersion="2" Name="EuaFacebookIM" Version="40" />
 	<Component CommitHash="b0fc2ea6faf27c797eae3051a9bf18a1211fc5b0" MinVersion="2" Name="EuaSkype" Version="35" />
 	<Component CommitHash="ce0f9f1c6e11a48c63ef2965c3f41183baab7d26" MinVersion="2" Name="EuaGoogleDrive" Version="25" />
@@ -229,36 +229,36 @@
 	<Component CommitHash="4a5965278c2aba54276b93a8e94f48cd8d178523" MinVersion="1" Name="GmailMailCsv" Version="30" />
 	<Component CommitHash="eed37be33a4adf390dd6eb94bf373396856e372e" MinVersion="1" Name="OutlookMailCsv" Version="26" />
 	<Component CommitHash="a6976ecce51fbc2bbdbcfabcc012f2977143e6ae" MinVersion="2" Name="YahooMailCsv" Version="24" />
-	<Component CommitHash="e65dba9b7a7ec4192e3331d67d665fd955bdc52b" MinVersion="1" Name="BaiduElements" Version="19" />
-	<Component CommitHash="214fd5bb135c28a76afc82f5a50a55983e8a2489" MinVersion="1" Name="AdsDUElements" Version="12" />
-	<Component CommitHash="888960a8af0c96865411a11fb4a29ad87228216f" MinVersion="1" Name="AdsAvazuElements" Version="13" />
+	<Component CommitHash="f3d3301cd9d963adfb2a01847076059993480b3a" MinVersion="1" Name="BaiduElements" Version="21" />
+	<Component CommitHash="5d2654880d2a4241ca98bb76219c502105607c43" MinVersion="1" Name="AdsDUElements" Version="14" />
+	<Component CommitHash="0e71c1131be99e5f2a550ee671b23c0830280dcf" MinVersion="1" Name="AdsAvazuElements" Version="15" />
 	<Component CommitHash="a1cf13c3ddaa4d14c843e5f94834ed0a4521412f" MinVersion="1" Name="IltaSanomatWeatherElements" Version="13" />
-	<Component CommitHash="2db06fb7ea3bb2065b90c5d94190470883eb1200" MinVersion="6" Name="GoKeyboardElements" Version="17" />
-	<Component CommitHash="706f1013847bebcd9200a9ab70d905daab667dc6" MinVersion="1" Name="UCBrowserElements" Version="13" />
+	<Component CommitHash="59719a2c019373ee44ee38dcdc989aaa0b5ee79e" MinVersion="6" Name="GoKeyboardElements" Version="19" />
+	<Component CommitHash="17d58a3b47f49e75f0a46b942f21c3d0e93582ed" MinVersion="1" Name="UCBrowserElements" Version="15" />
 	<Component CommitHash="0c5d451078986fa108533e463874c417ee644724" MinVersion="1" Name="_2GISElements" Version="16" />
-	<Component CommitHash="476a959548e87a6bd76ff282e49958d8aa285296" MinVersion="1" Name="NimbuzzElements" Version="12" />
+	<Component CommitHash="73e015a567b31449961acaa370db9bf5b97ea433" MinVersion="1" Name="NimbuzzElements" Version="14" />
 	<Component MinVersion="1" Name="EuaVKontakte" Version="1" />
-	<Component CommitHash="9073161aebb3b3d9706527b6fe4a5df1cac1ef1e" MinVersion="1" Name="FMIWeatherElements" Version="14" />
-	<Component CommitHash="5404056cfc116419687ab539ec648152e0c7c9ce" MinVersion="1" Name="MaastokartatElements" Version="11" />
-	<Component CommitHash="2d0dd69d2b913c3ff9b4aad4ce44b315a539301e" MinVersion="1" Name="MeetMeElements" Version="13" />
-	<Component CommitHash="31be4605743820bebb5852fa4e8f6d8d4e45022a" MinVersion="1" Name="TaobaoElements" Version="11" />
-	<Component CommitHash="84448bcb4bbd9c00b3663b1e29c4365fb218a858" MinVersion="1" Name="AdsCloudmobiElements" Version="11" />
-	<Component CommitHash="4b60b74f5f1a69c3177b0720c248d820367c0d2a" MinVersion="1" Name="AdsStartAppElements" Version="9" />
-	<Component CommitHash="e9ccc6e8ea650ed7d52f3486d27ad76917e44397" MinVersion="1" Name="TikTokElements" Version="12" />
-	<Component CommitHash="65d96c2abff4eefb1e54ec4756e0bdb76e4976d4" MinVersion="1" Name="VirtualEarthElements" Version="7" />
-	<Component CommitHash="ec1c4cefb5f2ad881a4993fc5ce0f099571a55e4" MinVersion="1" Name="ToutiaoElements" Version="8" />
-	<Component CommitHash="919d71c3484c3b42be596173d6d751e81d77d5cb" MinVersion="1" Name="AdsInnerActiveMobiElements" Version="8" />
-	<Component CommitHash="a78db32e94ce45c50b0fca52b67794e37a4c4244" MinVersion="1" Name="DailyhuntElements" Version="9" />
-	<Component CommitHash="b5a33201e8dede9b920027272bd720020af2d41c" MinVersion="1" Name="PinterestElements" Version="5" />
+	<Component CommitHash="2e48a8f06da34d8eaee7bff760c78d9b7b7ed2ff" MinVersion="1" Name="FMIWeatherElements" Version="16" />
+	<Component CommitHash="8c470a5f885c7f17ee3997f20e3574669bb3948a" MinVersion="1" Name="MaastokartatElements" Version="13" />
+	<Component CommitHash="7083656c0418f9cae91147b8124b299fb6d45a64" MinVersion="1" Name="MeetMeElements" Version="15" />
+	<Component CommitHash="0e5b58754ebb758c7431785d27d34b799c295a6c" MinVersion="1" Name="TaobaoElements" Version="13" />
+	<Component CommitHash="075c22af3539db89d99020490290346debca079c" MinVersion="1" Name="AdsCloudmobiElements" Version="13" />
+	<Component CommitHash="abc8d7bf6477c8586bef306e500660d4001256a8" MinVersion="1" Name="AdsStartAppElements" Version="11" />
+	<Component CommitHash="0fe49ba39e9aa20e46454a6db44cbe05481e5b7a" MinVersion="1" Name="TikTokElements" Version="14" />
+	<Component CommitHash="e0696d34af5a68899f723f237b3cf14797d6dfbf" MinVersion="1" Name="VirtualEarthElements" Version="9" />
+	<Component CommitHash="3b15e83328688896ab56029a3749ce2fade31483" MinVersion="1" Name="ToutiaoElements" Version="10" />
+	<Component CommitHash="94f08e4f234b492b1cf5af59a830a5dc0d9544a3" MinVersion="1" Name="AdsInnerActiveMobiElements" Version="10" />
+	<Component CommitHash="091861ae1bdd0127dcdd2b024f18a2f526d42b8e" MinVersion="1" Name="DailyhuntElements" Version="11" />
+	<Component CommitHash="bddc429c74a3b8b23d1e686da5242d8f7dc77c92" MinVersion="1" Name="PinterestElements" Version="7" />
 	<Component CommitHash="17388a47924a5d040049dd0d9f626cd54751bc41" MinVersion="15" Name="Paltalk" Version="17" />
-	<Component CommitHash="c68dbb9a8ec4eab7c864db83896095eb5f5cd947" MinVersion="1" Name="ParticleMediaElements" Version="6" />
-	<Component CommitHash="934eea3e57c48c468bd2fa8248f5b1f1453754d3" MinVersion="1" Name="KeeprapidElements" Version="9" />
-	<Component CommitHash="e83005dee6ba5db8a3c261e575dd358e1235b541" MinVersion="1" Name="AppbaqendElements" Version="6" />
-	<Component CommitHash="21486da540460347236aa254a115f24799d95d26" MinVersion="1" Name="GamelogicElements" Version="6" />
-	<Component CommitHash="362b90497cf9638dbc7ac3f25b24b2190917dec1" MinVersion="1" Name="GreedyGameElements" Version="7" />
-	<Component CommitHash="d7f01593ea3719b5ee35be66ca8bf567f4cfd3e2" MinVersion="1" Name="QuantcastElements" Version="8" />
+	<Component CommitHash="ffabf5cd7f09ebdf77ea3f3cea868d4a89255931" MinVersion="1" Name="ParticleMediaElements" Version="8" />
+	<Component CommitHash="59fc70ba61827ca09fc4c59a0e62f97236aa52c3" MinVersion="1" Name="KeeprapidElements" Version="11" />
+	<Component CommitHash="3b0a04fae06c0283d7d383024da89f5fdc9ead3b" MinVersion="1" Name="AppbaqendElements" Version="8" />
+	<Component CommitHash="a448e725b793d6f99c94ec33a2c6b9319f53a441" MinVersion="1" Name="GamelogicElements" Version="8" />
+	<Component CommitHash="cf54f10ec59ef0544b49a20071a235c274a578ca" MinVersion="1" Name="GreedyGameElements" Version="9" />
+	<Component CommitHash="4776df14dc6b5401a201492b16581eae1985dfe7" MinVersion="1" Name="QuantcastElements" Version="10" />
 	<Component CommitHash="5d66b6bbc04ab0ca5e679f25bafa137890bb2756" MinVersion="1" Name="KaufcomElements" Version="4" />
-	<Component CommitHash="77ba260bb425953f07098d77419e710b5036fa8a" MinVersion="1" Name="AmberWeatherElements" Version="4" />
+	<Component CommitHash="33515dd61dca1fe4330f5dbcd7475f21e7f8b9a1" MinVersion="1" Name="AmberWeatherElements" Version="5" />
 	<Component CommitHash="c2df5cf0dd1ec0fff4052d5ca0cb1e75dc7a22d8" MinVersion="1" Name="IterationMobileElements" Version="3" />
 	<Component CommitHash="0aeb12e53ffd810405e509cc6a456e5b9b1c9ad0" MinVersion="1" Name="FordealElements" Version="5" />
 	<Component CommitHash="24aef355d33161978abc2d6bf330a3da6f6e815f" MinVersion="1" Name="SinaElements" Version="2" />

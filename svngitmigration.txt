@@ -397,11 +397,11 @@ http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/FacebookMail/FacebookMail_1_0_0,ht
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/Hangouts/Hangouts_1_0_0,https://cisbitbucket01/projects/sdkp/Hangouts,Hangouts_1_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/Htft/Htft_1_0_0,https://cisbitbucket01/projects/sdkp/Htft,Htft_1_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/Htft/Htft_1_0_1,https://cisbitbucket01/projects/sdkp/Htft,Htft_1_0_1
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpAggregation/HttpAggregation_1_0_0/,https://cisbitbucket01/projects/sdkp/HttpAggregation,HttpAggregation_1_0_0/
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpAggregation/HttpAggregation_1_0_1/,https://cisbitbucket01/projects/sdkp/HttpAggregation,HttpAggregation_1_0_1/
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpAggregation/HttpAggregation_1_0_2/,https://cisbitbucket01/projects/sdkp/HttpAggregation,HttpAggregation_1_0_2/
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpAggregation/HttpAggregation_1_0_3/,https://cisbitbucket01/projects/sdkp/HttpAggregation,HttpAggregation_1_0_3/
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpAggregation/HttpAggregation_1_0_4/,https://cisbitbucket01/projects/sdkp/HttpAggregation,HttpAggregation_1_0_4/
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpAggregation/HttpAggregation_1_0_0/,https://cisbitbucket01/projects/sdkp/HttpAggregation,HttpAggregation_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpAggregation/HttpAggregation_1_0_1/,https://cisbitbucket01/projects/sdkp/HttpAggregation,HttpAggregation_1_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpAggregation/HttpAggregation_1_0_2/,https://cisbitbucket01/projects/sdkp/HttpAggregation,HttpAggregation_1_0_2
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpAggregation/HttpAggregation_1_0_3/,https://cisbitbucket01/projects/sdkp/HttpAggregation,HttpAggregation_1_0_3
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpAggregation/HttpAggregation_1_0_4/,https://cisbitbucket01/projects/sdkp/HttpAggregation,HttpAggregation_1_0_4
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpFiles/HttpFiles_1_0_0,https://cisbitbucket01/projects/sdkp/HttpFiles,HttpFiles_1_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpFiles/HttpFiles_1_1_0,https://cisbitbucket01/projects/sdkp/HttpFiles,HttpFiles_1_1_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpTester/HttpTester_1_0_0,https://cisbitbucket01/projects/sdkp/HttpTester,HttpTester_1_0_0
@@ -450,9 +450,9 @@ http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/Ssl/Ssl_1_0_1000,https://cisbitbuc
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/Tango/Tango_1_0_0,https://cisbitbucket01/projects/sdkp/Tango.git,Tango_1_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/Tango/Tango_1_0_1,https://cisbitbucket01/projects/sdkp/Tango.git,Tango_1_0_1
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/Tango/Tango_1_0_2,https://cisbitbucket01/projects/sdkp/Tango.git,Tango_1_0_2
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WebAuthentication/WebAuthentication_1_0_0,https://cisbitbucket01/projects/sdkp/WebAuthentication.git, WebAuthentication_1_0_0
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WebLogin/WebLogin_1_0_0,https://cisbitbucket01/projects/sdkp/WebLogin.git, WebLogin_1_0_0
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WhatsAppCsv/WhatsAppCsv_1_0_0,https://cisbitbucket01/projects/sdkp/WhatsAppCsv.git, WhatsAppCsv_1_0_0
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WhatsAppIm/WhatsAppIm_1_0_0,https://cisbitbucket01/projects/sdkp/WhatsAppIm.git, WhatsAppIm_1_0_0
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WhatsAppIm/WhatsAppIm_1_1_0,https://cisbitbucket01/projects/sdkp/WhatsAppIm.git, WhatsAppIm_1_1_0
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/YouTubeSN/YouTubeSN_1_0_0,https://cisbitbucket01/projects/sdkp/YouTubeSN.git, YouTubeSN_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WebAuthentication/WebAuthentication_1_0_0,https://cisbitbucket01/projects/sdkp/WebAuthentication.git,WebAuthentication_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WebLogin/WebLogin_1_0_0,https://cisbitbucket01/projects/sdkp/WebLogin.git,WebLogin_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WhatsAppCsv/WhatsAppCsv_1_0_0,https://cisbitbucket01/projects/sdkp/WhatsAppCsv.git,WhatsAppCsv_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WhatsAppIm/WhatsAppIm_1_0_0,https://cisbitbucket01/projects/sdkp/WhatsAppIm,WhatsAppIm_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WhatsAppIm/WhatsAppIm_1_1_0,https://cisbitbucket01/projects/sdkp/WhatsAppIm,WhatsAppIm_1_1_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/YouTubeSN/YouTubeSN_1_0_0,https://cisbitbucket01/projects/sdkp/YouTubeSN,YouTubeSN_1_0_0

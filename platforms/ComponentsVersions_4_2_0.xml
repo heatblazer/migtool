@@ -10,10 +10,10 @@
 	<Component Name="RCS" Version="90" MinVersion="89"/>
 	<Component Name="AntiVirus" Version="105" MinVersion="2"/>
 	<Component Name="SdkTester" Version="91" MinVersion="1"/>
-	<Component Name="WorldClientMail" Version="105" MinVersion="1"/>
+	<Component Name="WorldClientMail" Version="107" MinVersion="1"/>
 	<Component Name="WebLogin" Version="51" MinVersion="1"/>
-	<Component Name="SquirrelMail" Version="107" MinVersion="1"/>
-	<Component Name="RoundcubeMail" Version="117" MinVersion="1"/>
+	<Component Name="SquirrelMail" Version="109" MinVersion="1"/>
+	<Component Name="RoundcubeMail" Version="119" MinVersion="1"/>
 	<Component Name="SkypeIm" Version="81" MinVersion="29"/>
 	<Component Name="WhatsAppIm" Version="94" MinVersion="93"/>
 	<Component Name="SkoutIm" Version="136" MinVersion="115"/>
@@ -22,7 +22,7 @@
 	<Component Name="_163Mail" Version="233" MinVersion="161"/>
 	<Component Name="AccessedUrl" Version="246" MinVersion="185"/>
 	<Component Name="AolMail" Version="272" MinVersion="189"/>
-	<Component Name="ExciteMail" Version="260"/>
+	<Component Name="ExciteMail" Version="262"/>
 	<Component Name="FacebookSN" Version="506" MinVersion="269"/>
 	<Component Name="YouTubeSN" Version="257" MinVersion="13"/>
 	<Component Name="Instagram" Version="214" MinVersion="152"/>
@@ -40,15 +40,15 @@
 	<Component Name="HttpAggregation" Version="230" MinVersion="178"/>
 	<Component Name="Iax2" Version="216" MinVersion="215"/>
 	<Component Name="Mail2WebMail" Version="252"/>
-	<Component Name="Mail2WorldMail" Version="268"/>
+	<Component Name="Mail2WorldMail" Version="270"/>
 	<Component Name="MailDotComMail" Version="262"/>
 	<Component Name="MailDotRuMail" Version="258"/>
 	<Component Name="Myspace" Version="196" MinVersion="184"/>
-	<Component Name="MyWayMail" Version="265"/>
+	<Component Name="MyWayMail" Version="267"/>
 	<Component Name="OutlookMail" Version="270" MinVersion="269"/>
 	<Component Name="QipDotRuMail" Version="256"></Component>
 	<Component Name="QqIm" Version="196" MinVersion="72"/>
-	<Component Name="QqMail" Version="243" MinVersion="1"/>
+	<Component Name="QqMail" Version="245" MinVersion="1"/>
 	<Component Name="Rainbow" Version="256" MinVersion="255"/>
 	<Component Name="RamblerRuMail" Version="254" MinVersion="13"/>
 	<Component Name="RediffMail" Version="262"/>
@@ -62,7 +62,7 @@
 	<Component Name="ThaiMail" Version="244"/>
 	<Component Name="UkrMail" Version="257"/>
 	<Component Name="WebAuthentication" Version="208" MinVersion="89"/>
-	<Component Name="YahooMail" Version="386"/>
+	<Component Name="YahooMail" Version="387"/>
 	<Component Name="YandexRuMail" Version="208" MinVersion="65"/>
 	<Component Name="BeboChat" Version="118" MinVersion="118"/>
 	<Component Name="eBuddyMessenger" Version="117" MinVersion="117"/>
@@ -79,7 +79,7 @@
 	<Component Name="XFire" Version="118" MinVersion="118"/>
 	<Component Name="YahooMobileMessenger" Version="121" MinVersion="121"/>
 	<Component Name="GeneralInstantMessaging" Version="126"/>
-	<Component Name="LivejournalMail" Version="210" MinVersion="198"/>
+	<Component Name="LivejournalMail" Version="212" MinVersion="198"/>
 	<Component Name="Sample" Version="136" MinVersion="123"/>
 	<Component Name="TestCiMail" Version="143" MinVersion="10"/>
 	<Component Name="TestCiSn" Version="107" MinVersion="6"/>

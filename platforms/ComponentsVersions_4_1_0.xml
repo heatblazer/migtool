@@ -13,7 +13,7 @@
 	<Component Name="_163Mail" Version="4" MinVersion="3"/>
 	<Component Name="AccessedUrl" Version="78"/>
 	<Component Name="AolMail" Version="157" MinVersion="101"/>
-	<Component Name="ExciteMail" Version="142"/>
+	<Component Name="ExciteMail" Version="144"/>
 	<Component Name="FacebookMail" Version="86"/>
 	<Component Name="FacebookSN" Version="82"/>
 	<Component Name="GmailMail" Version="227"/>
@@ -25,10 +25,10 @@
 	<Component Name="Iax2" Version="82" MinVersion="81"/>
 	<Component Name="Instagram" Version="40" MinVersion="1"/>
 	<Component Name="Mail2WebMail" Version="139"/>
-	<Component Name="Mail2WorldMail" Version="153"/>
+	<Component Name="Mail2WorldMail" Version="155"/>
 	<Component Name="MailDotComMail" Version="149"/>
 	<Component Name="MailDotRuMail" Version="150"/>
-	<Component Name="MyWayMail" Version="151"/>
+	<Component Name="MyWayMail" Version="153"/>
 	<Component Name="QipDotRuMail" Version="141"/>
 	<Component Name="Rainbow" Version="114" MinVersion="113"/>
 	<Component Name="RamblerRuMail" Version="84"/>
@@ -39,7 +39,7 @@
 	<Component Name="SingnetMail" Version="131"/>
 	<Component Name="Tango" Version="82" MinVersion="1"/>
 	<Component Name="UkrMail" Version="137"/>
-	<Component Name="YahooMail" Version="282"/>
+	<Component Name="YahooMail" Version="283"/>
 	<Component Name="YandexRuMail" Version="156" MinVersion="77"/>
 	<Component Name="BeboChat" Version="108" MinVersion="108"/>
 	<Component Name="eBuddyMessenger" Version="108" MinVersion="108"/>
