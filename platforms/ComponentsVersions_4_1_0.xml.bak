@@ -40,10 +40,10 @@
 	<Component CommitHash="e957d01c5554bca5db698f38fa7dcac9ff1f2ede" Name="UkrMail" Version="137" />
 	<Component CommitHash="d69bc4f98ed792162ba46cfc8484497dd5ad5f5f" Name="YahooMail" Version="283" />
 	<Component CommitHash="342d8ecf3fd48d23d8da88f78b59faabaef00202" MinVersion="77" Name="YandexRuMail" Version="156" />
-	<Component MinVersion="108" Name="BeboChat" Version="108" />
+	<Component CommitHash="bc055f99241a2fb8141b95ea4c7f78ee86864ae3" MinVersion="108" Name="BeboChat" Version="108" />
 	<Component CommitHash="0fc6a124aa5c5d55b391369712dcf0969a610b2d" MinVersion="108" Name="eBuddyMessenger" Version="108" />
 	<Component CommitHash="48fa2570da62e5acbcfb5e312aa320de3135c7cd" Name="FacebookChat" Version="110" />
-	<Component MinVersion="95" Name="GTalkMessenger" Version="95" />
+	<Component CommitHash="749081c69633b495c543f0135c8063946e3c6f7d" MinVersion="95" Name="GTalkMessenger" Version="95" />
 	<Component CommitHash="d4cbb61068565e8aa14f504666543fbdb746e4ea" MinVersion="116" Name="ICQMessengerHTTP" Version="116" />
 	<Component CommitHash="9eb38b565b9b6949efb1a8d079a5d368153b4cd7" MinVersion="109" Name="IMVUChat" Version="109" />
 	<Component CommitHash="3f381cd171293a748daf3c2593c3149dfa4be2b8" MinVersion="110" Name="M1SMS" Version="110" />

@@ -91,7 +91,9 @@ class PThread(Thread):
 #Xml Update ctx class
 class XmlUpdateContext(object):
     """ store ComponentsVersion.xml context here and update it"""
-    def __init__(self, xmlfile):
+    def __init__(self, xmlfile, platform):
+        """Platform should match format X_X_X (4_5_3) fmt"""
+        self._platform = platform 
         self._bakfile = str("%s.bak" % xmlfile)
         self._lookup = {}
         self._xmltree = ET.parse(xmlfile)
@@ -118,10 +120,16 @@ class XmlUpdateContext(object):
     def get_vername(self):
         return (self.version, self.Name)
 
+
     def get_attrib_by_name(self, name):
         if name in self._lookup:
             return self._lookup[name]
         return None
+
+        
+    def get_platform(self):
+        return self._platform
+
 
     def update(self, name, commithash):
         try:

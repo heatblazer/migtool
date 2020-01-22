@@ -10,7 +10,6 @@
 	<Component Name="SkypeIm" Version="25" MinVersion="8"/>
 	<Component Name="SkoutIm" Version="24" MinVersion="1"/>
 	<Component Name="LineIm" Version="31" MinVersion="2"/>
-	<Component Name="_163Mail" Version="4" MinVersion="3"/>
 	<Component Name="AccessedUrl" Version="78"/>
 	<Component Name="AolMail" Version="157" MinVersion="101"/>
 	<Component Name="ExciteMail" Version="144"/>
@@ -19,7 +18,6 @@
 	<Component Name="GmailMail" Version="227"/>
 	<Component Name="GmxDotComMail" Version="132"/>
 	<Component Name="HotmailMail" Version="128"/>
-	<Component Name="HttpTester" Version="75"/>
 	<Component Name="Htft" Version="86"/>
 	<Component Name="HttpAggregation" Version="79"/>
 	<Component Name="Iax2" Version="82" MinVersion="81"/>
@@ -33,7 +31,6 @@
 	<Component Name="Rainbow" Version="114" MinVersion="113"/>
 	<Component Name="RamblerRuMail" Version="84"/>
 	<Component Name="RediffMail" Version="144"/>
-	<Component Name="Sample" Version="50"/>
 	<Component Name="ShufDotComMail" Version="126"/>
 	<Component Name="SinaMail" Version="112" MinVersion="1"/>
 	<Component Name="SingnetMail" Version="131"/>
@@ -57,7 +54,5 @@
 	<Component Name="XFire" Version="113" MinVersion="113"/>
 	<Component Name="YahooMobileMessenger" Version="110" MinVersion="110"/>
 	<Component Name="GeneralInstantMessaging" Version="140"/>
-	<Component Name="Elements" Version="29" MinVersion="1"/>
-	<Component Name="TestCiMail" Version="68" MinVersion="4"/>
 	<Component Name="Nimbuzz" Version="17" MinVersion="5"/>
 </Components>

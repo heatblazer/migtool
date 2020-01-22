@@ -10,11 +10,11 @@
 	<Component CommitHash="625e0c88d166c06b945bfd04f276c8044a2ad634" MinVersion="2" Name="AntiVirus" Version="105" />
 	<Component CommitHash="ddb74e8b00fbf6e8ccf0aab70ec1aa537da3d938" MinVersion="1" Name="SdkTester" Version="91" />
 	<Component CommitHash="c6a7eb8c47fd3e0ba90de3d15d7c527a3362cd54" MinVersion="1" Name="WorldClientMail" Version="107" />
-	<Component MinVersion="1" Name="WebLogin" Version="51" />
+	<Component CommitHash="88de0a8fb3750024e9f080a58eb579bcf0a966c6" MinVersion="1" Name="WebLogin" Version="51" />
 	<Component CommitHash="1b645afe2109480ba8f46ff4d6101756902f410f" MinVersion="1" Name="SquirrelMail" Version="109" />
 	<Component CommitHash="9925b398696f0415ab036b7c9fccef40905894d3" MinVersion="1" Name="RoundcubeMail" Version="119" />
 	<Component CommitHash="10b69f166e04904951c275c9911679b94272570b" MinVersion="29" Name="SkypeIm" Version="81" />
-	<Component MinVersion="93" Name="WhatsAppIm" Version="94" />
+	<Component CommitHash="35a5c5e99e80f1c90c059873eca93e983e9b1d8e" MinVersion="93" Name="WhatsAppIm" Version="94" />
 	<Component CommitHash="5668cc12ea4ba85ab1f048fe6dba8cfa8f631dc7" MinVersion="115" Name="SkoutIm" Version="136" />
 	<Component CommitHash="762e2c7c4c78274c013a6f9e4ffc0ae0e83f8e4b" MinVersion="1" Name="LineIm" Version="99" />
 	<Component MinVersion="11" Name="Elements" Version="11" />
@@ -63,9 +63,9 @@
 	<Component CommitHash="81539e8eb74717b4d3d1aa9c434aa2908af10e23" MinVersion="89" Name="WebAuthentication" Version="208" />
 	<Component CommitHash="d69bc4f98ed792162ba46cfc8484497dd5ad5f5f" Name="YahooMail" Version="387" />
 	<Component CommitHash="342d8ecf3fd48d23d8da88f78b59faabaef00202" MinVersion="65" Name="YandexRuMail" Version="208" />
-	<Component CommitHash="66e0578cc9a0592224a0e66c5a55828849c25311" MinVersion="118" Name="BeboChat" Version="118" />
+	<Component CommitHash="2551bf771c4c39ceac01512110fc39e6c0c77e13" MinVersion="118" Name="BeboChat" Version="118" />
 	<Component CommitHash="0fc6a124aa5c5d55b391369712dcf0969a610b2d" MinVersion="117" Name="eBuddyMessenger" Version="117" />
-	<Component CommitHash="8c55bd8c7f705a4504c175f39ccb8c7dc276fd1e" MinVersion="119" Name="GTalkMessenger" Version="119" />
+	<Component CommitHash="544ec29f01164cc95bc38a334c8a8b76ef4143a7" MinVersion="119" Name="GTalkMessenger" Version="119" />
 	<Component CommitHash="48af6d593896d34ab8e90b854acb3a457864a611" MinVersion="127" Name="ICQMessengerHTTP" Version="127" />
 	<Component CommitHash="fea901a75e3dfcdc69be9c8a4e75d65cf682170d" MinVersion="129" Name="IMVUChat" Version="129" />
 	<Component CommitHash="3f381cd171293a748daf3c2593c3149dfa4be2b8" MinVersion="118" Name="M1SMS" Version="118" />
@@ -91,7 +91,7 @@
 	<Component CommitHash="fd2fcdbcef2081057630f49cdef3ffa86c04b272" MinVersion="2" Name="TwitterSN" Version="75" />
 	<Component CommitHash="aad420c7c3f2f08d38c10c8f480e0166d2ef08b0" MinVersion="2" Name="TestCIIM" Version="60" />
 	<Component CommitHash="a5713f817c6ed48982ac5792b20607afb24d874c" MinVersion="2" Name="TestCiApp" Version="61" />
-	<Component MinVersion="2" Name="SeznameMail" Version="29" />
+	<Component CommitHash="3a6748c940a93005151c9a8c2c61ec07f71b5094" MinVersion="2" Name="SeznameMail" Version="29" />
 	<Component CommitHash="8108d2766d60e98baff334c9eacf14597066e36d" MinVersion="21" Name="OovooIm" Version="22" />
 	<Component CommitHash="9d2b709c8e8291ce2fe4ff80d3dfe49344a782ec" MinVersion="11" Name="Paltalk" Version="13" />
 </Components>

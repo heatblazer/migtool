@@ -559,6 +559,7 @@ class SvnGitMixin(object):
         #Utils.db.clear_tags(self._currentBranch)
         Utils.printwf(str("Enter tag/untag mode for repo [%s]" % self._repo))
         Utils.dump(str("INFO: Enter tag/untag mode for repo [%s]" % self._repo))
+        Utils.db.clear_tags(self._currentBranch)
         if self._hasError:
             return NS.Errors.ERROR
         #get the current svn saved state
@@ -853,8 +854,9 @@ class SvnGitMixin(object):
             xmlver = self._xmlContext.get_attrib_by_name(name).attrib['Version']
             tmp = data.split('/')[2]
             ver = ver.split('_')
+            origin = tmp
             tmp = tmp.split('_')
-            if len(tmp) == 4:
+            if len(tmp) == 4 and origin.find(self._xmlContext.get_platform()) is not -1:
                 t = tmp[3].replace(r'^{}','')         
                 if t == xmlver:           
                     return int(t)
@@ -1001,10 +1003,10 @@ if __name__ == "__main__":
     # we need do bfg with file .platform.comps
     #DELETE the True and uncomment the args
     try: 
-        if args['--xml-file'] is not None:
-            GXml = XmlUpdateContext(sys.argv[args['--xml-file']+1])
+        if args['--xml-file'] is not None and args['--platform'] is not None:
+            GXml = XmlUpdateContext(sys.argv[args['--xml-file']+1], sys.argv[args['--platform']+1])
         elif NS.GDEBUG is True:
-            GXml = XmlUpdateContext("ComponentsVersions.xml")
+            GXml = XmlUpdateContext("ComponentsVersions_4_5_2.xml", "4_5_2")
         else:
             GXml = None
     except:
@@ -1142,7 +1144,7 @@ if __name__ == "__main__":
                         _idump(mix, svn, git, branch, bDumpAll)
                     else:
                         #mix.do_merge("{2019-01-01}", cleanup=clean)
-                        _intag(mix, svn, git, branch, depth, 0)
+                        mix.update_platforms()
                         pass
                     mix.finish()
 

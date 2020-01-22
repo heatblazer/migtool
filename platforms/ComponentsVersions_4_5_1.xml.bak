@@ -32,7 +32,7 @@
 	<Component CommitHash="55a3ef48034c24530760afae9073bd8ea9d75150" MinVersion="1" Name="AccuWeatherElements" Version="116" />
 	<Component CommitHash="8712bb8d5a6c0c1d654c8df5a8ebd1d3efa88c58" MinVersion="1" Name="YahooWeatherElements" Version="114" />
 	<Component CommitHash="15557634943a637163625dd69cedf4be654198a8" MinVersion="1" Name="ChatOnElements" Version="113" />
-	<Component CommitHash="ddb74e8b00fbf6e8ccf0aab70ec1aa537da3d938" MinVersion="1" Name="SdkTester" Version="104" />
+	<Component CommitHash="1ceafb42488fb86d49cd215482d30a18c1e62558" MinVersion="1" Name="SdkTester" Version="105" />
 	<Component CommitHash="2fb60f81e2d32c45f67166f83c1a9f921c47f9d8" MinVersion="1" Name="AdsMopubElements" Version="123" />
 	<Component CommitHash="b76ed19dcbf998ff1868c2fc06e0357e7258a91c" MinVersion="1" Name="AdsAdNexusElements" Version="125" />
 	<Component CommitHash="3aa8522ba9f732728142484cfa713975a6890909" MinVersion="1" Name="SamsungMobileWeatherElements" Version="114" />
@@ -98,14 +98,14 @@
 	<Component CommitHash="bea89e18baf4c2dafd1018b649ea61298ba75282" MinVersion="1" Name="SinaMail" Version="124" />
 	<Component CommitHash="41ca72a3106a4b2bc57533f93d0d1acc543cb0d9" Name="SingnetMail" Version="106" />
 	<Component CommitHash="1534b9f5776c35b3e23af81c7f447c262d9c5fd8" MinVersion="103" Name="Ssl" Version="104" />
-	<Component CommitHash="4c5038985a735694735d96ccfaea0e6194befe79" MinVersion="105" Name="Tango" Version="161" />
+	<Component CommitHash="03108732a9d5d4be43a10f333e78e162fb1db8c7" MinVersion="105" Name="Tango" Version="162" />
 	<Component CommitHash="60ca92562c5dd4e29c85adca7b93327cd404cbd1" MinVersion="1" Name="TestWebIm" Version="109" />
 	<Component CommitHash="15602ee234ae20bcfb9ce1bdf7bc0bb0600b3c23" Name="ThaiMail" Version="106" />
 	<Component CommitHash="e957d01c5554bca5db698f38fa7dcac9ff1f2ede" Name="UkrMail" Version="110" />
 	<Component CommitHash="dd0ea5805c079090bed872bf2278db6592f401df" MinVersion="64" Name="WebAuthentication" Version="110" />
-	<Component CommitHash="d69bc4f98ed792162ba46cfc8484497dd5ad5f5f" Name="YahooMail" Version="214" />
+	<Component CommitHash="a099caa49667ef78622394c5ae9fcf26bcd787b4" Name="YahooMail" Version="215" />
 	<Component CommitHash="342d8ecf3fd48d23d8da88f78b59faabaef00202" MinVersion="1" Name="YandexRuMail" Version="109" />
-	<Component CommitHash="66e0578cc9a0592224a0e66c5a55828849c25311" MinVersion="73" Name="BeboChat" Version="73" />
+	<Component CommitHash="2551bf771c4c39ceac01512110fc39e6c0c77e13" MinVersion="73" Name="BeboChat" Version="73" />
 	<Component CommitHash="0fc6a124aa5c5d55b391369712dcf0969a610b2d" MinVersion="72" Name="eBuddyMessenger" Version="72" />
 	<Component CommitHash="8c55bd8c7f705a4504c175f39ccb8c7dc276fd1e" MinVersion="72" Name="GTalkMessenger" Version="72" />
 	<Component CommitHash="48af6d593896d34ab8e90b854acb3a457864a611" MinVersion="76" Name="ICQMessengerHTTP" Version="76" />
@@ -131,7 +131,7 @@
 	<Component CommitHash="dda690033174894121bbb1cfbda0a5537b9f336d" MinVersion="91" Name="AtMail" Version="109" />
 	<Component CommitHash="d7aa9386116c86277d208f5c9c000146df5bf9b4" MinVersion="1" Name="HordeMail" Version="119" />
 	<Component CommitHash="c6a7eb8c47fd3e0ba90de3d15d7c527a3362cd54" MinVersion="1" Name="WorldClientMail" Version="109" />
-	<Component CommitHash="1b645afe2109480ba8f46ff4d6101756902f410f" MinVersion="1" Name="SquirrelMail" Version="118" />
+	<Component CommitHash="6a7b2351f155d2153588614cfa87d7f674415826" MinVersion="1" Name="SquirrelMail" Version="119" />
 	<Component CommitHash="9925b398696f0415ab036b7c9fccef40905894d3" MinVersion="1" Name="RoundcubeMail" Version="132" />
 	<Component CommitHash="968db1dcea478a498631cd8514b5ffcd1c8aaa1c" MinVersion="1" Name="Nimbuzz" Version="114" />
 	<Component CommitHash="4248a7d398ed8bfa1af9e8f0d16fdb3ae039778b" MinVersion="1" Name="GoogleSearchElements" Version="114" />
@@ -206,7 +206,7 @@
 	<Component CommitHash="f3c1cbcfb033b9f0ab27da0c530580b6b2b9e5a3" MinVersion="2" Name="WeatherUndergroundElements" Version="43" />
 	<Component CommitHash="ae37e018b3a61b7b74efef4e5aa74afa4fd61675" MinVersion="2" Name="KakaoTalkElements" Version="41" />
 	<Component CommitHash="f651d8e715d619f844ef9eb6d460ea96bd9e2224" MinVersion="1" Name="ASKfmElements" Version="38" />
-	<Component MinVersion="1" Name="WhatsAppCsv" Version="45" />
+	<Component CommitHash="c2dc103363c84a817d81a37737f086e46ff7e8e3" MinVersion="1" Name="WhatsAppCsv" Version="45" />
 	<Component CommitHash="37c5073e56f4359693ee1fe67bdf385b2d2d20a6" MinVersion="1" Name="AbsWorkoutElements" Version="35" />
 	<Component CommitHash="1fe605cee153c6bf61d1bb65e7e8289f81380eb0" MinVersion="1" Name="VideoTubeElements" Version="36" />
 	<Component CommitHash="89c2fc63a83fbcdf6ac3fcd659f20c9904fdfd22" MinVersion="1" Name="EuaTelegram" Version="60" />
@@ -261,8 +261,8 @@
 	<Component CommitHash="33515dd61dca1fe4330f5dbcd7475f21e7f8b9a1" MinVersion="1" Name="AmberWeatherElements" Version="5" />
 	<Component CommitHash="c2df5cf0dd1ec0fff4052d5ca0cb1e75dc7a22d8" MinVersion="1" Name="IterationMobileElements" Version="3" />
 	<Component CommitHash="0aeb12e53ffd810405e509cc6a456e5b9b1c9ad0" MinVersion="1" Name="FordealElements" Version="5" />
-	<Component CommitHash="24aef355d33161978abc2d6bf330a3da6f6e815f" MinVersion="1" Name="SinaElements" Version="2" />
-	<Component CommitHash="f30755df7c3b1c846075e843471590e56ce8eef1" MinVersion="1" Name="ZPlayElements" Version="2" />
-	<Component CommitHash="bbc5e5dda3db605d4aadc469f6f94ff8ddbbda1b" MinVersion="1" Name="AdsAppnextElements" Version="2" />
-	<Component MinVersion="1" Name="FeelingtouchElements" Version="3" />
+	<Component CommitHash="4acb70e2922001d6c45a6e571f62449b69c47449" MinVersion="1" Name="SinaElements" Version="2" />
+	<Component CommitHash="39e39cad0133b44f2157b1f915825ea662b6fdfa" MinVersion="1" Name="ZPlayElements" Version="2" />
+	<Component CommitHash="b4d99d2469b0962f7bacd0707259c41f0cdcf61d" MinVersion="1" Name="AdsAppnextElements" Version="2" />
+	<Component CommitHash="74f966c8f8555c0b520bac602a858e95cc4ee337" MinVersion="1" Name="FeelingtouchElements" Version="3" />
 </Components>

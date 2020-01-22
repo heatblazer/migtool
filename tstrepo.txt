@@ -1,1 +1,2 @@
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/SdkSip/SdkSip_1_0_0,https://cisbitbucket01/projects/sdkp/SdkSip,SdkSip_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/GTalkMessenger/GTalkMessenger_4_0_1,https://cisbitbucket01/im/gtalkmessenger.git,GTalkMessenger_4_0_1
+

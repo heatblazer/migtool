@@ -439,8 +439,8 @@ http://tlvsvn1/svn/repos-pdfe/Pdfe/WebInfra/WebInfra_1_1_0,https://cisbitbucket0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/FacebookSN/FacebookSN_1_0_0,https://cisbitbucket01/projects/sdkp/FacebookSN.git,FacebookSN_1_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/FacebookSN/FacebookSN_2_0_0,https://cisbitbucket01/projects/sdkp/FacebookSN.git,FacebookSN_2_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/GmailMail/GmailMail_1_0_0,https://cisbitbucket01/projects/sdkp/GmailMail.git,GmailMail_1_0_0
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/Iax2/Iax2_1_0_2,https://cisbitbucket01/projects/sdkp/Iax2.git,Iax2_1_0_2
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/SdkSip/SdkSip_1_0_0,https://cisbitbucket01/projects/sdkp/SdkSip.git,SdkSip_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/Iax2/Iax2_1_0_2,https://cisbitbucket01/projects/sdkp/Iax2,Iax2_1_0_2
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/SdkSip/SdkSip_1_0_0,https://cisbitbucket01/projects/sdkp/SdkSip,SdkSip_1_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/SeznameMail/SeznameMail_1_0_0,https://cisbitbucket01/projects/sdkp/SeznameMail.git,SeznameMail_1_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/SkoutIm/SkoutIm_1_0_0,https://cisbitbucket01/projects/sdkp/SkoutIm.git,SkoutIm_1_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/SkypeIm/SkypeIm_1_0_0,https://cisbitbucket01/projects/sdkp/SkypeIm.git,SkypeIm_1_0_0
@@ -456,3 +456,12 @@ http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WhatsAppCsv/WhatsAppCsv_1_0_0,http
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WhatsAppIm/WhatsAppIm_1_0_0,https://cisbitbucket01/projects/sdkp/WhatsAppIm,WhatsAppIm_1_0_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/WhatsAppIm/WhatsAppIm_1_1_0,https://cisbitbucket01/projects/sdkp/WhatsAppIm,WhatsAppIm_1_1_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/YouTubeSN/YouTubeSN_1_0_0,https://cisbitbucket01/projects/sdkp/YouTubeSN,YouTubeSN_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkFrameworks/SdkApc/SdkApc_1_0_2,https://cisbitbucket01/projects/SDKFRAM/SdkApc,SdkApc_1_0_2,SdkApc_1_0_2
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/SayHiElements/SayHiElements_1_0_0,https://cisbitbucket01/projects/sdkp/sayhielements.git,SayHiElements_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/MicoChatElements/MicoChatElements_1_0_0,https://cisbitbucket01/projects/sdkp/micochatelements.git,MicoChatElements_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/KetoDietElements/KetoDietElements_1_0_0,https://cisbitbucket01/projects/sdkp/ketodietelements.git,KetoDietElements_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/LoopsElements/LoopsElements_1_0_0,https://cisbitbucket01/projects/sdkp/loopselements.git,LoopsElements_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/FeelingtouchElements/FeelingtouchElements_1_0_0,https://cisbitbucket01/projects/sdkp/feelingtouchelements.git,FeelingtouchElements_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/PizzaHutElements/PizzaHutElements_1_0_0,https://cisbitbucket01/projects/sdkp/pizzahutelements.git,PizzaHutElements_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/DeezerElements/DeezerElements_1_0_0,https://cisbitbucket01/projects/sdkp/deezerelements.git,DeezerElements_1_0_0
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/HttpAggregation/HttpAggregation_1_0_2,https://cisbitbucket01/projects/sdkp/httpaggregation.git,HttpAggregation_1_0_2

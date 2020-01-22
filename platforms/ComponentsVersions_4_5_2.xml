@@ -26,14 +26,11 @@
 	<Component Name="SdkXmlSax" Version="48" MinVersion="1"/>
 	<Component Name="SdkEua" Version="58" MinVersion="58"/>
 	<Component Name="SdkApacheThrift" Version="50" MinVersion="1"/>
-	<Component Name="WhatsAppICloudDb" Version="46" MinVersion="1"/>
-	<Component Name="MdrTester" Version="60" MinVersion="1"/>
 	<Component Name="AntiVirus" Version="47" MinVersion="0"/>
 	<Component Name="TwitterSN" Version="47" MinVersion="1"/>
 	<Component Name="AccuWeatherElements" Version="54" MinVersion="1"/>
 	<Component Name="YahooWeatherElements" Version="53" MinVersion="1"/>
 	<Component Name="ChatOnElements" Version="52" MinVersion="1"/>
-	<Component Name="SdkTester" Version="49" MinVersion="1"/>
 	<Component Name="AdsMopubElements" Version="61" MinVersion="1"/>
 	<Component Name="AdsAdNexusElements" Version="60" MinVersion="1"/>
 	<Component Name="SamsungMobileWeatherElements" Version="53" MinVersion="1"/>
@@ -54,11 +51,8 @@
 	<Component Name="SdkStun" Version="62" MinVersion="58"/>
 	<Component Name="RCS" Version="49" MinVersion="47"/>
 	<Component Name="ViberPython" Version="61" MinVersion="1"/>
-	<Component Name="Elements" Version="47" MinVersion="14"/>
-	<Component Name="ElementsTester" Version="51" MinVersion="1"/>
 	<Component Name="SuggestedElements" Version="52" MinVersion="1"/>
 	<Component Name="LineIm" Version="56" MinVersion="17"/>
-	<Component Name="SamplePython" Version="56" MinVersion="16"/>
 	<Component Name="WhatsAppIm" Version="61" MinVersion="57"/>
 	<Component Name="SkoutIm" Version="67" MinVersion="15"/>
 	<Component Name="SkypeIm" Version="68" MinVersion="64"/>
@@ -67,7 +61,6 @@
 	<Component Name="AccessedUrl" Version="45" MinVersion="1"/>
 	<Component Name="AolMail" Version="51" MinVersion="1"/>
 	<Component Name="ExciteMail" Version="51"/>
-	<Component Name="EuaTwitterPython" Version="65" MinVersion="0"/>
 	<Component Name="FacebookSN" Version="118" MinVersion="101"/>
 	<Component Name="YouTubeSN" Version="45" MinVersion="1"/>
 	<Component Name="Instagram" Version="45" MinVersion="1"/>
@@ -75,11 +68,10 @@
 	<Component Name="BoxAzMail" Version="47" MinVersion="14"/>
 	<Component Name="VK" Version="50" MinVersion="0"/>
 	<Component Name="Tforum" Version="47" MinVersion="1"/>
-	<Component Name="GmailMail" Version="124" MinVersion="0"/>
+	<Component Name="GmailMail" Version="125" MinVersion="0"/>
 	<Component Name="GmxDotComMail" Version="47"/>
 	<Component Name="HanMail" Version="65"/>
 	<Component Name="HotmailMail" Version="47"/>
-	<Component Name="HttpTester" Version="46" MinVersion="1"/>
 	<Component Name="Htft" Version="47" MinVersion="46"/>
 	<Component Name="HttpAggregation" Version="48" MinVersion="11"/>
 	<Component Name="HttpFiles" Version="43" MinVersion="1"/>
@@ -103,11 +95,10 @@
 	<Component Name="SingnetMail" Version="46"/>
 	<Component Name="Ssl" Version="48" MinVersion="47"/>
 	<Component Name="Tango" Version="84" MinVersion="13"/>
-	<Component Name="TestWebIm" Version="48" MinVersion="1"/>
 	<Component Name="ThaiMail" Version="45"/>
 	<Component Name="UkrMail" Version="47"/>
 	<Component Name="WebAuthentication" Version="50" MinVersion="1"/>
-	<Component Name="YahooMail" Version="98"/>
+	<Component Name="YahooMail" Version="99"/>
 	<Component Name="YandexRuMail" Version="46" MinVersion="0"/>
 	<Component Name="BeboChat" Version="32" MinVersion="32"/>
 	<Component Name="eBuddyMessenger" Version="30" MinVersion="30"/>
@@ -124,18 +115,13 @@
 	<Component Name="XFire" Version="30" MinVersion="30"/>
 	<Component Name="YahooMobileMessenger" Version="30" MinVersion="30"/>
 	<Component Name="GeneralInstantMessaging" Version="33"/>
-	<Component Name="SipTester" Version="0" MinVersion="0"/>
-	<Component Name="TestPython" Version="57" MinVersion="16"/>
 	<Component Name="LivejournalMail" Version="49" MinVersion="14"/>
-	<Component Name="Sample" Version="45" MinVersion="11"/>
-	<Component Name="TestCiMail" Version="46" MinVersion="1"/>
-	<Component Name="TestCiSn" Version="46" MinVersion="1"/>
 	<Component Name="GoogleDrive" Version="50" MinVersion="1"/>
 	<Component Name="DropBox" Version="49" MinVersion="1"/>
 	<Component Name="AtMail" Version="46" MinVersion="14"/>
 	<Component Name="HordeMail" Version="58" MinVersion="1"/>
 	<Component Name="WorldClientMail" Version="49" MinVersion="1"/>
-	<Component Name="SquirrelMail" Version="60" MinVersion="1"/>
+	<Component Name="SquirrelMail" Version="61" MinVersion="1"/>
 	<Component Name="RoundcubeMail" Version="79" MinVersion="1"/>
 	<Component Name="Nimbuzz" Version="53" MinVersion="1"/>
 	<Component Name="GoogleSearchElements" Version="53" MinVersion="1"/>
@@ -144,18 +130,13 @@
 	<Component Name="AdsDoubleclickElements" Version="54" MinVersion="1"/>
 	<Component Name="AdsDrawbridElements" Version="54" MinVersion="1"/>
 	<Component Name="AdsAdMarvelElements" Version="55" MinVersion="1"/>
-	<Component Name="TestCIIM" Version="49" MinVersion="1"/>
-	<Component Name="TestCiApp" Version="51" MinVersion="1"/>
 	<Component Name="TheWeatherChannelElements" Version="54" MinVersion="1"/>
-	<Component Name="WhatsAppEpi" Version="47" MinVersion="1"/>
-	<Component Name="iCloudAuthentication" Version="45" MinVersion="1"/>
 	<Component Name="NavmiiElements" Version="55" MinVersion="1"/>
 	<Component Name="NavfreeElements" Version="53" MinVersion="1"/>
 	<Component Name="PeperonityElements" Version="53" MinVersion="1"/>
 	<Component Name="Mnbr" Version="49" MinVersion="0"/>
 	<Component Name="SdkFile" Version="50" MinVersion="1"/>
 	<Component Name="SdkSqlite" Version="50" MinVersion="1"/>
-	<Component Name="WhatsAppAndroidDB" Version="47" MinVersion="1"/>
 	<Component Name="ZorpiaElements" Version="53" MinVersion="1"/>
 	<Component Name="OutbrainElements" Version="54" MinVersion="1"/>
 	<Component Name="TaboolaElements" Version="54" MinVersion="1"/>
@@ -217,11 +198,6 @@
 	<Component Name="Tftp" Version="53" MinVersion="1"/>
 	<Component Name="WojhatiElements" Version="49" MinVersion="1"/>
 	<Component Name="Freepp" Version="55" MinVersion="1"/>
-	<Component Name="EuaTelegram" Version="78" MinVersion="5"/>
-	<Component Name="EuaWhatsApp" Version="68" MinVersion="5"/>
-	<Component Name="EuaFacebook" Version="102" MinVersion="5"/>
-	<Component Name="EuaTwitter" Version="83" MinVersion="3"/>
-	<Component Name="EuaGmail" Version="51" MinVersion="3"/>
 	<Component Name="DejaFashionElements" Version="45" MinVersion="2"/>
 	<Component Name="AdsMobfoxElements" Version="50" MinVersion="2"/>
 	<Component Name="FitbitElements" Version="43" MinVersion="1"/>
@@ -246,21 +222,13 @@
 	<Component Name="AppleMapTileElements" Version="41" MinVersion="2"/>
 	<Component Name="SdkStunRTP" Version="61" MinVersion="58"/>
 	<Component Name="StunRtpVoip" Version="54" MinVersion="1"/>
-	<Component Name="EuaGoogleHangouts" Version="36" MinVersion="1"/>
 	<Component Name="NeteaseMail" Version="39" MinVersion="0"/>
-	<Component Name="EuaGoogleDrive" Version="42" MinVersion="2"/>
-	<Component Name="EuaSkype" Version="43" MinVersion="2"/>
-	<Component Name="EuaFacebookIM" Version="52" MinVersion="4"/>
 	<Component Name="PalringoIm" Version="37" MinVersion="2"/>
 	<Component Name="SdkCsv" Version="45" MinVersion="28"/>
 	<Component Name="Palringo" Version="31" MinVersion="1"/>
 	<Component Name="InboxMail" Version="29" MinVersion="2"/>
 	<Component Name="WebSearchApp" Version="36" MinVersion="2"/>
 	<Component Name="AireTalk" Version="35" MinVersion="2"/>
-	<Component Name="FacebookMessengerCsv" Version="35" MinVersion="1"/>
-	<Component Name="GmailMailCsv" Version="38" MinVersion="1"/>
-	<Component Name="OutlookMailCsv" Version="34" MinVersion="1"/>
-	<Component Name="YahooMailCsv" Version="33" MinVersion="2"/>
 	<Component Name="SdkRtpVoip" Version="34" MinVersion="34"/>
 	<Component Name="KakaoTalk" Version="37" MinVersion="1"/>
 	<Component Name="Line" Version="36" MinVersion="31"/>
@@ -285,45 +253,16 @@
 	<Component Name="VoxCinemasElements" Version="24" MinVersion="2"/>
 	<Component Name="GoKeyboardElements" Version="26" MinVersion="7"/>
 	<Component Name="UCBrowserElements" Version="22" MinVersion="1"/>
-	<Component Name="ViberCsv" Version="20" MinVersion="1"/>
-	<Component Name="TelegramCsv" Version="21" MinVersion="1"/>
 	<Component Name="_2GISElements" Version="22" MinVersion="1"/>
 	<Component Name="NimbuzzElements" Version="22" MinVersion="1"/>
-	<Component Name="EuaOdnoklassniki" Version="53" MinVersion="1"/>
-	<Component Name="EuaVKontakte" Version="36" MinVersion="2"/>
 	<Component Name="AdsKaffnetElements" Version="22" MinVersion="1"/>
 	<Component Name="CheetahMobileElements" Version="20" MinVersion="1"/>
 	<Component Name="FMIWeatherElements" Version="21" MinVersion="1"/>
 	<Component Name="TelegramVoIP" Version="26" MinVersion="1"/>
-	<Component Name="LineCsv" Version="17" MinVersion="1"/>
 	<Component Name="MaastokartatElements" Version="20" MinVersion="1"/>
 	<Component Name="MeetMeElements" Version="22" MinVersion="1"/>
-	<Component Name="EuaInstagram" Version="38" MinVersion="2"/>
 	<Component Name="TaobaoElements" Version="20" MinVersion="1"/>
-	<Component Name="EuaImo" Version="18" MinVersion="1"/>
-	<Component Name="EuaViber" Version="19" MinVersion="1"/>
 	<Component Name="EuaLine" Version="0" MinVersion="0"/>
-	<Component Name="EuaSnapChat" Version="1" MinVersion="1"/>
-	<Component Name="EuaKakaoTalk" Version="1" MinVersion="1"/>
-	<Component Name="EuaSignal" Version="1" MinVersion="1"/>
-	<Component Name="EuaIcq" Version="1" MinVersion="1"/>
-	<Component Name="EuaIMessage" Version="1" MinVersion="1"/>
-	<Component Name="EuaWeChat" Version="1" MinVersion="1"/>
-	<Component Name="EuaMailru" Version="1" MinVersion="1"/>
-	<Component Name="EuaAzar" Version="1" MinVersion="1"/>
-	<Component Name="EuaYahooMessenger" Version="1" MinVersion="1"/>
-	<Component Name="EuaGooglePlus" Version="1" MinVersion="1"/>
-	<Component Name="EuaSkout" Version="1" MinVersion="1"/>
-	<Component Name="EuaSeecrypt" Version="1" MinVersion="1"/>
-	<Component Name="EuaGroupMe" Version="1" MinVersion="1"/>
-	<Component Name="EuaKik" Version="1" MinVersion="1"/>
-	<Component Name="EuaMaaii" Version="1" MinVersion="1"/>
-	<Component Name="EuaTalkRay" Version="1" MinVersion="1"/>
-	<Component Name="EuaVoxer" Version="1" MinVersion="1"/>
-	<Component Name="EuaWePhone" Version="1" MinVersion="1"/>
-	<Component Name="EuaYeeCall" Version="1" MinVersion="1"/>
-	<Component Name="EuaTumblr" Version="1" MinVersion="1"/>
-	<Component Name="EuaWickr" Version="1" MinVersion="1"/>
 	<Component Name="AdsCloudmobiElements" Version="20" MinVersion="1"/>
 	<Component Name="AdsStartAppElements" Version="18" MinVersion="1"/>
 	<Component Name="ADTaxiElements" Version="18" MinVersion="1"/>

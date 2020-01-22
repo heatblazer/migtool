@@ -53,7 +53,7 @@
 	<Component Name="LineIm" Version="158" MinVersion="137"/>
 	<Component Name="SamplePython" Version="180" MinVersion="162"/>
 	<Component Name="WhatsAppIm" Version="136" MinVersion="135"/>
-	<Component Name="SkoutIm" Version="183" MinVersion="154"/>
+	<Component Name="SkoutIm" Version="184" MinVersion="154"/>
 	<Component Name="SkypeIm" Version="171" MinVersion="169"/>
 	<Component Name="DnsQuery" Version="120" MinVersion="1"/>
 	<Component Name="_163Mail" Version="179" MinVersion="76"/>
@@ -67,7 +67,7 @@
 	<Component Name="BoxAzMail" Version="172" MinVersion="158"/>
 	<Component Name="VK" Version="235" MinVersion="3"/>
 	<Component Name="Tforum" Version="165" MinVersion="3"/>
-	<Component Name="GmailMail" Version="309" MinVersion="148"/>
+	<Component Name="GmailMail" Version="310" MinVersion="148"/>
 	<Component Name="GmxDotComMail" Version="166"/>
 	<Component Name="HanMail" Version="184"/>
 	<Component Name="HotmailMail" Version="164"/>
@@ -98,7 +98,7 @@
 	<Component Name="ThaiMail" Version="162"/>
 	<Component Name="UkrMail" Version="173"/>
 	<Component Name="WebAuthentication" Version="170" MinVersion="150"/>
-	<Component Name="YahooMail" Version="292"/>
+	<Component Name="YahooMail" Version="293"/>
 	<Component Name="YandexRuMail" Version="179" MinVersion="4"/>
 	<Component Name="BeboChat" Version="90" MinVersion="90"/>
 	<Component Name="eBuddyMessenger" Version="89" MinVersion="89"/>
@@ -126,7 +126,7 @@
 	<Component Name="AtMail" Version="118" MinVersion="105"/>
 	<Component Name="HordeMail" Version="129" MinVersion="2"/>
 	<Component Name="WorldClientMail" Version="120" MinVersion="2"/>
-	<Component Name="SquirrelMail" Version="129" MinVersion="2"/>
+	<Component Name="SquirrelMail" Version="130" MinVersion="2"/>
 	<Component Name="RoundcubeMail" Version="144" MinVersion="2"/>
 	<Component Name="Nimbuzz" Version="116" MinVersion="21"/>
 	<Component Name="GoogleSearchElements" Version="101" MinVersion="1"/>

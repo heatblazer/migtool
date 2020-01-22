@@ -53,6 +53,8 @@ SVN to GIT migration tool
   - EuaTumblr
   - SipTester
 
+<mark>Missing from all repos, probably unused or malformed name</mark>
+- SdkSdkSnProducers
 
 <mark>Missing repos (not present in GIT but requested from svn):</mark>
 - Sau 4_5_1 
@@ -64,12 +66,15 @@ SVN to GIT migration tool
 - ~~FacebookMail 1_0_0~~
 - ~~AccessUrl 1_0_0~~
 - ~~HttpAggregation 1_0_0, 1_0_1, 1_0_3, 1_0_4~~
-- HttpAggregation_1_0_2 
+- ~~HttpAggregation_1_0_2~~ 
 - ~~Rainbow 1_0_0~~
 
 <mark>TODO:</mark>
-
 - Use manual command example: <code>git commit --allow-empty --author="yyordanov <yordan.yordanov@verint.com>" -m "Deleted binaries which are moved to nexus [cr: SStoykov] svn-revision:263262" --date=2019-08-19</code> when SVN not in GIT
 - Review the Platforms.git 4_5_3 to verify if commits have to be removed and re-merged. Temporaly removed http://tlvsvn1/svn/repos-pdfe/Pdfe/Platforms/branches/4_5_3,https://cisbitbucket01/projects/IP/Platforms.git,4_5_3 the link from the file
-  
+- Run BFG as final step.
+
+<mark> DONE: </mark>
+- Platform 4_5_2
+ 
 author: iliyan.zapryanov@verint.com

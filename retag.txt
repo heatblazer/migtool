@@ -1,0 +1,14 @@
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/XFire/XFire_4_0_1,https://cisbitbucket01/im/xfire.git,XFire_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/eBuddyMessenger/eBuddyMessenger_4_0_1,https://cisbitbucket01/im/ebuddymessenger.git,eBuddyMessenger_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/GTalkMessenger/GTalkMessenger_4_0_1,https://cisbitbucket01/im/gtalkmessenger.git,GTalkMessenger_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/ICQMessengerHTTP/ICQMessengerHTTP_4_0_1,https://cisbitbucket01/im/icqmessengerhttp.git,ICQMessengerHTTP_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/IMVUChat/IMVUChat_4_0_1,https://cisbitbucket01/im/imvuchat.git,IMVUChat_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/M1SMS/M1SMS_4_0_1,https://cisbitbucket01/im/m1sms.git,M1SMS_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/Mrim/Mrim_4_0_1,https://cisbitbucket01/im/mrim.git,Mrim_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/MSNMessengerHTTP/MSNMessengerHTTP_4_0_1,https://cisbitbucket01/im/msnmessengerhttp.git,MSNMessengerHTTP_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/StarhubSMS/StarhubSMS_4_0_1,https://cisbitbucket01/im/starhubsms.git,StarhubSMS_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/Twitter/Twitter_4_0_1,https://cisbitbucket01/im/twitter.git,Twitter_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/WhatsApp/WhatsApp_4_0_1,https://cisbitbucket01/im/whatsapp.git,WhatsApp_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/YahooMobileMessenger/YahooMobileMessenger_4_0_1,https://cisbitbucket01/im/yahoomobilemessenger.git,YahooMobileMessenger_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/PaltalkHTTP/PaltalkHTTP_4_0_1,https://cisbitbucket01/im/paltalkhttp.git,PaltalkHTTP_4_0_1
+http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/WhatsApp/WhatsApp_4_0_1,https://cisbitbucket01/im/whatsapp.git,WhatsApp_4_0_1

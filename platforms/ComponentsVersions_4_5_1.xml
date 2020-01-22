@@ -72,7 +72,7 @@
 	<Component Name="BoxAzMail" Version="113" MinVersion="94"/>
 	<Component Name="VK" Version="141" MinVersion="0"/>
 	<Component Name="Tforum" Version="106" MinVersion="1"/>
-	<Component Name="GmailMail" Version="238" MinVersion="26"/>
+	<Component Name="GmailMail" Version="239" MinVersion="26"/>
 	<Component Name="GmxDotComMail" Version="107"/>
 	<Component Name="HanMail" Version="126"/>
 	<Component Name="HotmailMail" Version="106"/>
@@ -86,7 +86,7 @@
 	<Component Name="MailDotComMail" Version="106"/>
 	<Component Name="MailDotRuMail" Version="109"/>
 	<Component Name="Myspace" Version="112" MinVersion="92"/>
-	<Component Name="MyWayMail" Version="137"/>
+	<Component Name="MyWayMail" Version="138"/>
 	<Component Name="OutlookMail" Version="153" MinVersion="13"/>
 	<Component Name="OutlookNativeMail" Version="110" MinVersion="10"/>
 	<Component Name="QipDotRuMail" Version="109"/>
@@ -132,7 +132,7 @@
 	<Component Name="AtMail" Version="109" MinVersion="91"/>
 	<Component Name="HordeMail" Version="119" MinVersion="1"/>
 	<Component Name="WorldClientMail" Version="109" MinVersion="1"/>
-	<Component Name="SquirrelMail" Version="118" MinVersion="1"/>
+	<Component Name="SquirrelMail" Version="119" MinVersion="1"/>
 	<Component Name="RoundcubeMail" Version="132" MinVersion="1"/>
 	<Component Name="Nimbuzz" Version="114" MinVersion="1"/>
 	<Component Name="GoogleSearchElements" Version="114" MinVersion="1"/>

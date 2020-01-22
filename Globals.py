@@ -19,6 +19,8 @@ class NS:
 
     REPO_BACKUP = "backup"
 
+    PLATFORM_NUM = None
+
     GUserMails = None
 
     GMissingMails = {}
@@ -35,7 +37,7 @@ class NS:
 
     CMD_VERBOSE_MODE_ON = True
 
-    NO_GIT_URI = False
+    NO_GIT_URI = False #nohttps
 
     CSI_GIT_URI = "ssh://git@cisbitbucket01:7999/"
 
@@ -67,8 +69,8 @@ class NS:
     For other options view the sgutil.py file with your editor of choice :")\r\n
     For updating a db file use: sgutil.py --update-db\r\n
     For hinting you are on a build machine use: sgutil.py --abm\r\n
-    Usage for updateing ComponentsVersion.xml:\r\n
-    sgutil.py --file <path to csv repo file> --xml-file <path to ComponentsVersions.xml> --export-platforms \r\n
+    Usage for updating ComponentsVersion.xml:\r\n
+    sgutil.py --file <path to csv repo file> --xml-file <path to ComponentsVersions.xml> --export-platforms --platform X_X_X\r\n
     ----------------------------------------------------------------------------\r\n
     """
 
@@ -105,6 +107,7 @@ class NS:
     Gargs.update({'--retag' : None})
     Gargs.update({'--untag' : None})
     Gargs.update({'--xml-file' : None})
+    Gargs.update({'--platform' : None}) #specify platform 
     Gargs.update({'--fix-dirty' : None})
     Gargs.update({'--export-platforms' : None})
     Gargs.update({'--fullmerge' : None})

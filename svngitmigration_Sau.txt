@@ -8,4 +8,3 @@ http://tlvsvn1/svn/repos-pdfe/Pdfe/Platforms/branches/4_1_0,https://cisbitbucket
 http://tlvsvn1/svn/repos-pdfe/Pdfe/Platforms/branches/4_2_0,https://cisbitbucket01/projects/IP/Platforms.git,4_2_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/Platforms/branches/4_5_0,https://cisbitbucket01/projects/IP/Platforms.git,4_5_0
 http://tlvsvn1/svn/repos-pdfe/Pdfe/Platforms/branches/4_5_1,https://cisbitbucket01/projects/IP/Platforms.git,4_5_1
-http://tlvsvn1/svn/repos-pdfe/Pdfe/Platforms/branches/4_5_2,https://cisbitbucket01/projects/IP/Platforms.git,4_5_2
