@@ -1,2 +1,1 @@
-http://tlvsvn1/svn/repos-pdfe/Pdfe/ImPspPlugins/branches/GTalkMessenger/GTalkMessenger_4_0_1,https://cisbitbucket01/im/gtalkmessenger.git,GTalkMessenger_4_0_1
-
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/Tango/Tango_1_0_3,https://cisbitbucket01/scm/sdkp/tango.git,Tango_1_0_3

@@ -77,6 +77,7 @@ class SvnGitMixin(object):
         self._doNotTag = False
         self._hasNoAbm = False
         self._hasError = False
+        self._filesToDelete = []
     
 
     def __del__(self):
@@ -142,6 +143,7 @@ class SvnGitMixin(object):
         glog = str("git log %s " % (optargs))
         self._shell.execute(pull)
         self._shell.execute(glog)
+        Utils.printwf(self._shell.std_out())
         omitnext = False
         spl = self._shell.std_out().split("commit ")
         spl = fix_broken_split(spl, "commit ")
@@ -173,18 +175,58 @@ class SvnGitMixin(object):
         return res
 
 
-    def svnlog(self, frm, to=str("HEAD")):
+    def svnlog(self, frm, to=str("HEAD"),formerge=False):
         """ wrapper to svn log """
+        def getListOfFiles(dirName):
+            # create a list of file and sub directories 
+            # names in the given directory 
+            listOfFile = os.listdir(dirName)
+            allFiles = list()
+            # Iterate over all the entries
+            for entry in listOfFile:
+                # Create full path
+                fullPath = os.path.join(dirName, entry)
+                # If entry is a directory then get the list of files in this directory 
+                if os.path.isdir(fullPath):
+                    allFiles = allFiles + getListOfFiles(fullPath)
+                else:
+                    allFiles.append(fullPath)
+                        
+            return allFiles
+
+
         self._set_path(self._svnpath)
         svnupdate = str("svn up")    
-        svnlog = str("svn log -r %s:%s" % (frm, to))
+        if formerge is True:
+            svnlog = str("svn log -r %s:%s -v" % (frm, to))
+        else:
+            svnlog = str("svn log -r %s:%s" % (frm, to))
+        
         self._shell.execute(svnupdate)
         self._shell.execute(svnlog)
         spl = self._shell.std_out().split("------------------------------------------------------------------------")
+        files = getListOfFiles(self._gitpath)
         for s in spl:
             s = s.lstrip("\r\n")
             s = s.rstrip("\r\n")
             if len(s) != 0:
+                if "Changed paths:" in s:
+                    specialfix = s.split("Changed paths:")
+                    if len(specialfix) > 0:
+                        entries = specialfix[1].split("\r\n")
+                        for entry in entries:
+                            if entry.find(self._currentBranch) is not -1:
+                                print entry
+                                deleted = entry.split(" D ")
+                                if len(deleted) > 1:
+                                    fd = deleted[1].split("/")
+                                    if len(fd) > 0:                 
+                                        for f in files:
+                                            pattern = str("\\%s" % fd[-1])
+                                            if f.endswith(pattern) is True:
+                                                print f
+                                                self._filesToDelete.append(f)
+
                 sspl = s.split()
                 k = sspl[0]
                 if k[1:] not in self._metasvn:
@@ -192,9 +234,26 @@ class SvnGitMixin(object):
                     self._metasvn.update({kk:s})
 
 
-    def gitpop(self, commithash):
+    def get_cmhash_from_svnrev(self, rev):
+        if rev in self._metagit:
+            cmh = self._metagit[rev][0].split("\n")
+            if len(cmh) > 0:
+                return cmh[0]
+            else:
+                return None
+
+
+    def gitpop(self, commithash=None):
         """WARNING! Careful now when using that call : pops latest commit and resets to the prev in repo"""
-        resettop = str("git reset --hard %s" % commithash)
+        if commithash is None:            
+            self.gitlog()
+            revs = self._metagit.items()
+            revs.sort()
+            cmhash = self.get_cmhash_from_svnrev(revs[-1-1][0])
+            Utils.db.add_svnrev(self._currentBranch, revs[-1-1][0])
+            resettop = str("git reset --hard %s" % cmhash)
+        else:
+            resettop = str("git reset --hard %s" % commithash)
         pushf = str("git push --force")
         self._shell.execute(resettop)
         self._shell.execute(pushf)
@@ -574,7 +633,7 @@ class SvnGitMixin(object):
         #removed --no-walk  option and --pretty=\"%h %d %s\"
         #" --tags  --decorate=full --date=short"
         haslog = self.gitlog()
-        
+        self._metasvn.clear()
         if self._git_forward_err is True and remove_tag != 1:
             Utils.printwf("Git repo ahead of SVN")
             Utils.dump("ERROR: Git repo ahead of SVN")
@@ -738,14 +797,13 @@ class SvnGitMixin(object):
             return  NS.Errors.NO_CONNECTION_TO_GIT
 
         self._hkgit = Helpers.hwm(gitmeta)
-        self.svnlog(str(self._hkgit))
+        self.svnlog(str(self._hkgit),to=str("HEAD"), formerge=True)
         
         svnmeta = self._metasvn
         if len(svnmeta) == 0:
             Utils.dump(str("ERROR: NO_CONNECTION_TO_SVN"))
             return NS.Errors.NO_CONNECTION_TO_SVN
         self._hksvn = Helpers.hwm(svnmeta)  
-        
         if self._hksvn in gitmeta:
             Utils.printwf("INFO: nothing to merge...")
             return NS.Errors.OK
@@ -786,6 +844,8 @@ class SvnGitMixin(object):
                             full_msg = str("%s\r\nsvn-revision:%s\r\n" % (msg[1], k))
                             full_msg = full_msg.replace("\"", "\'")
                             you_mail = str(GUserMails[spl[2].lower()])
+                            for f in self._filesToDelete:
+                                Utils.unlink(f)
                             self.add_and_commit(spl[2], you_mail, spl[4], full_msg, repo)
                         else:                        
                             Utils.printwf(str("Error: Repositories: %s and %s are probably deleted." % (self._repo, self._svnuri)))
@@ -812,6 +872,16 @@ class SvnGitMixin(object):
         except Exception as ex1:
             Utils.printwf("Exception: ex in svn_checkoit(...)  %s" % ex1.message)
             self._hasError = True
+
+
+    def gitpull(self):
+        pull = str("git pull")
+        self._shell.execute(pull)
+
+
+    def rmgitpath(self):
+        Utils.home()
+        Utils.rmdir(self._gitpath)
 
 
     def git_clone(self, path, branch, depth, rmdir=False):
@@ -1139,12 +1209,18 @@ if __name__ == "__main__":
 
                         elif args['--purge-tags'] is not None:
                             mix.remove_tags()
+
+                        elif args['--pop'] is not None:
+                            mix.gitpop()
                         else:
                             pass
                         _idump(mix, svn, git, branch, bDumpAll)
                     else:
-                        #mix.do_merge("{2019-01-01}", cleanup=clean)
-                        mix.update_platforms()
+                        #debuf only
+                        enable_tag_mode = True
+                        tag_opt = 2
+                        _intag(mix, svn, git, branch, depth, tag_opt) #tagonly
+
                         pass
                     mix.finish()
 

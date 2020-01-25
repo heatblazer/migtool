@@ -14,6 +14,15 @@ class Utils(object):
     sresult = None
     memdmp = list()
     db = DB()
+
+    @staticmethod
+    def unlink(fname):
+        try:
+            rm = str("DEL %s" % fname)
+            os.system(rm)
+        except:
+            pass
+
     @staticmethod 
     def rmdir(dir_path):
         try:

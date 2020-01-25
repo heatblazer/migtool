@@ -120,6 +120,9 @@ class NS:
     Gargs.update({'--validate' : None})
     Gargs.update({'--nohttps' : None})
     Gargs.update({'--users' : None})
+    Gargs.update({'--tagonly' : None})
+    Gargs.update({'--pop' : None})
+    
     
 
 #######################################################################################################################################
