@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Components>
-	<Component Name="Infra" Version="125" MinVersion="119"/>
+	<Component Name="Infra" Version="126" MinVersion="119"/>
 	<Component Name="WebInfra" Version="176" MinVersion="150"/>
 	<Component Name="ImPspInfra" Version="119" MinVersion="119"/>
 	<Component Name="Sau" Version="417" MinVersion="402"/>
@@ -11,11 +11,11 @@
 	<Component Name="AntiVirus" Version="105" MinVersion="2"/>
 	<Component Name="WorldClientMail" Version="107" MinVersion="1"/>
 	<Component Name="WebLogin" Version="51" MinVersion="1"/>
-	<Component Name="SquirrelMail" Version="109" MinVersion="1"/>
+	<Component Name="SquirrelMail" Version="110" MinVersion="1"/>
 	<Component Name="RoundcubeMail" Version="119" MinVersion="1"/>
 	<Component Name="SkypeIm" Version="81" MinVersion="29"/>
 	<Component Name="WhatsAppIm" Version="94" MinVersion="93"/>
-	<Component Name="SkoutIm" Version="136" MinVersion="115"/>
+	<Component Name="SkoutIm" Version="137" MinVersion="115"/>
 	<Component Name="LineIm" Version="99" MinVersion="1"/>
 	<Component Name="_163Mail" Version="233" MinVersion="161"/>
 	<Component Name="AccessedUrl" Version="246" MinVersion="185"/>
@@ -57,7 +57,7 @@
 	<Component Name="ThaiMail" Version="244"/>
 	<Component Name="UkrMail" Version="257"/>
 	<Component Name="WebAuthentication" Version="208" MinVersion="89"/>
-	<Component Name="YahooMail" Version="387"/>
+	<Component Name="YahooMail" Version="388"/>
 	<Component Name="YandexRuMail" Version="208" MinVersion="65"/>
 	<Component Name="BeboChat" Version="118" MinVersion="118"/>
 	<Component Name="eBuddyMessenger" Version="117" MinVersion="117"/>

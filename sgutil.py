@@ -77,7 +77,10 @@ class SvnGitMixin(object):
         self._doNotTag = False
         self._hasNoAbm = False
         self._hasError = False
-        self._filesToDelete = []
+        self._filesToDelete = {} # marks a list of rev and files to delete
+        self._gireponame = None
+        self._repoParseOffset = Utils.get_repo_type(svnuri)
+        pass
     
 
     def __del__(self):
@@ -177,23 +180,6 @@ class SvnGitMixin(object):
 
     def svnlog(self, frm, to=str("HEAD"),formerge=False):
         """ wrapper to svn log """
-        def getListOfFiles(dirName):
-            # create a list of file and sub directories 
-            # names in the given directory 
-            listOfFile = os.listdir(dirName)
-            allFiles = list()
-            # Iterate over all the entries
-            for entry in listOfFile:
-                # Create full path
-                fullPath = os.path.join(dirName, entry)
-                # If entry is a directory then get the list of files in this directory 
-                if os.path.isdir(fullPath):
-                    allFiles = allFiles + getListOfFiles(fullPath)
-                else:
-                    allFiles.append(fullPath)
-                        
-            return allFiles
-
 
         self._set_path(self._svnpath)
         svnupdate = str("svn up")    
@@ -205,33 +191,32 @@ class SvnGitMixin(object):
         self._shell.execute(svnupdate)
         self._shell.execute(svnlog)
         spl = self._shell.std_out().split("------------------------------------------------------------------------")
-        files = getListOfFiles(self._gitpath)
         for s in spl:
             s = s.lstrip("\r\n")
             s = s.rstrip("\r\n")
             if len(s) != 0:
-                if "Changed paths:" in s:
-                    specialfix = s.split("Changed paths:")
-                    if len(specialfix) > 0:
-                        entries = specialfix[1].split("\r\n")
-                        for entry in entries:
-                            if entry.find(self._currentBranch) is not -1:
-                                print entry
-                                deleted = entry.split(" D ")
-                                if len(deleted) > 1:
-                                    fd = deleted[1].split("/")
-                                    if len(fd) > 0:                 
-                                        for f in files:
-                                            pattern = str("\\%s" % fd[-1])
-                                            if f.endswith(pattern) is True:
-                                                print f
-                                                self._filesToDelete.append(f)
-
                 sspl = s.split()
                 k = sspl[0]
                 if k[1:] not in self._metasvn:
                     kk = int(k[1:])
                     self._metasvn.update({kk:s})
+                    self._filesToDelete.update({kk:[]})
+
+                if "Changed paths:" in s:
+                    specialfix = s.split("Changed paths:")
+                    if len(specialfix) > 0:
+                        entries = specialfix[-1].split("\r\n")
+                        for entry in entries:
+                            u = "/".join(self._svnuri.split("/")[5:]).lower()
+                            if u in entry.lower():
+                                deleted = entry.split(" D ")
+                                if len(deleted) > 1:
+                                    fd = deleted[1].split("/")
+                                    fdel = "{0}\\{1}".format(self._gitpath, "\\".join(fd[self._repoParseOffset:]))
+                                    if len(fd) > 0:
+                                        Utils.dump("[INFO]: Will delete {0} file from {1} revision".format(fdel, kk))                                                         
+                                        self._filesToDelete[kk].append(fdel)
+                                
 
 
     def get_cmhash_from_svnrev(self, rev):
@@ -839,13 +824,19 @@ class SvnGitMixin(object):
                         self._currentPID = c                        
                         exp = str("svn export -r %s %s %s" % (k,  self._svnpath, exppath))
                         c.execute(exp)
-                        # copy and commit - do the actual merge with ver                                 
+                        # copy and commit - do the actual merge with ver and careful since we need to delete SVN delted files before commit                           
+
                         if Utils.xcopy(exppath, self._gitpath) is True:
                             full_msg = str("%s\r\nsvn-revision:%s\r\n" % (msg[1], k))
                             full_msg = full_msg.replace("\"", "\'")
                             you_mail = str(GUserMails[spl[2].lower()])
-                            for f in self._filesToDelete:
-                                Utils.unlink(f)
+                            if k in self._filesToDelete:
+                                for f in self._filesToDelete[k]:
+                                    if os.path.isfile(f):
+                                        Utils.unlink(f)
+                                    elif os.path.isdir(f):
+                                        Utils.rmdir(f)
+
                             self.add_and_commit(spl[2], you_mail, spl[4], full_msg, repo)
                         else:                        
                             Utils.printwf(str("Error: Repositories: %s and %s are probably deleted." % (self._repo, self._svnuri)))
@@ -887,6 +878,10 @@ class SvnGitMixin(object):
     def git_clone(self, path, branch, depth, rmdir=False):
         """ uri, branch, depth """
         try:
+            self._gireponame = path.split("/")[-1]
+            if self._gireponame.endswith(".git"):
+                self._gireponame = self._gireponame.rstrip(".git")
+            
             os.chdir(str("%s\\%s" % (Utils.home_dir() , NS.GIT_TEMP_DIR)))
             clone = None
             branch = branch.replace(' ', '')
@@ -1051,6 +1046,7 @@ if __name__ == "__main__":
     merged = str("%s,%s" % (NS.ExcludedFilesForGitV1, NS.ExcludedFilesForGitV2))
     merged = merged.replace("\n",'')        
     args = NS.Gargs
+    pop_count = int(1)
 
     start_time = datetime.datetime.now().time().strftime('%H:%M:%S')
 
@@ -1211,16 +1207,19 @@ if __name__ == "__main__":
                             mix.remove_tags()
 
                         elif args['--pop'] is not None:
-                            mix.gitpop()
+                            try:
+                                pop_count = int(sys.argv[args['--pop']+1])
+                            except:
+                                pop_count = 1
+                            for i in range(0, pop_count):
+                                pass
+                                #mix.gitpop()
+
                         else:
                             pass
                         _idump(mix, svn, git, branch, bDumpAll)
                     else:
                         #debuf only
-                        enable_tag_mode = True
-                        tag_opt = 2
-                        _intag(mix, svn, git, branch, depth, tag_opt) #tagonly
-
                         pass
                     mix.finish()
 

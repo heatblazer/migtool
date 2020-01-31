@@ -16,7 +16,6 @@
 	<Component Name="SdkIm" Version="53" MinVersion="53"/>
 	<Component Name="SdkSn" Version="52" MinVersion="45"/>
 	<Component Name="SdkSsl" Version="48" MinVersion="15"/>
-	<Component Name="SdkSdkSnProducers" Version="0"/>
 	<Component Name="SdkSql" Version="48" MinVersion="1"/>
 	<Component Name="SdkWebSn" Version="52" MinVersion="45"/>
 	<Component Name="SdkWebIm" Version="57" MinVersion="40"/>
@@ -217,7 +216,6 @@
 	<Component Name="AdsApplovinElements" Version="42" MinVersion="1"/>
 	<Component Name="AdsInmobiElements" Version="44" MinVersion="1"/>
 	<Component Name="WeChat" Version="38" MinVersion="1"/>
-	<Component Name="FreePPIm" Version="51" MinVersion="2"/>
 	<Component Name="EuaDropbox" Version="52" MinVersion="2"/>
 	<Component Name="AppleMapTileElements" Version="41" MinVersion="2"/>
 	<Component Name="SdkStunRTP" Version="61" MinVersion="58"/>

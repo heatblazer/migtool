@@ -8,6 +8,28 @@ class NS:
         NO_CONNECTION_TO_GIT = 3
         ERROR_INSUFFICIENT_CLONE_DEPTH = 4
 
+    class RepoType:
+
+        def __init__(self):
+            self.repo_map = {}
+            self.repo_map["sdkframeworks"] = 5
+            self.repo_map["platforms"] = 5
+            self.repo_map["impspplugins"] = 6
+            self.repo_map["ipprobe"] = 6
+            self.repo_map["webinfra"] = 5
+            self.repo_map["sdkbindings"] = 5
+            self.repo_map["sauclustermanager"] = 5
+            self.repo_map["sdkplugins"] = 5
+
+
+        def __call__(self, k):
+            if k in self.repo_map:
+                return self.repo_map[k]
+            else:
+                return None
+
+            
+
 
     TEST_GIT_REPO_NAME = None #"TST4" #"TODO_MIGRATE"
 
@@ -71,6 +93,10 @@ class NS:
     For hinting you are on a build machine use: sgutil.py --abm\r\n
     Usage for updating ComponentsVersion.xml:\r\n
     sgutil.py --file <path to csv repo file> --xml-file <path to ComponentsVersions.xml> --export-platforms --platform X_X_X\r\n
+    To pop top commit from GIT repo use the following command: where <N> is elements to be popped.
+    sgutil.py --file <path to csv repo file> --pop <N> 
+    To use ssh instead of https use:
+    sgutil.py --file <path to csv repo file> <options> --nohttps
     ----------------------------------------------------------------------------\r\n
     """
 

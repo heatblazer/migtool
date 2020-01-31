@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Components>
-	<Component Name="Infra" Version="76" MinVersion="71"/>
+	<Component Name="Infra" Version="77" MinVersion="71"/>
 	<Component Name="WebInfra" Version="79" MinVersion="66"/>
 	<Component Name="ImPspInfra" Version="52" MinVersion="52"/>
 	<Component Name="Sau" Version="245" MinVersion="153"/>
@@ -36,7 +36,7 @@
 	<Component Name="SingnetMail" Version="131"/>
 	<Component Name="Tango" Version="82" MinVersion="1"/>
 	<Component Name="UkrMail" Version="137"/>
-	<Component Name="YahooMail" Version="283"/>
+	<Component Name="YahooMail" Version="284"/>
 	<Component Name="YandexRuMail" Version="156" MinVersion="77"/>
 	<Component Name="BeboChat" Version="108" MinVersion="108"/>
 	<Component Name="eBuddyMessenger" Version="108" MinVersion="108"/>

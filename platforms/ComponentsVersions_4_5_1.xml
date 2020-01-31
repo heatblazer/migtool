@@ -16,7 +16,6 @@
 	<Component Name="SdkIm" Version="122" MinVersion="121"/>
 	<Component Name="SdkSn" Version="111" MinVersion="106"/>
 	<Component Name="SdkSsl" Version="55" MinVersion="14"/>
-	<Component Name="SdkSdkSnProducers" Version="0"/>
 	<Component Name="SdkSql" Version="100" MinVersion="2"/>
 	<Component Name="SdkWebSn" Version="114" MinVersion="108"/>
 	<Component Name="SdkWebIm" Version="109" MinVersion="100"/>
@@ -26,14 +25,11 @@
 	<Component Name="SdkXmlSax" Version="104" MinVersion="1"/>
 	<Component Name="SdkEua" Version="120" MinVersion="119"/>
 	<Component Name="SdkApacheThrift" Version="106" MinVersion="35"/>
-	<Component Name="WhatsAppICloudDb" Version="111" MinVersion="1"/>
-	<Component Name="MdrTester" Version="138" MinVersion="1"/>
 	<Component Name="AntiVirus" Version="101" MinVersion="0"/>
 	<Component Name="TwitterSN" Version="105" MinVersion="1"/>
 	<Component Name="AccuWeatherElements" Version="116" MinVersion="1"/>
 	<Component Name="YahooWeatherElements" Version="114" MinVersion="1"/>
 	<Component Name="ChatOnElements" Version="113" MinVersion="1"/>
-	<Component Name="SdkTester" Version="105" MinVersion="1"/>
 	<Component Name="AdsMopubElements" Version="123" MinVersion="1"/>
 	<Component Name="AdsAdNexusElements" Version="125" MinVersion="1"/>
 	<Component Name="SamsungMobileWeatherElements" Version="114" MinVersion="1"/>
@@ -51,20 +47,16 @@
 	<Component Name="SdkStun" Version="100" MinVersion="96"/>
 	<Component Name="RCS" Version="109" MinVersion="107"/>
 	<Component Name="ViberPython" Version="135" MinVersion="1"/>
-	<Component Name="Elements" Version="102" MinVersion="84"/>
-	<Component Name="ElementsTester" Version="115" MinVersion="1"/>
 	<Component Name="SuggestedElements" Version="113" MinVersion="1"/>
 	<Component Name="LineIm" Version="120" MinVersion="93"/>
-	<Component Name="SamplePython" Version="117" MinVersion="93"/>
 	<Component Name="WhatsAppIm" Version="129" MinVersion="125"/>
-	<Component Name="SkoutIm" Version="133" MinVersion="99"/>
+	<Component Name="SkoutIm" Version="134" MinVersion="99"/>
 	<Component Name="SkypeIm" Version="142" MinVersion="138"/>
 	<Component Name="DnsQuery" Version="104" MinVersion="1"/>
 	<Component Name="_163Mail" Version="120" MinVersion="1"/>
 	<Component Name="AccessedUrl" Version="102" MinVersion="1"/>
 	<Component Name="AolMail" Version="119" MinVersion="1"/>
 	<Component Name="ExciteMail" Version="117"/>
-	<Component Name="EuaTwitterPython" Version="158" MinVersion="1"/>
 	<Component Name="FacebookSN" Version="246" MinVersion="230"/>
 	<Component Name="YouTubeSN" Version="106" MinVersion="1"/>
 	<Component Name="Instagram" Version="101" MinVersion="1"/>
@@ -72,11 +64,10 @@
 	<Component Name="BoxAzMail" Version="113" MinVersion="94"/>
 	<Component Name="VK" Version="141" MinVersion="0"/>
 	<Component Name="Tforum" Version="106" MinVersion="1"/>
-	<Component Name="GmailMail" Version="239" MinVersion="26"/>
+	<Component Name="GmailMail" Version="240" MinVersion="26"/>
 	<Component Name="GmxDotComMail" Version="107"/>
 	<Component Name="HanMail" Version="126"/>
 	<Component Name="HotmailMail" Version="106"/>
-	<Component Name="HttpTester" Version="101" MinVersion="1"/>
 	<Component Name="Htft" Version="105" MinVersion="104"/>
 	<Component Name="HttpAggregation" Version="121" MinVersion="120"/>
 	<Component Name="HttpFiles" Version="80" MinVersion="79"/>
@@ -100,7 +91,6 @@
 	<Component Name="SingnetMail" Version="106"/>
 	<Component Name="Ssl" Version="104" MinVersion="103"/>
 	<Component Name="Tango" Version="162" MinVersion="105"/>
-	<Component Name="TestWebIm" Version="109" MinVersion="1"/>
 	<Component Name="ThaiMail" Version="106"/>
 	<Component Name="UkrMail" Version="110"/>
 	<Component Name="WebAuthentication" Version="110" MinVersion="64"/>
@@ -121,12 +111,7 @@
 	<Component Name="XFire" Version="71" MinVersion="71"/>
 	<Component Name="YahooMobileMessenger" Version="71" MinVersion="71"/>
 	<Component Name="GeneralInstantMessaging" Version="76"/>
-	<Component Name="SipTester" Version="0" MinVersion="0"/>
-	<Component Name="TestPython" Version="119" MinVersion="95"/>
 	<Component Name="LivejournalMail" Version="113" MinVersion="92"/>
-	<Component Name="Sample" Version="77" MinVersion="58"/>
-	<Component Name="TestCiMail" Version="108" MinVersion="1"/>
-	<Component Name="TestCiSn" Version="109" MinVersion="1"/>
 	<Component Name="GoogleDrive" Version="117" MinVersion="1"/>
 	<Component Name="DropBox" Version="116" MinVersion="1"/>
 	<Component Name="AtMail" Version="109" MinVersion="91"/>
@@ -141,18 +126,13 @@
 	<Component Name="AdsDoubleclickElements" Version="115" MinVersion="1"/>
 	<Component Name="AdsDrawbridElements" Version="118" MinVersion="1"/>
 	<Component Name="AdsAdMarvelElements" Version="117" MinVersion="1"/>
-	<Component Name="TestCIIM" Version="111" MinVersion="1"/>
-	<Component Name="TestCiApp" Version="119" MinVersion="1"/>
 	<Component Name="TheWeatherChannelElements" Version="118" MinVersion="1"/>
-	<Component Name="WhatsAppEpi" Version="108" MinVersion="1"/>
-	<Component Name="iCloudAuthentication" Version="108" MinVersion="1"/>
 	<Component Name="NavmiiElements" Version="112" MinVersion="1"/>
 	<Component Name="NavfreeElements" Version="106" MinVersion="1"/>
 	<Component Name="PeperonityElements" Version="105" MinVersion="1"/>
 	<Component Name="Mnbr" Version="122" MinVersion="1"/>
 	<Component Name="SdkFile" Version="105" MinVersion="13"/>
 	<Component Name="SdkSqlite" Version="102" MinVersion="19"/>
-	<Component Name="WhatsAppAndroidDB" Version="103" MinVersion="2"/>
 	<Component Name="ZorpiaElements" Version="105" MinVersion="1"/>
 	<Component Name="OutbrainElements" Version="95" MinVersion="1"/>
 	<Component Name="TaboolaElements" Version="93" MinVersion="1"/>
@@ -183,7 +163,7 @@
 	<Component Name="IndoonaIm" Version="62" MinVersion="48"/>
 	<Component Name="DubizzleElements" Version="60" MinVersion="1"/>
 	<Component Name="SdkApc" Version="54" MinVersion="53"/>
-	<Component Name="NetworkUtils" Version="35" MinVersion="9"/>
+	<Component Name="NetworkUtils" Version="36" MinVersion="9"/>
 	<Component Name="Mdc" Version="50" MinVersion="47"/>
 	<Component Name="DNat" Version="59" MinVersion="2"/>
 	<Component Name="AdobeAnalyticsElements" Version="57" MinVersion="1"/>
@@ -210,26 +190,12 @@
 	<Component Name="WhatsAppCsv" Version="45" MinVersion="1"/>
 	<Component Name="AbsWorkoutElements" Version="35" MinVersion="1"/>
 	<Component Name="VideoTubeElements" Version="36" MinVersion="1"/>
-	<Component Name="EuaTelegram" Version="60" MinVersion="1"/>
-	<Component Name="EuaWhatsApp" Version="52" MinVersion="2"/>
-	<Component Name="EuaFacebook" Version="82" MinVersion="2"/>
-	<Component Name="EuaTwitter" Version="70" MinVersion="2"/>
-	<Component Name="EuaGmail" Version="36" MinVersion="2"/>
 	<Component Name="DejaFashionElements" Version="30" MinVersion="2"/>
 	<Component Name="AdsMobfoxElements" Version="35" MinVersion="2"/>
 	<Component Name="EuaDropbox" Version="42" MinVersion="5"/>
 	<Component Name="AppleMapTileElements" Version="26" MinVersion="2"/>
-	<Component Name="EuaFacebookIM" Version="40" MinVersion="2"/>
-	<Component Name="EuaSkype" Version="35" MinVersion="2"/>
-	<Component Name="EuaGoogleDrive" Version="25" MinVersion="2"/>
-	<Component Name="LineCsv" Version="18" MinVersion="9"/>
 	<Component Name="SeznameMail" Version="1" MinVersion="1"/>
-	<Component Name="EuaGoogleHangouts" Version="20" MinVersion="2"/>
 	<Component Name="SdkCsv" Version="31" MinVersion="21"/>
-	<Component Name="FacebookMessengerCsv" Version="27" MinVersion="2"/>
-	<Component Name="GmailMailCsv" Version="30" MinVersion="1"/>
-	<Component Name="OutlookMailCsv" Version="26" MinVersion="1"/>
-	<Component Name="YahooMailCsv" Version="24" MinVersion="2"/>
 	<Component Name="BaiduElements" Version="21" MinVersion="1"/>
 	<Component Name="AdsDUElements" Version="14" MinVersion="1"/>
 	<Component Name="AdsAvazuElements" Version="15" MinVersion="1"/>
@@ -238,7 +204,6 @@
 	<Component Name="UCBrowserElements" Version="15" MinVersion="1"/>
 	<Component Name="_2GISElements" Version="16" MinVersion="1"/>
 	<Component Name="NimbuzzElements" Version="14" MinVersion="1"/>
-	<Component Name="EuaVKontakte" Version="1" MinVersion="1"/>
 	<Component Name="FMIWeatherElements" Version="16" MinVersion="1"/>
 	<Component Name="MaastokartatElements" Version="13" MinVersion="1"/>
 	<Component Name="MeetMeElements" Version="15" MinVersion="1"/>
@@ -249,7 +214,7 @@
 	<Component Name="VirtualEarthElements" Version="9" MinVersion="1"/>
 	<Component Name="ToutiaoElements" Version="10" MinVersion="1"/>
 	<Component Name="AdsInnerActiveMobiElements" Version="10" MinVersion="1"/>
-	<Component Name="DailyhuntElements" Version="11" MinVersion="1"/>
+	<Component Name="DailyhuntElements" Version="12" MinVersion="1"/>
 	<Component Name="PinterestElements" Version="7" MinVersion="1"/>
 	<Component Name="Paltalk" Version="17" MinVersion="15"/>
 	<Component Name="ParticleMediaElements" Version="8" MinVersion="1"/>
@@ -261,7 +226,7 @@
 	<Component Name="KaufcomElements" Version="4" MinVersion="1"/>
 	<Component Name="AmberWeatherElements" Version="5" MinVersion="1"/>
 	<Component Name="IterationMobileElements" Version="3" MinVersion="1"/>
-	<Component Name="FordealElements" Version="5" MinVersion="1"/>
+	<Component Name="FordealElements" Version="6" MinVersion="1"/>
 	<Component Name="SinaElements" Version="2" MinVersion="1"/>
 	<Component Name="ZPlayElements" Version="2" MinVersion="1"/>
 	<Component Name="AdsAppnextElements" Version="2" MinVersion="1"/>

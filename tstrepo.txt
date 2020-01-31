@@ -1,1 +1,1 @@
-http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/Tango/Tango_1_0_3,https://cisbitbucket01/scm/sdkp/tango.git,Tango_1_0_3
+http://tlvsvn1/svn/repos-pdfe/Pdfe/SdkPlugins/FacebookCookieElements/FacebookCookieElements_1_0_0,https://cisbitbucket01/scm/sdkp/facebookcookieelements.git,test1

@@ -41,6 +41,25 @@ class Utils(object):
 
 
     @staticmethod
+    def getListOfFiles(dirName):
+        # create a list of file and sub directories 
+        # names in the given directory 
+        listOfFile = os.listdir(dirName)
+        allFiles = list()
+        # Iterate over all the entries
+        for entry in listOfFile:
+            # Create full path
+            fullPath = os.path.join(dirName, entry)
+            # If entry is a directory then get the list of files in this directory 
+            if os.path.isdir(fullPath):
+                allFiles = allFiles + Utils.getListOfFiles(fullPath)
+            else:
+                allFiles.append(fullPath)
+                    
+        return allFiles
+
+
+    @staticmethod
     def home_dir():
         return os.path.dirname(os.path.realpath(__file__))
 
@@ -185,3 +204,13 @@ class Utils(object):
             else:
                 allfiles.append(fullpath)
         return allfiles
+
+    
+    @staticmethod
+    def get_repo_type(repouri):
+        rt = NS.RepoType()
+        if repouri is not None:
+            spl = repouri.lower().split("/")
+            if len(spl) > 6:
+                parseOffset = rt(spl[6])
+        return parseOffset
