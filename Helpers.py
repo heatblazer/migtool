@@ -70,7 +70,7 @@ class Functor(object):
     def do_work(self):
         """override this"""
         raise BaseException()
-    
+
 
 
 class PThread(Thread):

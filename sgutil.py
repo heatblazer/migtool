@@ -976,6 +976,13 @@ class SvnGitMixin(object):
         return deleted
 
 
+    def fcompare(self):
+        Utils.dump("[INFO] Entering dir compare for %s and %s" % (self._svnpath, self._gitpath))
+        deltas = Utils.deltadir(self._gitpath, self._svnpath)
+        for k in deltas:
+            if deltas[k] == 1:
+                Utils.dump("[WARINING] Missmatch in file %s " % k)
+
     def finish(self):
         if self._xmlContext is not None:
             self._xmlContext.finalize()    
@@ -1133,6 +1140,7 @@ if __name__ == "__main__":
             Utils.printwf("This may take a while... please wait...\r\n")
             mix = None
             workCnt = 0
+            filecmp = False
 
             if args['--nohttps'] is not None:
                 Utils.printwf("INFO: Will not use https but ssh")
@@ -1181,6 +1189,9 @@ if __name__ == "__main__":
                             enable_tag_mode = True
                             tag_opt = 1
                         
+                        if args['--fcmp'] is not None:
+                            filecmp = True
+
                         if args['--retag'] is not None:
                             enable_tag_mode = True
                             tag_opt = 2
@@ -1205,7 +1216,7 @@ if __name__ == "__main__":
 
                         elif args['--purge-tags'] is not None:
                             mix.remove_tags()
-
+                        
                         elif args['--pop'] is not None:
                             try:
                                 pop_count = int(sys.argv[args['--pop']+1])
@@ -1214,10 +1225,13 @@ if __name__ == "__main__":
                             for i in range(0, pop_count):
                                 pass
                                 #mix.gitpop()
-
                         else:
                             pass
+                        
+                        if filecmp:
+                            mix.fcompare()
                         _idump(mix, svn, git, branch, bDumpAll)
+                        
                     else:
                         #debuf only
                         pass
@@ -1235,8 +1249,6 @@ if __name__ == "__main__":
 
     Utils.finalize()
     Utils.printwf("*************************************************************************************************")
-
-
 
 #######################################################################################################################################
 # todo:

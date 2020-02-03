@@ -15,6 +15,21 @@ class Utils(object):
     memdmp = list()
     db = DB()
 
+    class CmpDotFiles(object):
+
+        def __init__(self):
+            pass
+        
+        def __call__(self, path):
+            if ".git" in path or ".svn" in path:
+                return True
+            elif ".gitkeep" in path or ".gitignore" in path:
+                return True
+            else:
+                return False
+
+
+
     @staticmethod
     def unlink(fname):
         try:
@@ -41,23 +56,53 @@ class Utils(object):
 
 
     @staticmethod
-    def getListOfFiles(dirName):
+    def getListOfFiles(dirName, opt=None):
         # create a list of file and sub directories 
         # names in the given directory 
         listOfFile = os.listdir(dirName)
         allFiles = list()
         # Iterate over all the entries
-        for entry in listOfFile:
-            # Create full path
+        for entry in listOfFile:            
+            #if opt is not None and opt(entry) is True:
+            #    continue
+
             fullPath = os.path.join(dirName, entry)
+                
             # If entry is a directory then get the list of files in this directory 
             if os.path.isdir(fullPath):
-                allFiles = allFiles + Utils.getListOfFiles(fullPath)
+                allFiles = allFiles + Utils.getListOfFiles(fullPath, opt)
             else:
-                allFiles.append(fullPath)
-                    
+                if opt is not None and opt(fullPath) is False:
+                    allFiles.append(fullPath)
+                
         return allFiles
 
+
+    @staticmethod 
+    def deltadir(dirA, dirB):
+        if dirA is None or dirB is None:
+            return None
+        
+        direntA = Utils.getListOfFiles(dirA, Utils.CmpDotFiles())
+        direntB = Utils.getListOfFiles(dirB, Utils.CmpDotFiles())        
+        deltas = {}
+        
+        for j in range(0, len(direntB)):
+            d1 = direntB[j].split(dirB)[-1]
+            if d1 in deltas.keys():
+                deltas[d1] += 1
+            else:
+                deltas[d1] = 1
+
+
+        for i in range(0, len(direntA)):
+            d1 = direntA[i].split(dirA)[-1]
+            if d1 in deltas.keys():
+                deltas[d1] += 1
+            else:
+                deltas[d1] = 1
+
+        return deltas
 
     @staticmethod
     def home_dir():
@@ -190,6 +235,7 @@ class Utils(object):
         print data
         sys.stdout.flush()
         sys.stderr.flush()
+        
 
     @staticmethod
     def find_file(dir, match):
@@ -214,3 +260,12 @@ class Utils(object):
             if len(spl) > 6:
                 parseOffset = rt(spl[6])
         return parseOffset
+
+
+
+if __name__ == "__main__":
+    '''
+    result = Utils.deltadir("D:\\Dev\\migrationtool\\svnrepos\\4_5_2_branches", "D:\\Dev\\migrationtool\\gitrepos\\4_5_2") 
+    result = Utils.deltadir("D:\\Dev\\migrationtool\\svnrepos\\Infra_1_2_1_Infra", "D:\\Dev\\migrationtool\\gitrepos\\Infra_1_2_1")
+    print "OK"
+    '''

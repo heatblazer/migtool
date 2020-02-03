@@ -7,6 +7,7 @@ class NS:
         NO_CONNECTION_TO_SVN = 2
         NO_CONNECTION_TO_GIT = 3
         ERROR_INSUFFICIENT_CLONE_DEPTH = 4
+        
 
     class RepoType:
 
@@ -20,6 +21,8 @@ class NS:
             self.repo_map["sdkbindings"] = 5
             self.repo_map["sauclustermanager"] = 5
             self.repo_map["sdkplugins"] = 5
+            self.repo_map["infra"] = 5
+            
 
 
         def __call__(self, k):
@@ -148,7 +151,7 @@ class NS:
     Gargs.update({'--users' : None})
     Gargs.update({'--tagonly' : None})
     Gargs.update({'--pop' : None})
-    
+    Gargs.update({'--fcmp' : None})
     
 
 #######################################################################################################################################

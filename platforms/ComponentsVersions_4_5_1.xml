@@ -214,7 +214,7 @@
 	<Component Name="VirtualEarthElements" Version="9" MinVersion="1"/>
 	<Component Name="ToutiaoElements" Version="10" MinVersion="1"/>
 	<Component Name="AdsInnerActiveMobiElements" Version="10" MinVersion="1"/>
-	<Component Name="DailyhuntElements" Version="12" MinVersion="1"/>
+	<Component Name="DailyhuntElements" Version="13" MinVersion="1"/>
 	<Component Name="PinterestElements" Version="7" MinVersion="1"/>
 	<Component Name="Paltalk" Version="17" MinVersion="15"/>
 	<Component Name="ParticleMediaElements" Version="8" MinVersion="1"/>
@@ -226,7 +226,7 @@
 	<Component Name="KaufcomElements" Version="4" MinVersion="1"/>
 	<Component Name="AmberWeatherElements" Version="5" MinVersion="1"/>
 	<Component Name="IterationMobileElements" Version="3" MinVersion="1"/>
-	<Component Name="FordealElements" Version="6" MinVersion="1"/>
+	<Component Name="FordealElements" Version="7" MinVersion="1"/>
 	<Component Name="SinaElements" Version="2" MinVersion="1"/>
 	<Component Name="ZPlayElements" Version="2" MinVersion="1"/>
 	<Component Name="AdsAppnextElements" Version="2" MinVersion="1"/>

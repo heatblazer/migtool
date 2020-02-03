@@ -61,7 +61,7 @@
 	<Component Name="BoxAzMail" Version="172" MinVersion="158"/>
 	<Component Name="VK" Version="235" MinVersion="3"/>
 	<Component Name="Tforum" Version="165" MinVersion="3"/>
-	<Component Name="GmailMail" Version="310" MinVersion="148"/>
+	<Component Name="GmailMail" Version="311" MinVersion="148"/>
 	<Component Name="GmxDotComMail" Version="166"/>
 	<Component Name="HanMail" Version="184"/>
 	<Component Name="HotmailMail" Version="164"/>
