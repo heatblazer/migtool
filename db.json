@@ -1443,10 +1443,6 @@
     "svnrev": 271274, 
     "tags": []
   }, 
-  "163Mail_1_0_0": {
-    "svnrev": 271076, 
-    "tags": []
-  }, 
   "SdkMdr_1_0_450": {
     "svnrev": 267834, 
     "tags": []
@@ -1743,6 +1739,10 @@
     "svnrev": 270638, 
     "tags": []
   }, 
+  "PalringoIm_1_0_0": {
+    "svnrev": 271261, 
+    "tags": []
+  }, 
   "EuaFacebook_1_0_0": {
     "svnrev": 270699, 
     "tags": []
@@ -1899,8 +1899,8 @@
     "svnrev": 267744, 
     "tags": []
   }, 
-  "PalringoIm_1_0_0": {
-    "svnrev": 271261, 
+  "SamplePython_1_0_0": {
+    "svnrev": 267894, 
     "tags": []
   }, 
   "AdsInnerActiveMobiElements_1_0_0": {
@@ -2043,8 +2043,8 @@
     "svnrev": 271127, 
     "tags": []
   }, 
-  "SamplePython_1_0_0": {
-    "svnrev": 267894, 
+  "163Mail_1_0_0": {
+    "svnrev": 271076, 
     "tags": []
   }, 
   "Indoona_1_0_0": {
