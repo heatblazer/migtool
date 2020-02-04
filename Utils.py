@@ -74,6 +74,8 @@ class Utils(object):
             else:
                 if opt is not None and opt(fullPath) is False:
                     allFiles.append(fullPath)
+                else:
+                    allFiles.append(fullPath)
                 
         return allFiles
 

@@ -2,7 +2,7 @@
 	<Component CommitHash="5df03ae397f444f6c1ecbedad3a949ab1c45a15a" MinVersion="84" Name="Infra" Version="92" />
 	<Component CommitHash="77ee57f444e767c7dba782567e87414c6ca9f4f4" MinVersion="30" Name="WebInfra" Version="88" />
 	<Component CommitHash="2a3f199ed7e39078163f90d21b59a82e7e87a631" MinVersion="73" Name="ImPspInfra" Version="73" />
-	<Component MinVersion="1" Name="Sau" Version="262" />
+	<Component CommitHash="a3760da69738f189e16fd55c632a9d00597fed29" MinVersion="1" Name="Sau" Version="262" />
 	<Component CommitHash="a71a53e9e8a612d15a635a1488be08219b6ddf28" MinVersion="81" Name="SdkBindings" Version="81" />
 	<Component CommitHash="5b71eeef5ecbe869cd6fc7af8c045fcec8e4cf28" MinVersion="140" Name="Sdk" Version="140" />
 	<Component CommitHash="9164b694640762ad2f16a994638fe80a1a9020cf" MinVersion="110" Name="SdkMsrp" Version="111" />

@@ -60,7 +60,7 @@
 	<Component CommitHash="8a494bf59109c2e1811a9dae61457b0e40d2e7f0" MinVersion="158" Name="BoxAzMail" Version="172" />
 	<Component CommitHash="0a779b150ba76229917b7588dd88c993587cc96e" MinVersion="3" Name="VK" Version="235" />
 	<Component CommitHash="70baf61ecf571c6925c5c74ade4b92ec990e446b" MinVersion="3" Name="Tforum" Version="165" />
-	<Component CommitHash="7adbfb8f63146cb79a1d76c5e2c57aeddbd651ed" MinVersion="148" Name="GmailMail" Version="310" />
+	<Component CommitHash="2c98951a3169346e072ff7d6cde4633dcf4f9ac7" MinVersion="148" Name="GmailMail" Version="311" />
 	<Component CommitHash="92a2805175aa25caf3c0a84ed3f23ba877ae765d" Name="GmxDotComMail" Version="166" />
 	<Component CommitHash="3c1c3ff2a8e30ab52ec5f78b59a2261071a927dc" Name="HanMail" Version="184" />
 	<Component CommitHash="71df49f5257cf6cc84e2ce3f3ebefe13aeed1aff" Name="HotmailMail" Version="164" />

@@ -27,37 +27,12 @@ SVN to GIT migration tool
 - Do not modify "db.json" file, it's automatic generated and used by the script for meta info (serialization)
 - if you want to reset the "db.json" entry, set the "svnrev" to 0
 
-<mark> Missing from Infra layouts </mark>
-- 4_5_0
-  - FreePPIm
-  
-- 4_1_0
-  - 163Mail
-  
-- 4_2_0
-  - SeznameMail
-  - Elements
-
-- 4_5_1
-  - SeznameMail
-  - EuaVKontakte
-
-- 4_5_2
-  - EuaLine
-  - EuaWeChat
-  - EuaAzar
-  - EuaYahooMessenger
-  - EuaTalkRay
-  - EuaTalkRay
-  - EuaYeeCall
-  - EuaTumblr
-  - SipTester
 
 <mark>Missing from all repos, probably unused or malformed name</mark>
 - SdkSdkSnProducers
 
 <mark>Missing repos (not present in GIT but requested from svn):</mark>
-- Sau 4_5_1 
+- ~~Sau 4_5_1~~ 
 - ~~SdkBindings 1_0_0~~ 
 - ~~Nimbuzz 1_0_0~~
 - ~~Infra 1_1_0~~

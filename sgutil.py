@@ -1228,7 +1228,7 @@ if __name__ == "__main__":
                         else:
                             pass
                         
-                        if filecmp:
+                        if filecmp is True:
                             mix.fcompare()
                         _idump(mix, svn, git, branch, bDumpAll)
                         
