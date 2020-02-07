@@ -146,7 +146,6 @@ class SvnGitMixin(object):
         glog = str("git log %s " % (optargs))
         self._shell.execute(pull)
         self._shell.execute(glog)
-        Utils.printwf(self._shell.std_out())
         omitnext = False
         spl = self._shell.std_out().split("commit ")
         spl = fix_broken_split(spl, "commit ")
@@ -1224,7 +1223,7 @@ if __name__ == "__main__":
                                 pop_count = 1
                             for i in range(0, pop_count):
                                 pass
-                                #mix.gitpop()
+                                mix.gitpop()
                         else:
                             pass
                         

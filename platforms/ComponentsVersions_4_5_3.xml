@@ -3,7 +3,7 @@
 	<Component Name="Infra" Version="28" MinVersion="28"/>
 	<Component Name="WebInfra" Version="23" MinVersion="3"/>
 	<Component Name="ImPspInfra" Version="21" MinVersion="18"/>
-	<Component Name="Sau" Version="98" MinVersion="3"/>
+	<Component Name="Sau" Version="101" MinVersion="3"/>
 	<Component Name="SdkBindings" Version="21" MinVersion="17"/>
 	<Component Name="Sdk" Version="31" MinVersion="28"/>
 	<Component Name="SdkMsrp" Version="27" MinVersion="23"/>

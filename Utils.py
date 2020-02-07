@@ -21,9 +21,7 @@ class Utils(object):
             pass
         
         def __call__(self, path):
-            if ".git" in path or ".svn" in path:
-                return True
-            elif ".gitkeep" in path or ".gitignore" in path:
+            if ".git" in path or ".svn" in path or ".gitkeep" in path or ".gitignore" in path:
                 return True
             else:
                 return False
@@ -74,7 +72,7 @@ class Utils(object):
             else:
                 if opt is not None and opt(fullPath) is False:
                     allFiles.append(fullPath)
-                else:
+                elif opt is None:
                     allFiles.append(fullPath)
                 
         return allFiles
@@ -266,8 +264,9 @@ class Utils(object):
 
 
 if __name__ == "__main__":
+    
+    result = Utils.deltadir("D:\Dev\migrationtool\svnrepos\WhatsAppIm_1_1_0_WhatsAppIm", "D:\Dev\migrationtool\gitrepos\WhatsAppIm_1_1_0") 
     '''
-    result = Utils.deltadir("D:\\Dev\\migrationtool\\svnrepos\\4_5_2_branches", "D:\\Dev\\migrationtool\\gitrepos\\4_5_2") 
     result = Utils.deltadir("D:\\Dev\\migrationtool\\svnrepos\\Infra_1_2_1_Infra", "D:\\Dev\\migrationtool\\gitrepos\\Infra_1_2_1")
     print "OK"
     '''

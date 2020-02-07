@@ -49,7 +49,11 @@ SVN to GIT migration tool
 - Review the Platforms.git 4_5_3 to verify if commits have to be removed and re-merged. Temporaly removed http://tlvsvn1/svn/repos-pdfe/Pdfe/Platforms/branches/4_5_3,https://cisbitbucket01/projects/IP/Platforms.git,4_5_3 the link from the file
 - Run BFG as final step.
 
-<mark> DONE: </mark>
+<mark> Exported platforms: </mark>
 - Platform 4_5_2
+- Platform 4_1_0
+- Platform 4_2_0
+- Platform 4_5_0
+- Platform 4_5_1
  
 author: iliyan.zapryanov@verint.com
