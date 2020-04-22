@@ -816,31 +816,31 @@ class SvnGitMixin(object):
                     repo = None
                     if NS.TEST_GIT_REPO_NAME is not None:
                         repo = self.init_branch(NS.TEST_GIT_REPO_NAME, cleanup)
-                    else:
-                        os.chdir(self._gitpath) # go to dir path
-                        exppath = str("%s\\%s\\%s" % (pydir, postf, k))
-                        c = self._shell
-                        self._currentPID = c                        
-                        exp = str("svn export -r %s %s %s" % (k,  self._svnpath, exppath))
-                        c.execute(exp)
-                        # copy and commit - do the actual merge with ver and careful since we need to delete SVN delted files before commit                           
+                
+                    os.chdir(self._gitpath) # go to dir path
+                    exppath = str("%s\\%s\\%s" % (pydir, postf, k))
+                    c = self._shell
+                    self._currentPID = c                        
+                    exp = str("svn export -r %s %s %s" % (k,  self._svnpath, exppath))
+                    c.execute(exp)
+                    # copy and commit - do the actual merge with ver and careful since we need to delete SVN delted files before commit                           
 
-                        if Utils.xcopy(exppath, self._gitpath) is True:
-                            full_msg = str("%s\r\nsvn-revision:%s\r\n" % (msg[1], k))
-                            full_msg = full_msg.replace("\"", "\'")
-                            you_mail = str(GUserMails[spl[2].lower()])
-                            if k in self._filesToDelete:
-                                for f in self._filesToDelete[k]:
-                                    if os.path.isfile(f):
-                                        Utils.unlink(f)
-                                    elif os.path.isdir(f):
-                                        Utils.rmdir(f)
+                    if Utils.xcopy(exppath, self._gitpath) is True:
+                        full_msg = str("%s\r\nsvn-revision:%s\r\n" % (msg[1], k))
+                        full_msg = full_msg.replace("\"", "\'")
+                        you_mail = str(GUserMails[spl[2].lower()])
+                        if k in self._filesToDelete:
+                            for f in self._filesToDelete[k]:
+                                if os.path.isfile(f):
+                                    Utils.unlink(f)
+                                elif os.path.isdir(f):
+                                    Utils.rmdir(f)
 
-                            self.add_and_commit(spl[2], you_mail, spl[4], full_msg, repo)
-                        else:                        
-                            Utils.printwf(str("Error: Repositories: %s and %s are probably deleted." % (self._repo, self._svnuri)))
-                            Utils.dump(str("Error: Repositories: %s and %s are probably deleted." % (self._repo, self._svnuri)))                            
-                            return NS.Errors.ERROR
+                        self.add_and_commit(spl[2], you_mail, spl[4], full_msg, repo)
+                    else:                        
+                        Utils.printwf(str("Error: Repositories: %s and %s are probably deleted." % (self._repo, self._svnuri)))
+                        Utils.dump(str("Error: Repositories: %s and %s are probably deleted." % (self._repo, self._svnuri)))                            
+                        return NS.Errors.ERROR
                 else:
                     Utils.printwf(str("Error: Mail %s not in the mailing list, aborting migration" % spl[2]))
                     Utils.dump(str("Error: Mail %s not in the mailing list, aborting migration" % spl[2]))
@@ -1232,6 +1232,7 @@ if __name__ == "__main__":
                         _idump(mix, svn, git, branch, bDumpAll)
                         
                     else:
+                        mix.do_merge("{2019-01-01}", cleanup=clean)
                         #debuf only
                         pass
                     mix.finish()

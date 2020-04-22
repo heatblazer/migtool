@@ -17,6 +17,7 @@ class NS:
             self.repo_map["platforms"] = 5
             self.repo_map["impspplugins"] = 6
             self.repo_map["ipprobe"] = 6
+            self.repo_map["udc"] = 5
             self.repo_map["webinfra"] = 5
             self.repo_map["sdkbindings"] = 5
             self.repo_map["sauclustermanager"] = 5
@@ -34,7 +35,7 @@ class NS:
             
 
 
-    TEST_GIT_REPO_NAME = None #"TST4" #"TODO_MIGRATE"
+    TEST_GIT_REPO_NAME = "SVN_MERGE" #"TODO_MIGRATE"
 
     EXPLICIT_MATCH = "Sau_4_5_3"
 
