@@ -1,6 +1,0 @@
-http://tlvsvn1/svn/repos-pdfe/Pdfe/UDC/branches/UDC_DEV_4_5_3/,https://cisbitbucket01/projects/MED/udc.git,UDC_DEV_4_5_3
-http://tlvsvn1/svn/repos-pdfe/Pdfe/UDC/branches/UDC_DEV_4_5_1/,https://cisbitbucket01/projects/MED/udc.git,UDC_DEV_4_5_1
-http://tlvsvn1/svn/repos-pdfe/Pdfe/UDC/branches/UDC_DEV_4_1_0/,https://cisbitbucket01/projects/MED/udc.git,UDC_DEV_4_1_0
-http://tlvsvn1/svn/repos-pdfe/Pdfe/UDC/branches/UDC_DEV_2_1_4/,https://cisbitbucket01/projects/MED/udc.git,UDC_DEV_2_1_4
-http://tlvsvn1/svn/repos-pdfe/Pdfe/UDC/branches/UDC_DEV_4_2_0/,https://cisbitbucket01/projects/MED/udc.git,UDC_DEV_4_2_0
-http://tlvsvn1/svn/repos-pdfe/Pdfe/UDC/branches/UDC_DEV_4_5_0/,https://cisbitbucket01/projects/MED/udc.git,UDC_DEV_4_5_0

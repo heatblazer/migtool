@@ -23,13 +23,6 @@ class dbutil(object):
             return False
         pass
 
-    
-    def printme(self):
-        if self._db is not None:
-            for record in self._db:
-                print str("%s:%s" % (record, self._db[record]))
-
-
     def add_record(self, name):
         if self._db is not None:
             if name not in self._db:

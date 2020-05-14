@@ -65,7 +65,7 @@ class NS:
 
     NO_GIT_URI = False #nohttps
 
-    CSI_GIT_URI = "ssh://git@cisbitbucket01:7999/"
+    CSI_GIT_URI = "secret!!!"
 
     SVN_TEMP_DIR = "svnrepos"
 

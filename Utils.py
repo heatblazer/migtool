@@ -232,7 +232,7 @@ class Utils(object):
     @staticmethod
     def printwf(data):
         """print stdout and stderr and flush the fdescriptors"""
-        print data
+        print data #replace for Py3
         sys.stdout.flush()
         sys.stderr.flush()
         
@@ -261,12 +261,3 @@ class Utils(object):
                 parseOffset = rt(spl[6])
         return parseOffset
 
-
-
-if __name__ == "__main__":
-    
-    result = Utils.deltadir("D:\Dev\migrationtool\svnrepos\WhatsAppIm_1_1_0_WhatsAppIm", "D:\Dev\migrationtool\gitrepos\WhatsAppIm_1_1_0") 
-    '''
-    result = Utils.deltadir("D:\\Dev\\migrationtool\\svnrepos\\Infra_1_2_1_Infra", "D:\\Dev\\migrationtool\\gitrepos\\Infra_1_2_1")
-    print "OK"
-    '''
