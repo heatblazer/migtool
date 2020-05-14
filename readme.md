@@ -28,9 +28,6 @@ SVN to GIT migration tool
 - if you want to reset the "db.json" entry, set the "svnrev" to 0
 
 
-<mark>Missing from all repos, probably unused or malformed name</mark>
-- SdkSdkSnProducers
-
 - Run BFG as final step.
  
 author: iliyan.zapryanov@verint.com
